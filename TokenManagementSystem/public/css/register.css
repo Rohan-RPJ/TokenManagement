@@ -1,0 +1,109 @@
+body{
+  background-color: white;
+  /* box-shadow: 2px 2px 5px #555; */
+  display: flex;
+  justify-content: center;
+  /* margin-left: 760px; */
+  /* margin-right: 560px; */
+}
+
+#main{
+   /* width: 35%; */
+   /* display: flex; */
+   /* justify-content: center; */
+   /* margin: 50px auto; */
+   margin-top: 10px;
+   /* border: 2px solid blue; */
+
+}
+
+/* .radio{
+  display: none;
+} */
+
+
+.tsignin,.ssignin{
+  text-decoration: none;
+  display: block;
+  width: 300px;
+  background-color: grey;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  padding: 10px;
+  /* border: 2px solid blue; */
+  /* margin-bottom: 850px; */
+}
+
+.middle,.middle1{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  background-color: #dcdde1;
+  padding-bottom: 30px;
+  /* border: 2px solid #9c88ff; */
+  /* margin-left: 100px; */
+}
+
+.middle1{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  background-color: #dcdde1;
+  display: none;
+  padding-left: 160px;
+  padding-bottom: 30px;
+  /* border: 2px solid #9c88ff; */
+  /* margin-left: 100px; */
+}
+
+.s2{
+  background-color: #dcdde1;
+  color :black;
+}
+
+#taps{
+  display: flex;
+  justify-content: center;
+
+}
+
+
+input{
+  border-radius: 10px;
+  /* border-style: double; */
+  font-size: 22px;
+  height: 40px;
+  width: 300px;
+  background-color: white;
+}
+
+input:focus{
+  outline: none;
+  border: 2px solid #9c88ff;
+  border-bottom: 5px solid #8c7ae6;
+}
+
+.year,.branch{
+  border-radius: 10px;
+  font-size: 22px;
+  height: 40px;
+  width: 300px;
+  background-color: white;
+}
+
+.register{
+  /* border: 2px solid red; */
+  border-radius: 10px;
+  /* border-style: double; */
+  font-size: 22px;
+  height: 40px;
+  width: 300px;
+  background-color: #a29bfe;
+  /* margin-top: 300px; */
+  /* margin-left:400px; */
+}
+
+.register:hover{
+  background-color: #8c7ae6;
+}

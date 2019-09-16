@@ -1,73 +1,101 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<div class="center">
+  <form class="form" action="{{ route('login') }}" method="POST"  name="form" onsubmit="return validation()" >
+    @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <h1> <b>Log in</b> </h1>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <table border="0">
+      <tr>
+        <td><input type="email" id="username" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" autocomplete="off" onchange="isEmpty1()" required autofocus></td>
+      </tr>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+      <tr>
+        <td> 
+            <span id="user" style="color:red; font-size: 18px;">
+                @error('email')
+                    <span class="">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </span>
+        </td>
+      </tr>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+      <tr>
+        <td>  <br> </td>
+      </tr>
+      <tr>
+        <td><input type="password" class="@error('password') is-invalid @enderror" name="password" placeholder=" Password"  id="password" onchange="isEmpty2()" required></td>
+      </tr>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+      <tr>
+        <td> 
+            <span id="pass" style="color:red; font-size: 16px;">
+                @error('password')
+                    <span class="" >
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </span>
+        </td>
+      </tr>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+      <tr>
+        <td> <br> </td>
+      </tr>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+      <tr>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+        <td style="display: flex;">
+            <input id="radio" type="radio" class="@error('type') is-invalid @enderror" name="type" value="Teacher"  onclick="usertype(this.value)"> 
+            <h2 style = "font-size: 30px;"> <b>Teacher</b> </h2> 
+        </td>
+
+      </tr>
+      <tr>
+        <td style="display: flex;"> 
+          <input id="radio" type="radio" class="@error('type') is-invalid @enderror" name="type" value="Student" onclick="usertype(this.value)"> 
+            <h2 style = "font-size: 30px;"> <b>Student</b> </h2> 
+        </td>
+      </tr>
+      <tr>
+        <td> 
+            <span id="type" style="color:red; font-size: 16px;">
+                @error('type')
+                    <span class="" >
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </span>
+        </td>
+      </tr>
+      <tr>
+        <td> <input type="text" name="" id="hide" value="" onchange="isEmpty3"> </td>
+      </tr>
+      <tr>
+        <td> <span id="whologin" style="color:red; font-size: 18px;"></span> </td>
+      </tr>
+
+      <tr>
+        <td> <br> </td>
+      </tr>
+
+      <tr>
+        <td><button type="submit" class="signin"  > <b>Sign in</b> </button> </td>
+      </tr>
+
+      <tr>
+        <td> <h3>Don't have an account? <a href="{{ route('register') }}">Register! </a> </h3> </td>
+      </tr>
+
+    </table>
+  </form>
 </div>
-@endsection
+
+@endsection()

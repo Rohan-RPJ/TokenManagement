@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Students;
+use App\Teachers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -48,11 +50,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        if(array_search('Register', $data) == 'sRegister'){
+            return Validator::make($data, [
+            'sEmail' => ['required', 'string', 'email', 'max:255', 'unique:students'],
+            'sRollNo' => ['required', 'integer', 'unique:students'],
         ]);
+            //dd($validator->fails());
+        }
+        elseif (array_search('Register', $data) == 'tRegister') {
+            return Validator::make($data, [
+            'tEmail' => ['required', 'string', 'email', 'max:255', 'unique:teachers'],
+        ]);
+        }
     }
 
     /**
@@ -63,10 +72,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        if(array_search('Register', $data) == 'sRegister'){
+
+
+            $user = User::create([
+                'email' => $data['sEmail'],
+                'password' => Hash::make($data['sPassword']),
+                'type' => 'Student',
+            ]);
+
+            Students::create([
+            'sName' => $data['sName'],
+            'sEmail' => $data['sEmail'],
+            'sYear' => $data['sYear'],
+            'sBranch' => $data['sBranch'],
+            'sRollNo' => $data['sRollNo'],
+            ]);
+            
+        }
+        elseif (array_search('Register', $data) == 'tRegister') {
+            
+            $user = User::create([
+                'email' => $data['tEmail'],
+                'password' => Hash::make($data['tPassword']),
+                'type' => 'Teacher',
+            ]);
+            Teachers::create([
+            'tName' => $data['tName'],
+            'tEmail' => $data['tEmail'],
+            //'tBranch' => $data['tBranch'],
+            ]);
+
+        }
+        return $user;
     }
 }
