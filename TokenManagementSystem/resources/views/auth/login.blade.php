@@ -24,16 +24,12 @@
             </span>
         </td>
       </tr>
-
-
       <tr>
         <td>  <br> </td>
       </tr>
       <tr>
         <td><input type="password" class="@error('password') is-invalid @enderror" name="password" placeholder=" Password"  id="password" onchange="isEmpty2()" required></td>
       </tr>
-
-
       <tr>
         <td> 
             <span id="pass" style="color:red; font-size: 16px;">
