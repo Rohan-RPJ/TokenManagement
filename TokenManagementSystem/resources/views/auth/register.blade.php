@@ -6,9 +6,9 @@
 <h1 style="text-align: center; color: violet; font-size: 50px;" > <b>Create a new Account</b> </h1>
 
     <div id="taps">
-       <a href="#" class="ssignin s2"  onclick="usertype('Student')" > <b> Student</b></a>
+       <a href="#" class="ssignin s2"  onclick="usertype('Student')" style="text-decoration: none;"> <b> Student</b></a>
       <!-- <input type="radio" class="radio" name="loginas" id="rb1" value="Student"> -->
-      <a href="#" class="tsignin"   onclick="usertype('Teacher')"> <b>Teacher</b> </a>
+      <a href="#" class="tsignin"   onclick="usertype('Teacher')" style="text-decoration: none;"> <b>Teacher</b> </a>
       <!-- <input type="radio" class="radio" name="loginas" id="rb2" value="Teacher" > -->
     </div>
 
@@ -204,11 +204,11 @@
             <td><input type="submit" name="tRegister" value="Register" class="register" ></td>
           </tr>
         </table>
-
       </form>
 
     <!-- </section> -->
   </div>
+  <h3>Have an account? <a href="{{ route('login') }}">Login </a> </h3>
 
 </div>
 

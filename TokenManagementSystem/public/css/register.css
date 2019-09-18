@@ -12,7 +12,7 @@ body{
    /* display: flex; */
    /* justify-content: center; */
    /* margin: 50px auto; */
-   margin-top: 10px;
+   margin-top: 0px;
    /* border: 2px solid blue; */
 
 }
@@ -23,7 +23,6 @@ body{
 
 
 .tsignin,.ssignin{
-  text-decoration: none;
   display: block;
   width: 300px;
   background-color: grey;
@@ -31,6 +30,7 @@ body{
   color: white;
   font-size: 25px;
   padding: 10px;
+  text-decoration: none;
   /* border: 2px solid blue; */
   /* margin-bottom: 850px; */
 }

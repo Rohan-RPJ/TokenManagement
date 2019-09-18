@@ -1,3 +1,4 @@
+{{--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -97,4 +98,50 @@
             </div>
         </div>
     </body>
+</html>
+--}}
+
+
+{{-----------------------------------------------   Without Bootstrap  ------------------------------------------------}}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>TokenManagement</title>
+  <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+
+  <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
+  </script>
+</head>
+<body>
+
+  <!-- -------------------------------------------------------------------------------------- HOME PAGE ------------------------------------------------------------------------------------------------ -->
+
+ <div class="main">
+
+    <div class="nav-header" >
+        <div class="f-s" style="color: #ddbcff;" ><h1>FILE SUBMISSION</h1></div>
+        @if (Route::has('login'))
+            @auth
+                <div class=""><a href="{{ url('/home') }}"><h2  class="home" >Home</h2></a></div>
+                <div class=""><a href="#"><h2 class="events" >Events</h2></a></div>
+            @else
+                <div class="login"><a href="{{ route('login') }}"><h2 class="nav-link">Login</h2></a></div>
+                @if (Route::has('register'))
+                    <div class="register"><a href="{{ route('register') }}"><h2 class="nav-link">Register</h2></a></div>
+                @endif  
+            @endauth
+        @endif
+    </div>
+
+    <div class="inner-elements">
+        <div class="">
+          <h1>WELCOME TO FILE SUBMISSION!. <br> USING TOKEN MANAGEMENT SYSTEM.</h1>
+          <br>
+          <h3>A token management system is used to control queues.<br> Queues of people form in various situations and locations in a queue area.</h3>
+        </div>
+    </div>
+ </div>
+</body>
 </html>
