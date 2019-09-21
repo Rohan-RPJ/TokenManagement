@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="Events">
+<div class="submissions">
   <div class="e-inner-elements">
     <div class="db"> <h1> Dashboard </h1> </div>
-    <div class="" style=" text-align:center " >  <h1>Ongoing Events</h1>   </div>
+    <div class="" style=" text-align:center " >  <h1>Ongoing Submissions</h1>   </div>
     <div class="on-events">
       <div class="card" >
         <div class="card-body">
@@ -18,7 +18,7 @@
       </div>
     </div>
     <br>
-    <div class=""style=" text-align:center " >  <h1>Upcoming Events</h1>   </div>
+    <div class=""style=" text-align:center " >  <h1>Upcoming Submissions</h1>   </div>
     <div class="up-events">
       <div class="upevent-row">
         <span>Digital Logic</span>

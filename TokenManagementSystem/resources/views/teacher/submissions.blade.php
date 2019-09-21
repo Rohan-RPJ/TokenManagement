@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="Events">
+<div class="submissions">
   <div class="e-inner-elements">
     <div class="db"> 
       <h1> Dashboard </h1> 
@@ -11,7 +11,7 @@
       <h1>Ongoing Events</h1>
     </div>
     <div class="" style=" text-align: center " > 
-      <button type="button"  class="create-events" name="button" onclick="events()" > Create an Event</button>
+      <button type="button"  class="create-events" name="button" onclick="showUser()"> Create Submission</button>
     </div>
     <div class="on-events">
       <div class="card" >
