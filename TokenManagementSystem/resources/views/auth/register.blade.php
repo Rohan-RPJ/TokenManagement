@@ -43,6 +43,13 @@
                       <alert>{{ str_replace('s email','email',$message) }}</alert>
                     </span>
                   @enderror
+                </span>
+                <span id='sspanemail' style="color:red; font-size: 18px;" >
+                  @error('email')
+                    <span class="">
+                      <alert>{{ $message }}</alert>
+                    </span>
+                  @enderror
                 </span> 
               </td>
             </tr>
@@ -167,6 +174,13 @@
                     <alert>{{ str_replace('t email','email',$message) }}</alert>
                   </span>
                 @enderror
+              </span>
+              <span style="color:red; font-size: 18px;" >
+                  @error('email')
+                    <span id='tspanemail' class="">
+                      <alert>{{ $message }}</alert>
+                    </span>
+                  @enderror
               </span>
              </td>
           </tr>
