@@ -51,15 +51,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         if(array_search('Register', $data) == 'sRegister'){
+            $data['email'] = $data['sEmail'];       
             return Validator::make($data, [
             'sEmail' => ['required', 'string', 'email', 'max:255', 'unique:students'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'sRollNo' => ['required', 'integer', 'unique:students'],
+
         ]);
             //dd($validator->fails());
         }
         elseif (array_search('Register', $data) == 'tRegister') {
+            $data['email'] = $data['tEmail'];      
             return Validator::make($data, [
             'tEmail' => ['required', 'string', 'email', 'max:255', 'unique:teachers'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
         }
     }

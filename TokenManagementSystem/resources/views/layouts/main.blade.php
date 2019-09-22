@@ -26,13 +26,16 @@
 
   <script type="text/javascript">
     var user = {!! json_encode(Auth::user()->toArray(), JSON_HEX_TAG) !!};
-    function showUser(){
-      console.log(user);
+    function showCreate(){
+      console.log(user['type']);
+      if (user['type'] === 'Teacher') {
+        document.getElementById('create-nav-btn').style.display = 'inherit';
+      }
     }
   </script>
 
 </head>
-<body>
+<body onload="showCreate();">
   <header class="header">
     <a href="#" class="logo" style="color: #ddbcff;"><b>FILE SUBMISSION</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
@@ -41,7 +44,7 @@
       <li><a href="{{ url('/home') }}" class="home">Home</a></li>
       <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}"
       onclick="gettime()" class="events">Submissions</a></li>
-      <li><a href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
+      <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
       <li><a href="#" class="notif">Notifications</a></li>
       <li><a href="#">Profile</a></li>
       <li><a href="#">History</a></li>
