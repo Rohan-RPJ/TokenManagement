@@ -4,6 +4,7 @@
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,8 @@ $factory->define(User::class, function (Faker $faker) {
         //'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'type'=>['Student','Teacher'][rand(0,1)],
-        'email_verified_at' => now(),
-        'password' => 'secret1234', // password
-        'remember_token' => Str::random(10),
+        //'email_verified_at' => now(),
+        'password' => Hash::make('secret1234'), // password
+        //'remember_token' => Str::random(10),
     ];
 });
