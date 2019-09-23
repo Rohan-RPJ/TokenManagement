@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Participant;
+use App\Submissions;
+use App\Students;
 use Illuminate\Http\Request;
+use \Illuminate\Http\Response;
 
 class ParticipantController extends Controller
 {
@@ -12,9 +15,10 @@ class ParticipantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Submissions $submission)
     {
-        //
+        $participants = Participant::where('submission_id',$submission->submission_id)->get();
+        return response($participants ,200);
     }
 
     /**
@@ -35,7 +39,28 @@ class ParticipantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //check if participant exists
+        $participant = null;
+        
+        $participant = Participant::where('submission_id',$request->submission_id)->first();
+        
+        if($participant==null){
+        $participant = Participant::create([
+                            'student_id'=>$request->user()->student->id,
+                            'submission_id'=>$request->submission_id,
+                            'correct'=>0,
+                            'wrong'=>0,
+                            'score'=>0,
+                        ]);
+        //dd($participant);
+        $message="Created a participant with ".$participant->id;
+        }
+        else
+        {
+         $message="Already a participant for ".$participant->submission->subject->name;
+        }
+        return back()->with('success',$message);
+
     }
 
     /**
@@ -44,21 +69,15 @@ class ParticipantController extends Controller
      * @param  \App\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function show(Participant $participant)
+    public function join(Request $request)
     {
-        //
+        $branch=$request->user()->student->sBranch;
+        $year=$request->user()->student->sYear;
+        $submissions= Submissions::where('year',$year)->get();
+
+        return view('participant.join',compact('submissions','request'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Participant  $participant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Participant $participant)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

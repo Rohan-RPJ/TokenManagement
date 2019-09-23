@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model
 {
-    private $guarded = []; //allowing mass assignment
+    protected $guarded = []; //allowing mass assignment
 
     public function student(){
     	return $this->hasOne('\App\Students');
@@ -14,6 +14,10 @@ class Participant extends Model
 
 	public function round(){
     	return $this->belongsTo('\App\Round');
+	}
+
+	public function submission(){
+		return $this->belongsTo('\App\Submissions',$foreignKey='submission_id',$ownerKey='submission_id');
 	}
 
 }
