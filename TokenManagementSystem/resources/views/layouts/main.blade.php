@@ -8,8 +8,8 @@
 
   <!---Fonts--->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  {{-- <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -35,15 +35,14 @@
   </script>
 
 </head>
-<body onload="showCreate();">
+<body onload="showCreate();return gettime();">
   <header class="header">
     <a href="#" class="logo" style="color: #ddbcff;"><b>FILE SUBMISSION</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
       <li><a href="{{ url('/home') }}" class="home">Home</a></li>
-      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}"
-      onclick="gettime()" class="events">Submissions</a></li>
+      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}" onclick="" class="events">Submissions</a></li>
       <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
       <li><a href="#" class="notif">Notifications</a></li>
       <li><a href="#">Profile</a></li>

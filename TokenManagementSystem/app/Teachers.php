@@ -24,4 +24,10 @@ class Teachers extends Model
     	return $this->belongsTo(User::class, $foreignKey='tEmail', $ownerKey='email');
 
     }
+
+    public function submissions(){
+
+        return $this->hasMany(Submissions::class, $foreignKey='teacher_id', $localKey='id');
+
+    }
 }

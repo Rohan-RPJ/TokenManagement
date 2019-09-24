@@ -6,9 +6,9 @@ function events() {
   // document.write("hi");
 }
 
-function gettime() {
+function gettim() {
   // Set the date we're counting down to
-  var countDownDate = new Date("Sept 17, 2019 22:02:25").getTime();
+  var countDownDate = new Date("Sept 25, 2019 4:02:25").getTime();
 
   // Update the count down every 1 second
   var x = setInterval(function() {
@@ -35,4 +35,5 @@ function gettime() {
       document.getElementById("set-et").innerHTML = "EXPIRED";
     }
   }, 1000);
+  return false;
 }
