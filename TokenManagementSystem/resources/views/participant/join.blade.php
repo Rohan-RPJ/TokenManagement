@@ -15,7 +15,7 @@
 	<form method="POST" action="/student/submissions/join">
 		@csrf
 
-		<label>{{$request->user()->student->sName}}</label>
+		<label><strong>{{$request->user()->student->sName}}</strong> {{$request->user()->student->sYear}} {{$request->user()->student->sBranch}}</label>
 		<br>
 		
 		<label>Submission:</label>

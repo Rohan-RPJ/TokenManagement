@@ -41,12 +41,12 @@ class ParticipantController extends Controller
     {
         //check if participant exists
         $participant = null;
-        
-        $participant = Participant::where('submission_id',$request->submission_id)->first();
+        $student_id=$request->user()->student->id;
+        $participant = Participant::where('submission_id',$request->submission_id)->get()->where('student_id',$student_id)->first();
         
         if($participant==null){
         $participant = Participant::create([
-                            'student_id'=>$request->user()->student->id,
+                            'student_id'=>$student_id,
                             'submission_id'=>$request->submission_id,
                             'correct'=>0,
                             'wrong'=>0,
