@@ -7,6 +7,7 @@ use App\Submissions;
 use App\Students;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
+use App\Events\NewParticipantJoined;
 
 class ParticipantController extends Controller
 {
@@ -54,11 +55,14 @@ class ParticipantController extends Controller
                         ]);
         //dd($participant);
         $message="Created a participant with ".$participant->id;
+        event (new NewParticipantJoined($participant));
         }
         else
         {
          $message="Already a participant for ".$participant->submission->subject->name;
         }
+
+
         return back()->with('success',$message);
 
     }
