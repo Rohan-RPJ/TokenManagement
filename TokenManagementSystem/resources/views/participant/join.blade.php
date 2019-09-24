@@ -21,7 +21,7 @@
 		<label>Submission:</label>
 		<select name="submission_id">
 			@foreach($submissions as $submission)
-			<option value="{{$submission->submission_id}}"> {{$submission->year}} {{$submission->branch}} {{$submission->subject->name}} </option>
+			<option value="{{$submission->id}}"> {{$submission->year}} {{$submission->branch}} {{$submission->subject->name}} </option>
 			@endforeach
 		</select>
 		<button type="submit">JOIN</button>

@@ -17,7 +17,7 @@ class Participant extends Model
 	}
 
 	public function submission(){
-		return $this->belongsTo('\App\Submissions',$foreignKey='submission_id',$ownerKey='submission_id');
+		return $this->belongsTo('\App\Submissions',$foreignKey='submission_id',$ownerKey='id');
 	}
 
 }
