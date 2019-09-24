@@ -15,4 +15,9 @@ class Submissions extends Model
     	return $this->belongsTo(Subjects::class, $foreignKey='subject_id', $ownerKey='subject_id');
 
     }
+
+    public function getRouteKeyName()
+	{
+    				return 'submission_id';
+	}
 }
