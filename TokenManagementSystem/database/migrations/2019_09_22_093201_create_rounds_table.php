@@ -25,8 +25,8 @@ class CreateRoundsTable extends Migration
             $table->bigInteger('q3')->unsigned();
             $table->foreign('q3')->references('id')->on('questions');
             
-            $table->bigInteger('submission_id');
-            $table->foreign('submission_id')->references('submission_id')->on('submissions');
+            $table->bigInteger('submission_id')->unsigned();
+            $table->foreign('submission_id')->references('id')->on('submissions');
             
             $table->bigInteger('participant_id')->unsigned();
             $table->foreign('participant_id')->references('id')->on('participants');

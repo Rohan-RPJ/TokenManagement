@@ -22,8 +22,8 @@ class Submissions extends Model
 
     }
 
-    public function getRouteKeyName()
-	{
-    				return 'submission_id';
-	}
+ //    public function getRouteKeyName()
+	// {
+ //    				return 'submission_id';
+	// }
 }

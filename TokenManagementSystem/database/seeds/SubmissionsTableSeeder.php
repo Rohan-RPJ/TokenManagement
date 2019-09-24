@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Subjects;
 use App\Submissions;
+use App\Teachers;
 
 class SubmissionsTableSeeder extends Seeder
 {
@@ -29,18 +30,20 @@ class SubmissionsTableSeeder extends Seeder
             // $num = intval($faker->unique()->numberBetween($min=0,$max=(count($subs)-1)));
             // $sub= $subs[$num];
             $subject_id = $faker->unique()->numberBetween($min=1,$max=75);
-            $subject= Subjects::where('subject_id',$subject_id)->first();
-
-            Submissions::create ([
-                            'subject_id'=> $subject_id, 
-                            'submission_id'=> $i,
+            $subject= Subjects::where('id',$subject_id)->first();
+            $teachers= Teachers::all()->count();
+            Submissions::create ([ 
+                            'id'=> $i,
                             'subject_id'=>$subject_id,
                             'year'=>$subject->year,
                             'branch'=>$subject->branch,
                             'type'=>'quiz',
                             'created_at'=>now(),
                             'updated_at'=>now(),
-                                    
+                            'teacher_id'=>$faker->numberBetween($min=1,$max=$teachers),
+                            'submission_date'=>now()->toDateString(),
+                            'start_time'=>now()->toTimeString(),
+                            'end_time'=>'23:59:59',      
                         ]);
         }
     }
