@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Round extends Model
 {
-    private $guarded= [];
+    protected $guarded= [];
 
     public function submission()
     {
@@ -22,6 +22,6 @@ class Round extends Model
 
     public function questions()
     {
-    	return $this->hasMany('\App\Questions');
+    	return $this->hasManyThrough('\App\Questions','\App\Submissions');
     }
 }

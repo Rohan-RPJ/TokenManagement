@@ -22,6 +22,10 @@ class Submissions extends Model
 
     }
 
+    public function rounds(){
+        return $this->hasMany('\App\Round',$foreignKey='submission_id');
+    }
+
  //    public function getRouteKeyName()
 	// {
  //    				return 'submission_id';

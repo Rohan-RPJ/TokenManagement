@@ -15,7 +15,9 @@ class CreateRoundsTable extends Migration
     {
         Schema::create('rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
-
+            
+            $table->bigInteger('round_id')->unsigned()->default(1);
+            
             $table->bigInteger('q1')->unsigned();
             $table->foreign('q1')->references('id')->on('questions');
             
