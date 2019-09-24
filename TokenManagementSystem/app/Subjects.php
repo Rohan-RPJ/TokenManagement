@@ -8,7 +8,7 @@ class Subjects extends Model
 {
 
 	protected $fillable = [ 
-        'subject_id', 'name', 'year', 'branch',
+        'name', 'year', 'branch',
     ];
 
     function csvToArray($filename = '', $delimiter = ',')
@@ -48,19 +48,19 @@ class Subjects extends Model
         return 'Job done';    
     }
 
+    public static function getSubjectId($subName, $year, $branch){
+
+        return Subjects::select('id')->where('name',$subName)->where('year',$year)->where('branch',$branch)->first()['id'];
+    }
+
     public function questions(){
 
-        return $this->hasMany(Questions::class, $foreignKey='subject_id', $localKey='subject_id');
+        return $this->hasMany(Questions::class, $foreignKey='subject_id', $localKey='id');
     }
 
     public function submissions(){
 
-        return $this->hasMany(Submissions::class, $foreignKey='subject_id', $localKey='subject_id');
-    }
-
-    public static function getSubjectId($subName, $year, $branch){
-
-        return Subjects::select('subject_id')->where('name',$subName)->where('year',$year)->where('branch',$branch)->first()['subject_id'];
+        return $this->hasMany(Submissions::class, $foreignKey='subject_id', $localKey='id');
     }
 
 }

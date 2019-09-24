@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('subject_id');
+            $table->bigInteger('subject_id')->unsigned();
             $table->text('question_description');
             $table->string('option1');
             $table->string('option2');
@@ -25,7 +25,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('count');
             $table->timestamps();
 
-            $table->foreign('subject_id')->references('subject_id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 

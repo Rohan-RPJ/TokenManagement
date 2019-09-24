@@ -1,76 +1,76 @@
-subject_id,branch,year,name
-1,All,FE,Engineering Mathematics-I
-2,All,FE,Engineering Physics-I
-3,All,FE,Engineering Chemistry-I
-4,All,FE,Engineering Mechanics
-5,All,FE,Basic Electrical Engineering
-6,All,FE,Basic Workshop practice-I
-7,All,FE,Engineering Mathematics-II
-8,All,FE,Engineering Physics-II
-9,All,FE,Engineering Chemistry-II
-10,All,FE,Engineering Graphics
-11,All,FE,C programming
-12,All,FE,Professional Communication and Ethics- I
-13,All,FE,Basic Workshop practice-II
-14,Computer,SE,Applied Mathematics -III
-15,Computer,SE,Digital Logic Design and Analysis
-16,Computer,SE,Discrete Mathematics
-17,Computer,SE,Electronic Circuits and Communication Fundamentals
-18,Computer,SE,OOPM(Java)
-19,Computer,SE,Applied Mathematics- IV
-20,Computer,SE,Analysis of Algorithms
-21,Computer,SE,Computer Organization and Architecture
-22,Computer,SE,Computer Graphics
-23,Computer,SE,Operating System
-24,Computer,SE,Open Source Tech Lab
-25,Computer,TE,Microprocessor
-26,Computer,TE,Database Management System
-27,Computer,TE,Computer Network
-28,Computer,TE,Theory of Computer Science
-29,Computer,TE,Web Design Lab
-30,Computer,TE,Business Comm. & Ethics
-31,Computer,TE,Software Engineering
-32,Computer,TE,System Programming & Complier Construction
-33,Computer,TE,Data Warehousing & Mining
-34,Computer,TE,Cryptography & System Security
-35,Computer,TE,Mini-Project
-36,Computer,BE,Digital Signal & Image Processing
-37,Computer,BE,Mobile Communication & Computing
-38,Computer,BE,Artificial Intelligence & Soft Computing
-39,Computer,BE,Computational Lab-I
-40,Computer,BE,Major Project-I
-41,Computer,BE,Data Warehouse and Mining
-42,Computer,BE,Human Machine Interaction
-43,Computer,BE,Parallel and distributed Systems
-44,Computer,BE,Project II
-45,Computer,BE,Cloud Computing Laboratory
-46,Mechanical,SE,Applied Mathematics III
-47,Mechanical,SE,Thermodynamics
-48,Mechanical,SE,Strength of Materials
-49,Mechanical,SE,Production Process I
-50,Mechanical,SE,Material Technology
-51,Mechanical,SE,Machine Shop Practice I
-52,Mechanical,SE,Applied Mathematics IV
-53,Mechanical,SE,Fluid Mechanics
-54,Mechanical,SE,Industrial Electronics
-55,Mechanical,SE,Production Process II
-56,Mechanical,SE,Kinematics of Machinery
-57,Mechanical,SE,Machine Shop Practice II
-58,Mechanical,TE,Internal Combustion Engines
-59,Mechanical,TE,Mechanical Measurements and Control
-60,Mechanical,TE,Heat Transfer
-61,Mechanical,TE,Dynamics of Machinery
-62,Mechanical,TE,Business Communication and Ethics
-63,Mechanical,TE,Metrology and Quality Engineering
-64,Mechanical,TE,Machine Design I
-65,Mechanical,TE,Finite Element analysis
-66,Mechanical,TE,Refrigeration and Air Conditioning
-67,Mechanical,TE,Mechatronics Lab
-68,Mechanical,BE,Machine Design II
-69,Mechanical,BE,CAD/CAM/CAE
-70,Mechanical,BE,Production Planning and Control
-71,Mechanical,BE,Project I
-72,Mechanical,BE,Design of Mechanical Systems
-73,Mechanical,BE,Industrial Engineering and Management
-74,Mechanical,BE,Refrigeration and Air Conditioning
-75,Mechanical,BE,Project- II
+branch,year,name
+All,FE,Engineering Mathematics-I
+All,FE,Engineering Physics-I
+All,FE,Engineering Chemistry-I
+All,FE,Engineering Mechanics
+All,FE,Basic Electrical Engineering
+All,FE,Basic Workshop practice-I
+All,FE,Engineering Mathematics-II
+All,FE,Engineering Physics-II
+All,FE,Engineering Chemistry-II
+All,FE,Engineering Graphics
+All,FE,C programming
+All,FE,Professional Communication and Ethics- I
+All,FE,Basic Workshop practice-II
+Computer,SE,Applied Mathematics -III
+Computer,SE,Digital Logic Design and Analysis
+Computer,SE,Discrete Mathematics
+Computer,SE,Electronic Circuits and Communication Fundamentals
+Computer,SE,OOPM(Java)
+Computer,SE,Applied Mathematics- IV
+Computer,SE,Analysis of Algorithms
+Computer,SE,Computer Organization and Architecture
+Computer,SE,Computer Graphics
+Computer,SE,Operating System
+Computer,SE,Open Source Tech Lab
+Computer,TE,Microprocessor
+Computer,TE,Database Management System
+Computer,TE,Computer Network
+Computer,TE,Theory of Computer Science
+Computer,TE,Web Design Lab
+Computer,TE,Business Comm. & Ethics
+Computer,TE,Software Engineering
+Computer,TE,System Programming & Complier Construction
+Computer,TE,Data Warehousing & Mining
+Computer,TE,Cryptography & System Security
+Computer,TE,Mini-Project
+Computer,BE,Digital Signal & Image Processing
+Computer,BE,Mobile Communication & Computing
+Computer,BE,Artificial Intelligence & Soft Computing
+Computer,BE,Computational Lab-I
+Computer,BE,Major Project-I
+Computer,BE,Data Warehouse and Mining
+Computer,BE,Human Machine Interaction
+Computer,BE,Parallel and distributed Systems
+Computer,BE,Project II
+Computer,BE,Cloud Computing Laboratory
+Mechanical,SE,Applied Mathematics III
+Mechanical,SE,Thermodynamics
+Mechanical,SE,Strength of Materials
+Mechanical,SE,Production Process I
+Mechanical,SE,Material Technology
+Mechanical,SE,Machine Shop Practice I
+Mechanical,SE,Applied Mathematics IV
+Mechanical,SE,Fluid Mechanics
+Mechanical,SE,Industrial Electronics
+Mechanical,SE,Production Process II
+Mechanical,SE,Kinematics of Machinery
+Mechanical,SE,Machine Shop Practice II
+Mechanical,TE,Internal Combustion Engines
+Mechanical,TE,Mechanical Measurements and Control
+Mechanical,TE,Heat Transfer
+Mechanical,TE,Dynamics of Machinery
+Mechanical,TE,Business Communication and Ethics
+Mechanical,TE,Metrology and Quality Engineering
+Mechanical,TE,Machine Design I
+Mechanical,TE,Finite Element analysis
+Mechanical,TE,Refrigeration and Air Conditioning
+Mechanical,TE,Mechatronics Lab
+Mechanical,BE,Machine Design II
+Mechanical,BE,CAD/CAM/CAE
+Mechanical,BE,Production Planning and Control
+Mechanical,BE,Project I
+Mechanical,BE,Design of Mechanical Systems
+Mechanical,BE,Industrial Engineering and Management
+Mechanical,BE,Refrigeration and Air Conditioning
+Mechanical,BE,Project- II

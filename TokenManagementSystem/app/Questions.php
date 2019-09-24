@@ -12,7 +12,7 @@ class Questions extends Model
 
     public function subject(){
 
-    	return $this->belongsTo(Subjects::class, $foreignKey='subject_id', $ownerKey='subject_id');
+    	return $this->belongsTo(Subjects::class, $foreignKey='subject_id', $ownerKey='id');
 
     }
 }

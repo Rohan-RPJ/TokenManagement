@@ -45,6 +45,9 @@
     </ul>
     <input id="addQuestionButton" type="button" value="Add Question" name="question" onclick="addQuestion();">
 </div>
+    Enter Date of Submission:<input type="date" name="submission_date"><br>
+    Enter Start Time of Submission:<input type="time" name="start_time"><br>
+    Enter End Time of Submission:<input type="time" name="end_time"><br>
     <input type="text" name="total" id="hiddenText" value="" style="display: none;">
     <input type="submit" name="submit" value="Submit">
   </form>
