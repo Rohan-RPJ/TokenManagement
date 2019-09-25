@@ -19,11 +19,11 @@ class CreateParticipantsTable extends Migration
             $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             
-            $table->bigInteger('submission_id');
-            $table->foreign('submission_id')->references('submission_id')->on('submissions')->onDelete('cascade');
+            $table->bigInteger('submission_id')->unsigned();
+            $table->foreign('submission_id')->references('id')->on('submissions')->onDelete('cascade');
 
-            $table->integer('correct');
-            $table->integer('wrong');
+            $table->integer('correct')->default(0);
+            $table->integer('wrong')->default(0);
             $table->integer('score')->default(0); //initial score
             $table->integer('roundsParticipated')->default(0);
             $table->timestamps();
