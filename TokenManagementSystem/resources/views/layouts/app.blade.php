@@ -23,13 +23,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/design.css') }}">
-    
+    <!-- <link rel="stylesheet" href="{{ asset('css/register.css') }}"> -->
+    <!-- <link rel="stylesheet" href="{{ asset('css/design.css') }}"> -->
+
 </head>
 <body style="padding-top: 10px;">
     <div id="app">
-        
+
         {{--
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

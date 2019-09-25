@@ -3,6 +3,8 @@
 @section('content')
 
 <head>
+  <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+
   <script type="text/javascript">
   function isEmpty1() {
     var e = document.getElementById('sName').value;

@@ -4,14 +4,11 @@
 
 <div class="submissions">
   <div class="e-inner-elements">
-    <div class="db"> 
-      <h1> Dashboard </h1> 
+    <div class="db">
+      <h1> Dashboard </h1>
     </div>
-    <div class="" style=" text-align:center " > 
+    <div class="" style=" text-align:center " >
       <h1>Ongoing Events</h1>
-    </div>
-    <div class="" style=" text-align: center " > 
-      <button type="button"  class="create-events" name="button" onclick="showUser()"> Create Submission</button>
     </div>
     <div class="on-events">
       <div class="card" >

@@ -1,5 +1,4 @@
-var i = 0;
-
+var i = 0;  
 //Html Tags - question list items
 var questionCardsItem = "<li id='QNO' class='question_cards_item'>"
 var questionCardDiv = "<div class='questionCard'>"
@@ -70,7 +69,7 @@ function removeQuestion(qno) {
     }, 500);
 }
 
-function updateQuestions(){    
+function updateQuestions(){
     //update other cards
     var listItems = document.getElementById('questionsList').getElementsByTagName("li");
     //console.log(listItems[0].getElementsByTagName('h2'));
@@ -84,7 +83,7 @@ function updateQuestions(){
         for (var k = 1; k <= inputs.length; k++) {
             if (inputs[k-1].getAttribute('type') == 'radio') {
                 inputs[k-1].setAttribute('name', 'q'+jstring+'correctOption');
-            } 
+            }
             else if (inputs[k-1].getAttribute('type') == 'text') {
                 var optionx = inputs[k-1].getAttribute('name')[inputs[k-1].getAttribute('name').length-1]
                 inputs[k-1].setAttribute('name', 'q'+jstring+'option'+optionx);

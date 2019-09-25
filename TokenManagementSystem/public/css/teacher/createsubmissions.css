@@ -86,7 +86,7 @@
   color: #ffffff;
   font-size: 0.875rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;    
+  margin-bottom: 1.25rem;
   font-weight: 400;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .card_options input[type=radio] {
-    
+
 }
 
 textarea {
@@ -107,6 +107,32 @@ textarea {
     width: 100%;
     font-size: 0.875rem;
     line-height: 1.5;
-    margin-bottom: 1.25rem;    
+    margin-bottom: 1.25rem;
     font-weight: 400;
+}
+
+
+.inner-container{
+  border: 2px solid black;
+  margin-left: 520px;
+  margin-right: 520px;
+  /* width: 1000px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 110px;
+}
+
+.create{
+  /* border: 2px solid black; */
+}
+
+.years,.branches,.subjects{
+  width: 300px;
+  height: 40px;
+}
+input{
+  width: 300px;
+  height: 40px;
 }

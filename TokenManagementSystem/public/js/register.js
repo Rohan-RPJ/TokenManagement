@@ -9,6 +9,7 @@ function usertype(s){
 // -----------------------------------------------------------------------------------------STUDENT VALIDATION--------------------------------------------------------------------------------
 
 function validation1(){
+  // alert("Succesfully Registered!");
   // alert("submitted");
   var sname = document.getElementById("sName").value;
   var semail = document.getElementById('sEmail').value;
@@ -71,7 +72,7 @@ function validation1(){
     document.getElementById('spass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-
+  alert("Succesfully Registered!");
 }
 
 
@@ -108,7 +109,7 @@ function validation2(){
     document.getElementById('tpass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-
+    alert("Succesfully Registered!");
 }
 
 
