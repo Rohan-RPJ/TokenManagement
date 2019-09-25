@@ -13,7 +13,7 @@ class Participant extends Model
     }
 
 	public function round(){
-    	return $this->belongsTo('\App\Round');
+    	return $this->belongsTo('\App\Round',$foreignKey='participant_id', $ownerKey='id');
 	}
 
 	public function submission(){

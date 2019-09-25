@@ -59,7 +59,15 @@ class ParticipantController extends Controller
         }
         else
         {
-         $message="Already a participant for ".$participant->submission->subject->name;
+            //check if round has been assigned
+            $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();
+
+            if( $round==null){
+                event (new NewParticipantJoined($participant));
+                $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();//re get the round id
+                dd('Conditional inside',$round);
+            }
+         $message="Already a participant for ".$participant->submission->subject->name.' in Round '.$round->round_id ;
         }
 
 

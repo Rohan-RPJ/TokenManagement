@@ -9,6 +9,10 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Submissions;
+use App\Questions;
+use App\Subjects;
+use App\Participant;
 
 class NewRoundNeeded
 {
@@ -19,10 +23,12 @@ class NewRoundNeeded
      *
      * @return void
      */
-    public $submission;
-    public function __construct(Submissions $submission)
+    public $submission, $participant;
+
+    public function __construct(Participant $participant,Submissions $submission)
     {
         $this->submission =$submission;
+        $this->participant=$participant;
     }
 
     /**

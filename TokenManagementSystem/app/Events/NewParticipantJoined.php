@@ -10,6 +10,9 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Participant;
+use App\Questions;
+use App\Subjects;
+use App\Submissions;
 
 class NewParticipantJoined
 {

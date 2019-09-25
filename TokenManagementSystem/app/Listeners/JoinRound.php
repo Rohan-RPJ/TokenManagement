@@ -40,7 +40,7 @@ class JoinRound
 
         if($rounds == null){
             //call the event to create new round
-            event (new NewRoundNeeded($submission));
+            event (new NewRoundNeeded($participant,$submission));
         }
         //new round will be created/ or exists
         $rounds= $submission->rounds;
@@ -64,7 +64,7 @@ class JoinRound
                     ]);
                 }
                 else{
-                     $update=Round::where('round_id',1)->where('participant_id',null)->first()->update(['participant_id'=>$participant->id,'updated_at'=>now()]);
+                     $update=Round::where('round_id',$round_id)->where('participant_id',null)->first()->update(['participant_id'=>$participant->id,'updated_at'=>now()]);
 
                      if($update){print 'Updated successfully';}
                      else{print 'error occurred';}
@@ -76,7 +76,7 @@ class JoinRound
         }
 
         if($nrn!=0){
-         event (new NewRoundNeeded($submission));   
+         event (new NewRoundNeeded($participant,$submission));   
         }
         //check for no of participants
         
