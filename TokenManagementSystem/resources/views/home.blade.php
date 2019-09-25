@@ -39,7 +39,7 @@
     <div class="inner-elements">
         <div class="">
           <!-- <div class="dept"> -->
-              <h3 style="text-align: center; padding-bottom: 170px;  ">Department: <span class="dept" > </span> </h3>
+              <h3 style="text-align: center;">Department: <span class="dept" > </span> </h3>
           <!-- </div> -->
 
           <h1>WELCOME TO FILE SUBMISSION!. <br> USING TOKEN MANAGEMENT SYSTEM.</h1>

@@ -33,7 +33,7 @@ class TeachersController extends Controller
         $submissions = Submissions::all()->toArray();
         $subject_names = [];
         $teacher_names = [];
-        for ($i=0; $i < count($submissions); $i++) { 
+        for ($i=0; $i < count($submissions); $i++) {
             $subject_names[$i] = Subjects::find($submissions[$i]['subject_id'])['name'];
             $teacher_names[$i] = Teachers::find($submissions[$i]['teacher_id'])['tName'];
         }
@@ -54,15 +54,15 @@ class TeachersController extends Controller
         //todays date
         $date = new Carbon;
         //dd(Carbon::parse($submissions[1]['end_time']));
-        dd($date->diffInSeconds(Carbon::parse("2019-09-24"),false));
+        //dd($date->diffInSeconds(Carbon::parse("2019-09-24"),false));
         //dd($date->diffInMinutes(Carbon::parse($submissions[3]['start_time']),false));
-        for ($i=count($submissions)-1; $i >=0  ; $i--) { 
+        for ($i=count($submissions)-1; $i >=0  ; $i--) {
             if ($date->diffInDays(Carbon::parse($submissions[$i]['submission_date']),false) < 0) {
                 if ($date->diffInSeconds(Carbon::parse($submissions[$i]['submission_date']),false) < 0) {
                     $finished_submissions[$fi] = $submissions[$i];
                     $finished_submissions[$fi]['subject_name'] = $subject_names[$i];
                     $finished_submissions[$fi]['teacher_name'] = $teacher_names[$i];
-                    $fi++;   
+                    $fi++;
                 }
                 //dd(Carbon::parse($submissions[$i]['submission_date']));
                 //dd($date->diffInDays(Carbon::parse($submissions[$i]['submission_date']),false));
@@ -77,7 +77,7 @@ class TeachersController extends Controller
                     }
                     elseif ($date->diffInHours(Carbon::parse($submissions[$i]['end_time']),false) > 0) {
                         if ($date->diffInMinutes(Carbon::parse($submissions[$i]['start_time']),false) > 0) {
-                            $upcoming_submissions[$up] = $submissions[$i];        
+                            $upcoming_submissions[$up] = $submissions[$i];
                             $upcoming_submissions[$up]['subject_name'] = $subject_names[$i];
                             $upcoming_submissions[$up]['teacher_name'] = $teacher_names[$i];
                             $up++;
@@ -96,7 +96,7 @@ class TeachersController extends Controller
                         $on++;
                     }
                     else {
-                        $finished_submissions[$fi] = $submissions[$i];        
+                        $finished_submissions[$fi] = $submissions[$i];
                         $finished_submissions[$fi]['subject_name'] = $subject_names[$i];
                         $finished_submissions[$fi]['teacher_name'] = $teacher_names[$i];
                         $fi++;
@@ -125,7 +125,7 @@ class TeachersController extends Controller
         $branches = Subjects::select('branch')->groupBy('branch')->get()->toArray();
         $years = Subjects::select('year')->groupBy('year')->get()->toArray();
         //dd($years);
-            return view('teacher/createSubmissions',compact('subjects','years','branches'));   
+            return view('teacher/createSubmissions',compact('subjects','years','branches'));
         }
         return view('welcome')->with('subjects',Subjects::all());
     }
@@ -140,7 +140,7 @@ class TeachersController extends Controller
         //dd($teacher_id);
         //dd($subject_id);
         //store questions in db
-        for ($i=1; $i <= $request['total']; $i++) { 
+        for ($i=1; $i <= $request['total']; $i++) {
             Questions::create([
                 'subject_id' => $subject_id,
                 'question_description' => $request['question'.strval($i)],
@@ -156,7 +156,7 @@ class TeachersController extends Controller
         $request['subject_id'] = $subject_id;
         $request['teacher_id'] = $teacher_id;
         event(new QuestionsStored($request));
-        
+
         return redirect()->route('teacher.submissions');
         submissions();
     }

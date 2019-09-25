@@ -1,6 +1,46 @@
+
+body {
+    font-size: 100%; /* start with a flexible baseline, more on this in the next section */
+}
+
+
+
+@media screen and (max-width: 40em) {
+    body {
+        font-size:90%;
+    }
+}
+
+@media screen and (max-width: 30em) {
+    body {
+        font-size:80%;
+    }
+}
+
+@media screen and (max-width: 50em) {
+    h1 {
+        font-size:2em;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    h1 {
+        font-size:1.5em;
+    }
+}
+
+@media screen and (max-width: 30em) {
+    h1 {
+        font-size:1.2em;
+    }
+}
+
+
 .e-inner-elements   {
   background-color: #9c88ff;
-  height: 895px;
+  height: 915px;
+  /* border: 2px solid red; */
+  /* z-index: 3; */
 }
 .db{
   background-color: #74b9ff;

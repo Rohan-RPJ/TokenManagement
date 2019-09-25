@@ -54,14 +54,14 @@ function validation1(){
   if(srollno<=0){
     document.getElementById('srn').innerHTML="*RollNo should be Positive";
     return false;
-  } 
+  }
 
   if((srollno / 100) >= 1){
 
     document.getElementById('srn').innerHTML="*RollNo should be atmost 2 character";
     return false;
   }
-  
+
   if(!spassword){
     document.getElementById('spass').innerHTML="*Password should not be empty";
     return false;
@@ -116,86 +116,86 @@ function validation2(){
 
 // ------------------------------------------------------checking for empty (Student)-----------------------------------------------------------------
 
-function isEmpty1() {
-  var e = document.getElementById('sName').value;
-  if(e.length > 0)
-  {
-    document.getElementById('sn').innerHTML="";
-  }
-}
-
-function isEmpty2() {
-  var e = document.getElementById('sEmail').value;
-  if(e.length > 0)
-  {
-    document.getElementById('se').innerHTML="";
-  }
-}
-
-function isEmpty3() {
-  var e = document.getElementById('sYear').value;
-  if(e.length > 0)
-  {
-    document.getElementById('sy').innerHTML="";
-  }
-}
-
-function isEmpty4() {
-  var e = document.getElementById('sBranch').value;
-  if(e.length > 0)
-  {
-    document.getElementById('sb').innerHTML="";
-  }
-}
-
-function isEmpty5() {
-  var e = document.getElementById('sPassword').value;
-  if(e.length > 0)
-  {
-    document.getElementById('spass').innerHTML="";
-  }
-}
-
-function isEmpty6() {
-  var e = document.getElementById('sRollNo').value;
-  if(e.length > 0)
-  {
-    document.getElementById('srn').innerHTML="";
-  }
-}
+// function isEmpty1() {
+//   var e = document.getElementById('sName').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('sn').innerHTML="";
+//   }
+// }
+//
+// function isEmpty2() {
+//   var e = document.getElementById('sEmail').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('se').innerHTML="";
+//   }
+// }
+//
+// function isEmpty3() {
+//   var e = document.getElementById('sYear').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('sy').innerHTML="";
+//   }
+// }
+//
+// function isEmpty4() {
+//   var e = document.getElementById('sBranch').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('sb').innerHTML="";
+//   }
+// }
+//
+// function isEmpty5() {
+//   var e = document.getElementById('sPassword').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('spass').innerHTML="";
+//   }
+// }
+//
+// function isEmpty6() {
+//   var e = document.getElementById('sRollNo').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('srn').innerHTML="";
+//   }
+// }
 
 
 
 // ------------------------------------------------------checking for empty (Teacher)-----------------------------------------------------------------
 
-function isEmpty11() {
-  var e = document.getElementById('tName').value;
-  if(e.length > 0)
-  {
-    document.getElementById('tn').innerHTML="";
-  }
-}
-
-function isEmpty22() {
-  var e = document.getElementById('tEmail').value;
-  if(e.length > 0)
-  {
-    document.getElementById('te').innerHTML="";
-  }
-}
-
-function isEmpty33() {
-  var e = document.getElementById('tBranch').value;
-  if(e.length > 0)
-  {
-    document.getElementById('tb').innerHTML="";
-  }
-}
-
-function isEmpty44() {
-  var e = document.getElementById('tPassword').value;
-  if(e.length > 0)
-  {
-    document.getElementById('tpass').innerHTML="";
-  }
-}
+// function isEmpty11() {
+//   var e = document.getElementById('tName').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('tn').innerHTML="";
+//   }
+// }
+//
+// function isEmpty22() {
+//   var e = document.getElementById('tEmail').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('te').innerHTML="";
+//   }
+// }
+//
+// function isEmpty33() {
+//   var e = document.getElementById('tBranch').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('tb').innerHTML="";
+//   }
+// }
+//
+// function isEmpty44() {
+//   var e = document.getElementById('tPassword').value;
+//   if(e.length > 0)
+//   {
+//     document.getElementById('tpass').innerHTML="";
+//   }
+// }

@@ -8,18 +8,18 @@
 
   <!---Fonts--->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  {{-- <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
+  <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/teacher/submissions.css') }}"> 
-  <link rel="stylesheet" href="{{ asset('css/teacher/createsubmissions.css') }}"> 
-  <link rel="stylesheet" href="{{ asset('css/student/submissions.css') }}"> 
+  <link rel="stylesheet" href="{{ asset('css/teacher/submissions.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/teacher/createsubmissions.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/student/submissions.css') }}">
 
   <!---Scripts--->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script> 
+  <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="{{ asset('js/teacher/submissions.js') }}"></script>
   <script src="{{ asset('js/teacher/createsubmissions.js') }}"></script>
   <script src="{{ asset('js/student/submissions.js') }}"></script>
@@ -35,14 +35,15 @@
   </script>
 
 </head>
-<body onload="showCreate();return gettime();">
+<body onload="showCreate();">
   <header class="header">
     <a href="#" class="logo" style="color: #ddbcff;"><b>FILE SUBMISSION</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
       <li><a href="{{ url('/home') }}" class="home">Home</a></li>
-      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}" onclick="" class="events">Submissions</a></li>
+      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}"
+      onclick="gettime()" class="events">Submissions</a></li>
       <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
       <li><a href="#" class="notif">Notifications</a></li>
       <li><a href="#">Profile</a></li>
@@ -71,7 +72,7 @@
   </header>
   <main class="main">
     <div class="section">
-      
+
       <div class="" id="showContent">
         @yield('content')
       </div>

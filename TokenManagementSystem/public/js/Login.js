@@ -1,4 +1,6 @@
+
 function validation() {
+  alert("called function");
   var user = document.getElementById('username').value;
   // console.log(username);
   if(user == "")

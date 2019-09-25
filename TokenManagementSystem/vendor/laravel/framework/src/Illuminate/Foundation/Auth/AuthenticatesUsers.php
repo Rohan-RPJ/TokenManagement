@@ -67,7 +67,6 @@ trait AuthenticatesUsers
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
-            $this->type() => 'required|string',
         ]);
     }
 
@@ -92,7 +91,7 @@ trait AuthenticatesUsers
      */
     protected function credentials(Request $request)
     {
-        return $request->only($this->username(), 'password', $this->type());
+        return $request->only($this->username(), 'password');
     }
 
     /**
@@ -120,7 +119,7 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-       
+        //
     }
 
     /**
@@ -135,7 +134,6 @@ trait AuthenticatesUsers
     {
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],
-            $this->type() => [trans('auth.failed')],
         ]);
     }
 
@@ -147,16 +145,6 @@ trait AuthenticatesUsers
     public function username()
     {
         return 'email';
-    }
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function type()
-    {
-        return 'type';
     }
 
     /**
