@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -55,7 +56,11 @@ class RegisterController extends Controller
             return Validator::make($data, [
             'sEmail' => ['required', 'string', 'email', 'max:255', 'unique:students'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'sRollNo' => ['required', 'integer', 'unique:students'],
+            'sRollNo' => ['required', 'integer',
+                Rule::unique('students')->where(function ($query) use($data) {
+                    $query->where('sYear', $data['sYear'])->where('sBranch', $data['sBranch']);
+                })
+            ],
 
         ]);
             //dd($validator->fails());
