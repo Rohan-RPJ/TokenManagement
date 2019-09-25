@@ -21,8 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\QuestionsStored' => [
             'App\Listeners\StoreSubmissionDetails',
             'App\Listeners\StartSubmission',
-        ]
+        ],
     ];
+
 
     /**
      * Register any events for your application.
