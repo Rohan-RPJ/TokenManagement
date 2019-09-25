@@ -21,4 +21,13 @@ class Submissions extends Model
     	return $this->belongsTo(Teachers::class, $foreignKey='teacher_id', $ownerKey='id');
 
     }
+
+    public function rounds(){
+        return $this->hasMany('\App\Round',$foreignKey='submission_id');
+    }
+
+ //    public function getRouteKeyName()
+	// {
+ //    				return 'submission_id';
+	// }
 }
