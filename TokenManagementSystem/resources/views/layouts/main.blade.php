@@ -19,7 +19,7 @@
 
   <!---Scripts--->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="{{ asset('js/teacher/submissions.js') }}"></script>
 
@@ -47,7 +47,7 @@
     <ul class="menu">
       <li><a href="{{ url('/home') }}" class="home">Home</a></li>
       <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}"
-      onclick="gettime()" class="events">Submissions</a></li>
+      onclick="" class="events">Submissions</a></li>
       <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
       <li><a href="#" class="notif">Notifications</a></li>
       <li><a href="#">Profile</a></li>
