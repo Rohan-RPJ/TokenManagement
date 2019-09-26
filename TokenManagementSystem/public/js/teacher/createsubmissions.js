@@ -1,10 +1,10 @@
-var i = 0;  
+var i = 0;
 //Html Tags - question list items
 var questionCardsItem = "<li id='QNO' class='question_cards_item'>"
 var questionCardDiv = "<div class='questionCard'>"
 var cardContentDiv = "<div class='card_content'>"
 var cardTitleHeading = "<h2 id='h2' class='card_title'>Question No. QNO</h2>"
-var questionTextArea = "<textarea id='questionQNOTextArea' name='questionQNO' placeholder='Wrtie your question here...' autocomplete='on'></textarea>";
+var questionTextArea = "<textarea id='questionQNOTextArea' name='questionQNO' placeholder='Write your question here...' autocomplete='on'></textarea>";
 var cardOptionsDiv = "<div class='card_options'>";
 var correctOptionRadio = "<input type='radio' name='qQNOcorrectOption'>";
 var optionInput1 = "<input type='text' name='qQNOoption1' placeholder='Enter option 1'>";

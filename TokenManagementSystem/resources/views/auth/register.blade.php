@@ -337,4 +337,4 @@
       });
 
 </script>
-@endsection()
+@endsection

@@ -59,6 +59,7 @@
           <p class="card-text">Queue status: <span class="queue" ></span> </p>
         </div>
       </div>
+      @endfor
     </div>
     <br>
     <div class=""style=" text-align:center " >  <h1>Upcoming Events</h1>   </div>
