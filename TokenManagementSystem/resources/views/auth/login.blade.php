@@ -4,11 +4,10 @@
 
 <head>
 
-
     <link rel="stylesheet" href="{{ asset('css/design.css') }}">
 
 </head>
-
+<script src="{{ asset('js/Login.js') }}"></script>
 <div class="center">
   <form class="" action="{{ route('login') }}" method="POST"  name="" onsubmit="return validation()" >
     @csrf
@@ -107,4 +106,4 @@
   </form>
 </div>
 
-@endsection()
+@endsection

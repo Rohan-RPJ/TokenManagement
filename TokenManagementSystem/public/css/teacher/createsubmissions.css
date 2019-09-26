@@ -136,3 +136,7 @@ input{
   width: 300px;
   height: 40px;
 }
+
+#question-div {
+  display: none;
+}

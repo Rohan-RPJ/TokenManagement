@@ -9,6 +9,17 @@
         console.log(listItems.length);
         //document.getElementByClassName("question_cards_item"+listItems.length.toString()).focus();
     }
+
+    function displayQues(){
+        //document.getElementById('addQuestionButton').style.display = 'block';
+        document.getElementById('question-div').style.display = 'block';
+    }
+
+    function hideQues(){
+        //document.getElementById('addQuestionButton').style.display = 'none';
+        document.getElementById('question-div').style.display = 'none';
+    }
+
 </script>
 
 <style>
@@ -42,15 +53,19 @@
     <select class="subjects" name="subject" id="subject" onchange="showValue();">
       <!-- <option value=""></option> -->
     </select><br><br>
+    <input id="quiz-radio-btn" type="radio" name="type" value="quiz" onclick="displayQues();">Take Quiz
+    <input id="fcfs-radio-btn" type="radio" name="type" value="fcfs" onclick="hideQues();">FCFS<br>
 
-    <div class="questionDiv">
-    <ul class="questionCards" id="questionsList">
-    </ul>
-    <input id="addQuestionButton" type="button" value="Add Question" name="question" onclick="addQuestion();">
-</div>
-    Enter Date of Submission: <br> <input type="date" name="submission_date"><br><br>
-    Enter Start Time of Submission: <br> <input type="time" name="start_time"><br><br>
-    Enter End Time of Submission: <br> <input type="time" name="end_time"><br><br>
+
+    <div id="question-div" class="questionDiv">
+        <ul class="questionCards" id="questionsList">
+        </ul>
+        <input id="addQuestionButton" type="button" value="Add Question" name="question" onclick="addQuestion();">
+    </div>
+    Enter Date of Submission:<input type="date" name="submission_date"><br>
+    Enter Start Time of Submission:<input type="time" name="start_time"><br>
+    Enter End Time of Submission:<input type="time" name="end_time"><br>
+
     <input type="text" name="total" id="hiddenText" value="" style="display: none;">
     <input type="submit" name="submit" value="Submit">
   </form>

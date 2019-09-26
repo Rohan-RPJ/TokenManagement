@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\QuestionsStored;
+use App\Events\NewParticipantJoined;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class StartSubmission
+class StartRound
 {
     /**
      * Create the event listener.
@@ -21,11 +21,11 @@ class StartSubmission
     /**
      * Handle the event.
      *
-     * @param  QuestionsStored  $event
+     * @param  NewParticipantJoined  $event
      * @return void
      */
-    public function handle(QuestionsStored $event)
+    public function handle(NewParticipantJoined $event)
     {
-        
+        //
     }
 }

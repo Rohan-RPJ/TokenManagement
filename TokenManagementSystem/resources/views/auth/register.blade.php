@@ -173,11 +173,11 @@
               <td>
                 <select class="branch" name="sBranch" id="sBranch" onchange="isEmpty4()">
                                   <option value="">___Select Branch___</option>
-                                  <option value="comp">Computer </option>
-                                  <option value="mech">Mechanical</option>
-                                  <option value="extc">Extc</option>
-                                  <option value="instru">Instrumentation</option>
-                                  <option value="civil">Civil  </option>
+                                  <option value="Computer">Computer </option>
+                                  <option value="Mechanical">Mechanical</option>
+                                  <option value="Extc">Extc</option>
+                                  <option value="Instrumentation">Instrumentation</option>
+                                  <option value="Civil">Civil  </option>
                               </select>
 
               </td>

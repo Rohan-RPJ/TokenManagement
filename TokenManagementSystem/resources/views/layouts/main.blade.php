@@ -19,10 +19,14 @@
 
   <!---Scripts--->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <script src="{{ asset('js/teacher/submissions.js') }}"></script>
+
+  <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
   <script src="{{ asset('js/teacher/createsubmissions.js') }}"></script>
-  <script src="{{ asset('js/student/submissions.js') }}"></script>
+  {{-- <script src="{{ asset('js/student/submissions.js') }}"></script> --}}
 
   <script type="text/javascript">
     var user = {!! json_encode(Auth::user()->toArray(), JSON_HEX_TAG) !!};

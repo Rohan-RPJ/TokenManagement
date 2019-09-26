@@ -9,21 +9,25 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Http\Request;
+use App\Participant;
+use App\Questions;
+use App\Subjects;
+use App\Submissions;
 
-class QuestionsStored
+class NewParticipantJoined
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $request;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public $participant;
+
+    public function __construct(Participant $participant)
     {
-        $this->request = $request;
+        return $this->participant=$participant;
     }
 
     /**
