@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script src="{{ asset('js/Login.js') }}"></script>
 <div class="center">
   <form class="form" action="{{ route('login') }}" method="POST"  name="form" onsubmit="return validation()" >
     @csrf
@@ -94,4 +94,4 @@
   </form>
 </div>
 
-@endsection()
+@endsection

@@ -33,7 +33,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('teacher/submissions', 'TeachersController@submissions')->name('teacher.submissions');
 Route::get('teacher/create/submissions', 'TeachersController@createSubmissions')->name('teacher.create.submissions');
-Route::post('teacher/', 'TeachersController@storeQuestions')->name('questions.store');
+Route::post('teacher/', 'TeachersController@storeSubmission')->name('questions.store');
 
 Route::get('student/submissions', 'StudentsController@submissions')->name('student.submissions');
 

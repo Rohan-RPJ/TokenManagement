@@ -110,3 +110,7 @@ textarea {
     margin-bottom: 1.25rem;    
     font-weight: 400;
 }
+
+#question-div {
+  display: none;
+}

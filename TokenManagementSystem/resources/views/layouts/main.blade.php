@@ -8,8 +8,8 @@
 
   <!---Fonts--->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  {{-- <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
+  <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -20,9 +20,8 @@
   <!---Scripts--->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script> 
-  <script src="{{ asset('js/teacher/submissions.js') }}"></script>
   <script src="{{ asset('js/teacher/createsubmissions.js') }}"></script>
-  <script src="{{ asset('js/student/submissions.js') }}"></script>
+  {{-- <script src="{{ asset('js/student/submissions.js') }}"></script> --}}
 
   <script type="text/javascript">
     var user = {!! json_encode(Auth::user()->toArray(), JSON_HEX_TAG) !!};
@@ -35,7 +34,7 @@
   </script>
 
 </head>
-<body onload="showCreate();return gettime();">
+<body onload="showCreate();">
   <header class="header">
     <a href="#" class="logo" style="color: #ddbcff;"><b>FILE SUBMISSION</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
