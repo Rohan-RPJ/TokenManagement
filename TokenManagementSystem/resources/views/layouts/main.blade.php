@@ -13,9 +13,9 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/teacher/submissions.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/teacher/createsubmissions.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/student/submissions.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('css/teacher/submissions.css') }}">  --}}
+  {{-- <link rel="stylesheet" href="{{ asset('css/teacher/createsubmissions.css') }}"> --}}
+  {{-- <link rel="stylesheet" href="{{ asset('css/student/submissions.css') }}">  --}}
 
   <!---Scripts--->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -41,7 +41,7 @@
 </head>
 <body onload="showCreate();">
   <header class="header">
-    <a href="#" class="logo" style="color: #ddbcff;"><b>FILE SUBMISSION</b></a>
+    <a href="#" class="logo"><b>FILE SUBMISSION</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
