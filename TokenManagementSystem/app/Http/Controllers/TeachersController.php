@@ -34,7 +34,7 @@ class TeachersController extends Controller
         $date = Carbon::parse($date)->format('Y-m-d');
         return $date;
     }
-    
+
     public function submissions()
     {
         $allSubmissions = Submissions::getAllSubmissions();
@@ -57,7 +57,7 @@ class TeachersController extends Controller
         $branches = Subjects::select('branch')->groupBy('branch')->get()->toArray();
         $years = Subjects::select('year')->groupBy('year')->get()->toArray();
         //dd($years);
-            return view('teacher/createSubmissions',compact('subjects','years','branches'));   
+            return view('teacher/createSubmissions',compact('subjects','years','branches'));
         }
         return view('welcome')->with('subjects',Subjects::all());
     }
@@ -77,7 +77,7 @@ class TeachersController extends Controller
         //store questions in db
         if ($request['type'] === 'quiz') {
             //store questions
-            for ($i=1; $i <= $request['total']; $i++) { 
+            for ($i=1; $i <= $request['total']; $i++) {
                 Questions::create([
                     'subject_id' => $subject_id,
                     'question_description' => $request['question'.strval($i)],
@@ -90,7 +90,7 @@ class TeachersController extends Controller
                 ]);
             }
         }
-        
+
         Submissions::create([
             'subject_id' => $request['subject_id'],
             'teacher_id' => $request['teacher_id'],
@@ -101,7 +101,7 @@ class TeachersController extends Controller
             'start_time' => $request['start_time'],
             'end_time' => $request['end_time'],
         ]);
-        
+
         return redirect()->route('teacher.submissions');
         submissions();
     }

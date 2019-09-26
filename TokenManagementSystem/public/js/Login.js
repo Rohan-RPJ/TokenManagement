@@ -1,3 +1,4 @@
+
 function validation() {
   var user = document.getElementById('username').value;
   // console.log(username);
@@ -26,7 +27,7 @@ function validation() {
   if(usertype == "")
   {
     document.getElementById('whologin').innerHTML="*Select Student or Teacher";
-    return false;
+    return false;   
   }
 }
 
