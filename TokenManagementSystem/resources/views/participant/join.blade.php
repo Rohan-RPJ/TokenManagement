@@ -8,6 +8,8 @@
 @extends('layouts.main')
 
 @section('content')
+	
+	
 		@if($message  = Session::get('success'))
 		<div><strong>{{$message}}</strong></div>
 		@endif
@@ -27,4 +29,5 @@
 		<button type="submit">JOIN</button>
 	</form>
 
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

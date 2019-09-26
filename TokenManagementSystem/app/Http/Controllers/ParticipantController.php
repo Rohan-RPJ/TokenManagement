@@ -8,6 +8,7 @@ use App\Students;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Events\NewParticipantJoined;
+use App\Events\TestEvent;
 
 class ParticipantController extends Controller
 {
@@ -41,6 +42,8 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         //check if participant exists
+        broadcast(new TestEvent('YO wassup'));
+
         $participant = null;
         $student_id=$request->user()->student->id;
         $participant = Participant::where('submission_id',$request->submission_id)->get()->where('student_id',$student_id)->first();
