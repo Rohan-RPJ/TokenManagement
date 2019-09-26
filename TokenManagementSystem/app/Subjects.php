@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Submissions;
 
 class Subjects extends Model
 {
@@ -53,6 +54,32 @@ class Subjects extends Model
         return Subjects::select('id')->where('name',$subName)->where('year',$year)->where('branch',$branch)->first()['id'];
     }
 
+    public static function getSubjects(){
+        $subjects = Subjects::all()->toArray();
+
+        $submissions = Submissions::getAllSubmissions();
+        $upcoming_submissions = $submissions[0];
+        $ongoing_submissions = $submissions[1];
+        //$finished_submissions = $submissions[2];
+
+        //dd($subjects);
+        for ($up=0; $up < count($upcoming_submissions); $up++) { 
+                unset($subjects[$upcoming_submissions[$up]['subject_id'] - 1]);
+                //dd($upcoming_submissions[$up]['subject_id']);
+        }
+
+        for ($on=0; $on < count($ongoing_submissions); $on++) { 
+                unset($subjects[$ongoing_submissions[$on]['subject_id'] - 1]);
+        }
+
+        $subjects = array_values($subjects);
+
+        //dd($submissions,$subjects);
+
+        //show subjects to user which are not in ongoing or upcoming submissions
+        return $subjects;
+
+    }
     public function questions(){
 
         return $this->hasMany(Questions::class, $foreignKey='subject_id', $localKey='id');

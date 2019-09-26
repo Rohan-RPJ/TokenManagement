@@ -37,7 +37,7 @@ class TeachersController extends Controller
 
     public function submissions()
     {
-        $allSubmissions = Teachers::getAllSubmissions();
+        $allSubmissions = Submissions::getAllSubmissions();
         //dd($allSubmissions);
         $upcoming_submissions = $allSubmissions[0];
         $ongoing_submissions = $allSubmissions[1];
@@ -53,7 +53,7 @@ class TeachersController extends Controller
     public function createSubmissions()
     {
         if (Auth::user()->type === "Teacher") {
-        $subjects = Subjects::all()->toArray();
+        $subjects = Subjects::getSubjects();
         $branches = Subjects::select('branch')->groupBy('branch')->get()->toArray();
         $years = Subjects::select('year')->groupBy('year')->get()->toArray();
         //dd($years);
