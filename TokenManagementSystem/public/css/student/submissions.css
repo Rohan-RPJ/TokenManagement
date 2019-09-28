@@ -1,13 +1,14 @@
 
 .e-inner-elements   {
   background-color: #9c88ff;
-  height: 915px;
+  height: 940px;
+  background: linear-gradient(to top left,#ba68c8 40%,#ce93d8 90%);
   /* border: 2px solid red; */
   /* z-index: 3; */
 }
 .db{
-  background-color: #74b9ff;
-  border: 1px solid black;
+  background-color: #ff80ab;
+  border: 1px solid purple;
   display: flex;
   justify-content: center;
 

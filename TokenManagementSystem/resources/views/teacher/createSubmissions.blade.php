@@ -13,11 +13,15 @@ function focusButton(){
 function displayQues(){
   //document.getElementById('addQuestionButton').style.display = 'block';
   document.getElementById('question-div').style.display = 'block';
+  var c = document.getElementById('quiz-radio-btn').value;
+  document.getElementById('chk-btn').value = c;
 }
 
 function hideQues(){
   //document.getElementById('addQuestionButton').style.display = 'none';
   document.getElementById('question-div').style.display = 'none';
+  var c = document.getElementById('fcfs-radio-btn').value;
+  document.getElementById('chk-btn').value = c;
 }
 
 </script>
@@ -33,7 +37,6 @@ function hideQues(){
       <table>
         <!-- Select Year: -->
         <tr>
-
           <td>
             <select class="years" name="year" id="year" onchange="fillSubjectsdropdown();"><br>
               <option value="">---Select--Year---</option>
@@ -41,10 +44,11 @@ function hideQues(){
               <option value="{{ $year['year'] }}">{{ $year['year'] }}</option>
               @endforeach
             </select>
+            <span id='yr' style=" color: red;"  ></span>
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
 
 
@@ -58,10 +62,11 @@ function hideQues(){
               <option value="{{ $branch['branch'] }}">{{ $branch['branch'] }}</option>
               @endforeach
             </select>
+            <span id='br' style=" color: red;"  ></span>
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
         <!-- Select Subject: -->
         <tr>
@@ -73,7 +78,17 @@ function hideQues(){
 
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td>
+            Select Submission type
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <br>
+          </td>
         </tr>
         <tr>
           <td>
@@ -83,17 +98,20 @@ function hideQues(){
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
         <tr>
           <td>
             <input id="fcfs-radio-btn" type="radio" name="type" value="fcfs" onclick="hideQues();">
-          &nbsp;&nbsp;
+            &nbsp;&nbsp;
             FCFS
+            <!-- stores submission type -->
+            <input type="text" name="" value="" id="chk-btn" style="display: none" onchange="isEmpty()" >
+            <span id='radio-btn' style=" color: red; padding-left: 215px;"  ></span>
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
         <tr>
           <td>
@@ -105,7 +123,7 @@ function hideQues(){
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
         <tr>
           <td>
@@ -113,22 +131,27 @@ function hideQues(){
           </td>
         </tr>
         <tr>
-          <td><input type="date" name="submission_date"   ></td>
+          <td><input type="date" name="submission_date" id="chk-date" required >
+            <!-- <span id='d' style=" color: red;"  ></span> -->
+          </td>
         </tr>
 
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
 
         <tr>
           <td>Enter Start Time of Submission:</td>
         </tr>
         <tr>
-          <td> <input type="time" name="start_time"></td>
+          <td> <input type="time" name="start_time" id="chk-start-time" required >
+            <!-- <span id='st' style=" color: red;"  ></span> -->
+          </td>
+
         </tr>
 
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
 
         <tr>
@@ -137,28 +160,32 @@ function hideQues(){
           </tr>
 
           <tr>
-              <td><br></td>
+            <td><br></td>
           </tr>
           <tr>
 
-            <td> <input type="time" name="end_time"></td>
+            <td> <input type="time" name="end_time" id="chk-end-time" required>
+              <!-- <span id='et' style=" color: red;"  ></span> -->
+            </td>
           </tr>
 
 
           <tr>
             <td>
-              <input type="text" name="total" id="hiddenText" value="" style="display: none;"></td>
-              <td>
-                <br>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="submit" name="submit" value="Submit">
-              </td>
-            </tr>
-          </table>
-        </form>
-      </div>
+              <input type="text" name="total" id="hiddenText" value="" style="display: none;">
+              <!-- <span id='br' style=" color: red;"  ></span> -->
+            </td>
+            <td>
+              <br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" name="submit" value="Submit"  onclick="return validate()" >
+            </td>
+          </tr>
+        </table>
+      </form>
     </div>
-    @endsection
+  </div>
+  @endsection

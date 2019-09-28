@@ -70,6 +70,7 @@
           <p class="card-text">Queue status: <span class="queue" ></span> </p>
         </div>
       </div>
+
       @endfor
     </div>
     <!-- <br> -->

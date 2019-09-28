@@ -168,10 +168,12 @@ input[name="type"]{
 
 input[name="submit"]{
   background-color: #ea80fc;
+  color: #f4f4f4;
 }
 
 input[name="question"]{
   background-color: #ea80fc;
+  color: #f4f4f4;
 }
 
 .section{
