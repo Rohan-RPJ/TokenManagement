@@ -94,7 +94,7 @@
 </head>
 
 <div id="main">
-<h1 style="text-align: center; color: violet; font-size: 50px;" > <b>Create a new Account</b> </h1>
+<h1 style="text-align: center; color: #3f51b5; font-size: 50px;" > <b>Create a new Account</b> </h1>
 
     <div id="taps">
        <a href="#" class="ssignin s2"  onclick="usertype('Student')" style="text-decoration: none;"> <b> Student</b></a>

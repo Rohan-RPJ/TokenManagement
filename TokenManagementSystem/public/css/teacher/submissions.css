@@ -1,6 +1,8 @@
 .e-inner-elements   {
   background-color: #9c88ff;
   height: 895px;
+  background: linear-gradient(to top left,#ba68c8 30%,#ce93d8 90%);
+
 }
 .db{
   background-color: #74b9ff;
@@ -79,19 +81,3 @@
   left: 0;
   width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

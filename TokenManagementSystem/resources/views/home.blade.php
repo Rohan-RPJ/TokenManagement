@@ -37,6 +37,16 @@
 @section('content')
 
     <div class="inner-elements">
+      <div class="animation-area">
+        <ul class="circle-area">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+
         <div class="">
           <!-- <div class="dept"> -->
               <h3 style="text-align: center;">Department: <span class="dept" > </span> </h3>
@@ -46,6 +56,8 @@
           <br>
           <h3>A token management system is used to control queues.<br> Queues of people form in various situations and locations in a queue area.</h3>
         </div>
+      </div>
+
     </div>
 
 @endsection

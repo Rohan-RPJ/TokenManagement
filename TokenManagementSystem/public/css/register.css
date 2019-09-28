@@ -3,6 +3,8 @@ body{
   /* box-shadow: 2px 2px 5px #555; */
   display: flex;
   justify-content: center;
+  background: linear-gradient(to bottom right,#ba68c8 50%,#ce93d8 30%);
+
   /* margin-left: 760px; */
   /* margin-right: 560px; */
 }
@@ -41,7 +43,7 @@ body{
   padding-top: 20px;
   background-color: #dcdde1;
   padding-bottom: 30px;
-  /* border: 2px solid #9c88ff; */
+  /* border: 2px solid black; */
   /* margin-left: 100px; */
 }
 

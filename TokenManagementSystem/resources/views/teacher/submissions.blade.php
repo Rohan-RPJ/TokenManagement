@@ -11,31 +11,18 @@
 
 <div id="submissions" class="submissions">
   <div class="e-inner-elements">
+    <div class="animation-area">
+      <ul class="circle-area">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
     <div class="db">
       <h1> Dashboard </h1>
-    </div>
-    <div class="" style=" text-align:center " >
-      <h1>Ongoing Events</h1>
-    </div>
-    <div class="on-events">
-      @for($up=0; $up < count($upcoming_submissions); $up++)
-      <div class="card" >
-        <div class="card-body">
-            <h4 class="card-title">
-              <span id="set-sub" >
-                {{ $upcoming_submissions[$up]['subject_name'] }}
-              </span>
-            </h4>
-            <p class="card-text">
-              Starts in: <span id="starts-in{{ $up }}"></span>
-            </p>
-          <p class="card-text">
-            Ends at:  <span id="ends-at{{ $up }}">{{ $upcoming_submissions[$up]['end_time'] }}</span>
-          </p>
-          <p class="card-text">Queue status: <span class="queue" ></span> </p>
-        </div>
-      </div>
-      @endfor
     </div>
     <br>
     <div class="" style=" text-align:center " >
@@ -59,15 +46,40 @@
           <p class="card-text">Queue status: <span class="queue" ></span> </p>
         </div>
       </div>
-      @endfor
+       @endfor
     </div>
     <br>
-    <div class=""style=" text-align:center " >  <h1>Upcoming Events</h1>   </div>
+    <div class="" style=" text-align:center " >
+      <h1>Upcoming Submission</h1>
+    </div>
     <div class="on-events">
+      @for($up=0; $up < count($upcoming_submissions); $up++)
+      <div class="card" >
+        <div class="card-body">
+            <h4 class="card-title">
+              <span id="set-sub" >
+                {{ $upcoming_submissions[$up]['subject_name'] }}
+              </span>
+            </h4>
+            <p class="card-text">
+              Starts in: <span id="starts-in{{ $up }}"></span>
+            </p>
+          <p class="card-text">
+            Ends at:  <span id="ends-at{{ $up }}">{{ $upcoming_submissions[$up]['end_time'] }}</span>
+          </p>
+          <p class="card-text">Queue status: <span class="queue" ></span> </p>
+        </div>
+      </div>
+      @endfor
+    </div>
+    <!-- <br> -->
+    <!-- <div class=""style=" text-align:center " >  <h1>Upcoming Events</h1>   </div> -->
+    <!-- <div class="on-events">
       <div class="upevent-row">
         <span>Digital Logic</span>
       </div>
-    </div>
+    </div> -->
+  </div>
   </div>
 </div>
 <script type="text/javascript">

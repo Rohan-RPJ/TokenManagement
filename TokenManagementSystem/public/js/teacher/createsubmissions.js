@@ -18,7 +18,6 @@ var cardContentCloseDiv = "</div>";
 var questionCardCloseDiv = "</div>";
 var questionCardsItemCloseLi = "</li>";
 
-
 function showValue(){
     console.log(document.getElementById('subject').value);
 }

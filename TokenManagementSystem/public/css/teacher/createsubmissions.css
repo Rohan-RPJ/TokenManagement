@@ -8,10 +8,24 @@
   box-sizing: border-box;
 }
 
+
+.question_cards_item{
+  margin-right: 700px;
+  /* border: 2px solid red; */
+
+}
+
+#question1TextArea{
+  height: 200px;
+  font-size: 20px;
+  /* background-color: red; */
+}
+
 .questionDiv{
   max-width: 1200px;
   margin: 0px;
 }
+
 
 .question_cards_item .btn {
   color: #ffffff;
@@ -28,7 +42,7 @@
 }
 
 .question_cards_item .btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: #ba68c8;
 }
 
 .questionCards {
@@ -72,7 +86,7 @@
 
 .card_content {
   padding: 1rem;
-  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+  background: linear-gradient(to bottom left, #f48fb1 40%, #f8bbd0 100%);
 }
 
 .card_title {
@@ -101,7 +115,7 @@
 }
 
 .card_options input[type=radio] {
-
+  font-size: 30px;
 }
 
 textarea {
@@ -129,7 +143,7 @@ textarea {
 .create{
   /* border: 2px solid black; */
   font-size: 30px;
-  color: purple;
+  color: #9c27b0;
 }
 
 .years,.branches,.subjects{
@@ -137,20 +151,32 @@ textarea {
   height: 40px;
   font-size: 30px;
   border-radius: 9px;
+  background-color: #dfe6e9;
 }
 input{
   width: 400px;
   height: 40px;
   font-size: 30px;
-  border-radius: 9px;
+  border-radius: 10px;
+  background-color: #dfe6e9;
   /* text-align: center; */
 }
 
 input[name="type"]{
   width: 75px;
-
 }
 
+input[name="submit"]{
+  background-color: #ea80fc;
+}
+
+input[name="question"]{
+  background-color: #ea80fc;
+}
+
+.section{
+  background-color: #e1bee7;
+}
 
 #question-div {
   display: none;

@@ -26,8 +26,6 @@ function hideQues(){
 
 </style>
 <div class="inner-container">
-
-
   <div class="create">
 
     <form method="POST" action="{{ route('questions.store') }}" onsubmit="updateTotal();" autocomplete="off"  >

@@ -14,7 +14,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="{{ asset('js/register.js') }}"></script>
-    
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,7 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('css/register.css') }}"> -->
+    <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
     <!-- <link rel="stylesheet" href="{{ asset('css/design.css') }}"> -->
 
 </head>
