@@ -34,6 +34,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('teacher/submissions', 'TeachersController@submissions')->name('teacher.submissions');
 Route::get('teacher/create/submissions', 'TeachersController@createSubmissions')->name('teacher.create.submissions');
 Route::post('teacher/', 'TeachersController@storeSubmission')->name('questions.store');
+Route::get('teacher/update/submissions', 'TeachersController@updateSubmission')->name('submission.update');
+Route::get('teacher/remove/submissions', 'TeachersController@removeSubmission')->name('submission.remove');
 
 Route::get('student/submissions', 'StudentsController@submissions')->name('student.submissions');
 
@@ -41,7 +43,7 @@ Route::get('student/submissions', 'StudentsController@submissions')->name('stude
 Route::get('/subjects/','SubjectsController@index');
 Route::get('/subjects/{subject}','SubjectsController@show');
 //joins a student to a submission
-Route::post('student/submissions/join','ParticipantController@store');
+Route::post('student/submissions/join','ParticipantController@store')->name('participant.join');
 Route::get('student/submissions/join','ParticipantController@join');
 //see all the participants for a submission
 Route::get('student/submissions/{submission}/participants','ParticipantController@index');

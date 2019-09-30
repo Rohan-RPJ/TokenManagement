@@ -1,134 +1,48 @@
 @extends('layouts.main')
 
 @section('content')
-<script src="{{ asset('js/teacher/submissions.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/submissions.css') }}">
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script type="text/javascript">
   var upcoming_submissions = {!! json_encode($upcoming_submissions, JSON_HEX_TAG) !!};
   var ongoing_submissions = {!! json_encode($ongoing_submissions, JSON_HEX_TAG) !!};
   var finished_submissions = {!! json_encode($finished_submissions, JSON_HEX_TAG) !!};
   //console.log(upcoming_submissions);
 </script>
-<style type="text/css">
-  /* Font */
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
-/* Design */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  /*background: linear-gradient(to bottom left, #0f0c29 40%, #302b63 100%);*/
-  background-color: #242424;
-}
-.main{
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h1 {
-    font-size: 24px;
-    font-weight: 400;
-    text-align: center;
-}
-
-img {
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
-
-.btn {
-  color: #ffffff;
-  padding: 0.8rem;
-  font-size: 14px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  font-weight: 400;
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.cards_item {
-  display: flex;
-  padding: 1rem;
-}
-
-@media (min-width: 40rem) {
-  .cards_item {
-    width: 50%;
-  }
-}
-
-@media (min-width: 56rem) {
-  .cards_item {
-    width: 33.3333%;
-  }
-}
-
-.card {
-  background-color: white;
-  border-radius: 0.25rem;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.card_content {
-  padding: 1rem;
-  background: linear-gradient(to bottom left, #0f0c29 40%, #cf6679 100%);
-}
-
-.card_title {
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 0px;
-}
-
-.card_text {
-  color: #ffffff;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin-bottom: 1.25rem;    
-  font-weight: 400;
-}
-.made_by{
-  font-weight: 400;
-  font-size: 13px;
-  margin-top: 35px;
-  text-align: center;
-}
-</style>
-<div class="main">
+<div id="submissions" class="main">
   <h1>Ongoing Submissions</h1>
+  @if(count($ongoing_submissions) === 0)
+    <p>👋 There are no ongoing submissions right now. Want to add Submissions? 
+    Then Create it using above Create link.</p>
+  @endif
   <ul class="cards">
     @for($on=0; $on < count($ongoing_submissions); $on++)
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+        <div class="card_image">
+          <img src="{{ asset('images/darkbg4.jpg') }}">
+          <div class="text-block">
+            <h4 class="img-header">{{ $ongoing_submissions[$on]['subject_name'] }}</h4>
+            <h4 class="img-content">Professor : &nbsp {{ $ongoing_submissions[$on]['teacher_name'] }}</h4>
+            <h4 class="img-content inline" id="on_venue{{ $on }}">Venue : {{ $ongoing_submissions[$on]['venue'] }}</h4>
+            <h4 class="img-content inline" id="on_status{{ $on }}">Status : 
+              @if($ongoing_submissions[$on]['status'] === 0)
+                Over
+              @elseif($ongoing_submissions[$on]['status'] === 1)
+                Active
+              @elseif($ongoing_submissions[$on]['status'] === 2)
+                Pause
+              @endif
+            </h4>
+            <button class="btn" onclick="toggleUpdateModal();getDetails('on','{{ $on }}', '{{ $ongoing_submissions[$on]['id'] }}');">
+              Edit Submission &nbsp &nbsp<i class='fas fa-edit'></i>
+            </button>
+          </div>
+          <button class="float-btn">CALL</button>
+        </div>
         <div class="card_content">
-          <h2 class="card_title">{{ $ongoing_submissions[$on]['subject_name'] }}</h2>
           <p class="card_text">
             Started at: 
             <span id="started-at{{ $on }}">
@@ -140,7 +54,7 @@ img {
             <span id="ends-in{{ $on }}"></span>
           </p>
           <p class="card_text">Queue status: <span class="queue" ></span> </p>
-          <button class="btn card_btn">Read More</button>
+          <button id="btn{{ $on }}" class="btn card_btn" onclick="toggleRemoveModal();removeSubmission('{{ $ongoing_submissions[$on]['id'] }}');">Remove Submission</button>
         </div>
       </div>
     </li>
@@ -149,24 +63,36 @@ img {
 </div>
 <div class="main">
   <h1>Upcoming Submissions</h1>
+  @if(count($upcoming_submissions) === 0)
+    <p>👋 There are no upcoming submissions right now. Want to add Submissions? 
+    Then Create it using above Create link.</p>
+  @endif
   <ul class="cards">
     @for($up=0; $up < count($upcoming_submissions); $up++)
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+    <li id="up_cards_item{{ $up }}" class="cards_item">
+      <div id="up_card{{ $up }}" class="card">
+        <div class="card_image">
+          <img src="{{ asset('images/darkbg4.jpg') }}">
+          <div class="text-block">
+            <h4 class="img-header">{{ $upcoming_submissions[$up]['subject_name'] }}</h4>
+            <h4 class="img-content">Professor : &nbsp {{ $upcoming_submissions[$up]['teacher_name'] }}</h4>
+            <h4 class="img-content" id="up_venue{{ $up }}">Venue : {{ $upcoming_submissions[$up]['venue'] }}</h4>
+            <button class="btn" onclick="toggleUpdateModal();getDetails('up','{{ $up }}', '{{ $upcoming_submissions[$up]['id'] }}');">
+              Edit Submission &nbsp &nbsp<i class='fas fa-edit'></i>
+            </button>
+          </div>
+        </div>
         <div class="card_content">
-          <h2 class="card_title">{{ $upcoming_submissions[$up]['subject_name'] }}</h2>
           <p class="card_text">
-            Starts in: 
-            <span id="starts-in{{ $up }}">
-            </span>
-          </p>
-          <p class="card_text">
-            Ends at:
-            <span id="ends-at{{ $up }}">{{ $upcoming_submissions[$up]['end_time'] }}</span>
-          </p>
-          <p class="card_text">Queue status: <span class="queue" ></span> </p>
-          <button class="btn card_btn">Read More</button>
+              Starts in : 
+              <span id="starts-in{{ $up }}"></span>
+            </p>
+            <p class="card_text">
+              Ends at :
+              <span id="ends-at{{ $up }}">{{ $upcoming_submissions[$up]['end_time'] }}</span>
+            </p>
+          <p class="card_text">Queue status : <span class="queue" ></span> </p>
+          <button id="btn{{ $up }}" class="btn card_btn" onclick="toggleRemoveModal();removeSubmission('{{ $upcoming_submissions[$up]['id'] }}');">Remove Submission</button>
         </div>
       </div>
     </li>
@@ -174,24 +100,33 @@ img {
   </ul>
 </div>
 <div class="main">
-  <h1>Expired Submissions</h1>
+  <h1>Finished Submissions</h1>
+  @if(count($finished_submissions) === 0)
+    <p>👋 There are no finished submissions right now.</p>
+  @endif
   <ul class="cards">
     @for($fi=0; $fi < count($finished_submissions); $fi++)
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+        <div class="card_image">
+          <img src="{{ asset('images/darkbg4.jpg') }}">
+          <div class="text-block">
+            <h3 class="">{{ $finished_submissions[$fi]['subject_name'] }}</h3>
+            <h4 class="">Professor : &nbsp {{ $finished_submissions[$fi]['teacher_name'] }}</h4>
+            <h4 class="img-content" id="fi_venue{{ $fi }}">Venue : {{ $finished_submissions[$fi]['venue'] }}</h4>
+          </div>
+        </div> 
         <div class="card_content">
-          <h2 class="card_title">{{ $finished_submissions[$fi]['subject_name'] }}</h2>
+          
           <p class="card_text">
-            Started at:
+            Started at :
             <span id="">{{ $finished_submissions[$fi]['start_time'] }}</span>
           </p>
           <p class="card_text">
-            Ended at:
+            Ended at :
             <span id="ends-at{{ $up }}">{{ $finished_submissions[$fi]['end_time'] }}</span>
           </p>
-          <p class="card_text">Queue status: <span class="queue" ></span> </p>
-          <button class="btn card_btn">Read More</button>
+          <button id="btn{{ $fi }}" class="btn card_btn" onclick="toggleRemoveModal();removeSubmission('{{ $finished_submissions[$fi]['id'] }}');">Remove Submission</button>
         </div>
       </div>
     </li>
@@ -199,89 +134,118 @@ img {
   </ul>
 </div>
 
-{{-- <div id="submissions" class="submissions">
-  <div class="e-inner-elements">
-    <div class="db"> 
-    </div>
-    <div class="" style="" > 
-      <h1></h1>
-    </div>
-    <div class="on-events">
-      
-      <div class="card" >
-        <div class="card-body">
-            <h4 class="card-title">
-              <span id="set-sub" >
-                
-              </span>
-            </h4>
-            <p class="card-text">
-              
-            </p>
-          <p class="card-text">
-            Ends in:  <span id=""></span>
-          </p>
-          
-        </div>
-      </div>
-      @endfor
-    </div>
-    <br>
-    <div class="" style="" > 
-      <h1>Upcoming Submissions</h1>
-    </div>
-    <div class="" style=" text-align: center " > 
-      <button type="button"  class="create-events" name="button" onclick="showUser()"> Create Submission</button> 
-    </div>
-    <div class="on-events">
-      @for($up=0; $up < count($upcoming_submissions); $up++)
-      <div class="card" >
-        <div class="card-body">
-            <h4 class="card-title">
-              <span id="set-sub" >
-                {{ $upcoming_submissions[$up]['subject_name'] }}
-              </span>
-            </h4>
-            <p class="card-text">
-              Starts in: <span id=""></span>
-            </p>
-          <p class="card-text">
-            
-          </p>
-          <p class="card-text">Queue status: <span class="queue" ></span> </p>
-        </div>
-      </div>
-      @endfor
-    </div>
-    <br>
-    <div class="" style="" > 
-      <h1></h1>
-    </div>
-    <div class="on-events">
-      @for($fi=0; $fi < count($finished_submissions); $fi++)
-      <div class="card" >
-        <div class="card-body">
-            <h4 class="card-title">
-              <span id="set-sub" >
-                {{ $finished_submissions[$fi]['subject_name'] }}
-              </span>
-            </h4>
-            <p class="card-text">
-              
-            </p>
-          <p class="card-text">
-            Ended at:  <span id="">{{ $finished_submissions[$fi]['end_time'] }}</span>
-          </p>
-          <p class="card-text">Queue status: <span class="queue" ></span> </p>
-        </div>
-      </div>
-      @endfor
-    </div>
-    <br>
+
+<div class="modal_updateSubmission">
+    <div class="modal-content">
+      <span class="close-button" onclick="toggleUpdateModal();">×</span>
+      <h1 style="color: black;">Change Details</h1>
+      <form method="GET" action="{{ route('submission.update') }}" 
+      onsubmit="" autocomplete="off">
+      @csrf
+      <table border="0">
+        <tr>
+          <td>Start Time:</td>
+          <td><input type="time" id="changeStartTime" name="new_start_time" required></td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+          <td>End Time:</td>
+          <td><input type="time" id="changeEndTime" name="new_end_time" required></td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+          <td>Venue:</td>
+          <td><input type="number" id="changeVenue" name="new_venue" placeholder="Enter room no." required></td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td><input type="number" id="changeStatus" name="new_status" placeholder="Enter status" required min="0" max="2"></td>
+        </tr>
+        <tr style="font-size: 14px;margin: 10px;color: grey;text-align: center;">
+          <td>0 for over</td>
+          <td>1 for active</td>
+          <td>2 for pause</td>
+        </tr>
+        <tr>
+          <td>
+            <input name="submission_id" id="hidden_submission_id" value="" style="display: none;"></td>
+          <td>
+          </td>
+        </tr>
+      </table>
+      <input class="btn update_btn" type="submit" name="update_btn" value="Change">
+    </form>
   </div>
-</div> --}}
+</div>
+
+<div class="modal_removeSubmission">
+    <div class="modal-content">
+      <span class="close-button" onclick="toggleRemoveModal();">×</span>
+      <h1 style="color: red;">Warning !!</h1>
+      <h3 style="color: black;">You are about to remove a submission!</h3>
+      <h4>Click remove to proceed.</h4>
+      <form method="GET" action="{{ route('submission.remove') }}" 
+      onsubmit="" autocomplete="off">
+      @csrf
+      <input name="submission_id" id="remove_submission_id" value="" style="display: none;">
+      <input class="btn remove_btn" type="submit" name="remove_btn" value="Remove">
+    </form>
+  </div>
+</div>
+<style type="text/css">
+</style>
 <script type="text/javascript">
   getUpcomingtime();
   getOngoingtime();
+  var modal_updateSubmission = document.querySelector(".modal_updateSubmission");
+  var modal_removeSubmission = document.querySelector(".modal_removeSubmission");
+  function toggleUpdateModal() {
+    modal_updateSubmission.classList.toggle("show-modal");
+}
+
+function toggleRemoveModal() {
+    modal_removeSubmission.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal_updateSubmission) {
+        toggleUpdateModal();
+    }
+    if (event.target === modal_removeSubmission) {
+        toggleRemoveModal();
+    }
+}
+
+function getDetails(type, id, submission_id){
+  //console.log(submission_id);
+  if (type === 'up') {
+    //console.log(document.getElementById('starts-in'+id).innerHTML);
+    venue = document.getElementById('up_venue'+id).innerHTML;
+    //console.log(s.substring(8).trim());
+    document.getElementById('changeVenue').value = venue.substring(8).trim();
+    document.getElementById('hidden_submission_id').value = submission_id;
+  }
+  if (type === 'on') {
+    //console.log(document.getElementById('up_venue'+id).innerHTML);
+    venue = document.getElementById('on_venue'+id).innerHTML;
+    //console.log(s.substring(8).trim());
+    document.getElementById('changeVenue').value = venue.substring(8).trim();
+    document.getElementById('hidden_submission_id').value = submission_id;
+  }
+}
+
+function removeSubmission(submission_id){
+  document.getElementById('remove_submission_id').value = submission_id;
+}
+
+window.addEventListener("click", windowOnClick);  
 </script>
 @endsection
+  

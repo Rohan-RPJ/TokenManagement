@@ -109,8 +109,11 @@
 <head>
   <meta charset="utf-8">
   <title>TokenManagement</title>
+  <!---Fonts--->
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/base.css') }}">
-
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
   </script>
 </head>
@@ -119,9 +122,10 @@
   <!-- -------------------------------------------------------------------------------------- HOME PAGE ------------------------------------------------------------------------------------------------ -->
 
  <div class="main">
-
     <div class="nav-header" >
-        <div class="f-s" style="color: #ddbcff;" ><h1>FILE SUBMISSION</h1></div>
+        <div class="f-s" style="color: #ddbcff;" ><a href="#" class="logo" style="border:0;"><h1 class="logo">FILE SUBMISSION</h1></a></div>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         @if (Route::has('login'))
             @auth
                 <div class=""><a href="{{ url('/home') }}"><h2  class="home" >Home</h2></a></div>
@@ -136,11 +140,21 @@
     </div>
 
     <div class="inner-elements">
+        <div class="animation-area">
+        <ul class="circle-area">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
         <div class="">
           <h1>WELCOME TO FILE SUBMISSION!. <br> USING TOKEN MANAGEMENT SYSTEM.</h1>
           <br>
           <h3>A token management system is used to control queues.<br> Queues of people form in various situations and locations in a queue area.</h3>
         </div>
+    </div>
     </div>
  </div>
 </body>

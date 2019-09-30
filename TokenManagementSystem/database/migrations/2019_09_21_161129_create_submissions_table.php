@@ -23,6 +23,8 @@ class CreateSubmissionsTable extends Migration
             $table->date('submission_date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->string('venue');
+            $table->integer('status')->nullable()->unsigned(); //0->over 1->active 2->paused
             $table->timestamps();
 
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');

@@ -28,11 +28,11 @@ class StudentsController extends Controller
      */
     public function submissions()
     {
-        $allSubmissions = Students::getAllSubmissions();
-        //dd($allSubmissions);
-        $upcoming_submissions = $allSubmissions[0];
-        $ongoing_submissions = $allSubmissions[1];
-        $finished_submissions = $allSubmissions[2];
+        $segregatedSubmissions = Submissions::getStudentSubmissions();
+        //dd($segregatedSubmissions);
+        $upcoming_submissions = $segregatedSubmissions[0];
+        $ongoing_submissions = $segregatedSubmissions[1];
+        $finished_submissions = $segregatedSubmissions[2];
         
         //dd($upcoming_submissions);
         //dd($ongoing_submissions);
