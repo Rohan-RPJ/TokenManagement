@@ -13,20 +13,14 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/teacher/submissions.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/teacher/createsubmissions.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/student/submissions.css') }}">
 
   <!---Scripts--->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="{{ asset('js/teacher/submissions.js') }}"></script>
-
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 
   <script src="{{ asset('js/teacher/createsubmissions.js') }}"></script>
-  {{-- <script src="{{ asset('js/student/submissions.js') }}"></script> --}}
+  <script src="{{ asset('js/submissions.js') }}"></script>
 
   <script type="text/javascript">
     var user = {!! json_encode(Auth::user()->toArray(), JSON_HEX_TAG) !!};
@@ -41,7 +35,7 @@
 </head>
 <body onload="showCreate();">
   <header class="header">
-    <a href="#" class="logo" style="color: #ddbcff;"><b>FILE SUBMISSION</b></a>
+    <a href="#" class="logo"><b>FILE SUBMISSION</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
@@ -52,6 +46,7 @@
       <li><a href="#" class="notif">Notifications</a></li>
       <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.profile') : route('student.profile') }}">Profile</a></li>
       <li><a href="#">History</a></li>
+
       @guest
         <li>
           <a href="">Login</a>

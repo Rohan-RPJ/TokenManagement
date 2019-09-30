@@ -4,7 +4,7 @@ body{
   display: flex;
   height: 829px;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 0px;
   background-color: #dfe6e9;
   background: linear-gradient(to bottom right,#ba68c8 60%,#ce93d8 20%);
   /* border: 2px solid red; */
@@ -14,7 +14,6 @@ body{
 h1{
   margin-bottom: 60px;
   font-size: 50px;
-  font-family: cursive;
   padding-left: 90px;
   /* text-align: center; */
   color: purple;
@@ -40,6 +39,7 @@ h1{
   /* height: 580px; */
   /* border: purple 1px solid; */
   /* border-style: dotted; */
+  /*border-width: thick;*/
   /* border-width: thick; */
   border-radius: 10px;
   /* background-color: rgb(255,192,203); */
@@ -96,5 +96,4 @@ input:focus{
 
 #table{
   border: red 2px solid;
-
 }

@@ -113,7 +113,8 @@
 
           <table>
             <tr>
-              <td><input type="text"  class="" name="sName" value="" placeholder="  Full name" id="sName" onchange="isEmpty1()">
+              <td><input type="text"  class="effect-1" name="sName" value="" placeholder="  Full name" id="sName" onchange="isEmpty1()">
+                <span class="focus-border"></span>
               </td>
             </tr>
             <tr>
@@ -123,7 +124,8 @@
               <td>   <br>  <br> <br>  </td>
             </tr>
             <tr>
-              <td><input type="email" class="@error('sEmail') is-invalid @enderror" name="sEmail" value="{{ old('sEmail') }}" placeholder="  Email"  id="sEmail" onchange="isEmpty2()">
+              <td><input type="email" class="effect-2 @error('sEmail') is-invalid @enderror" name="sEmail" value="{{ old('sEmail') }}" placeholder="  Email"  id="sEmail" onchange="isEmpty2()">
+                <span class="focus-border"></span>
               </td>
             </tr>
             <tr>
@@ -192,7 +194,8 @@
               <td> <br> <br> <br></td>
             </tr>
             <tr>
-                <td> <input type="text" class="@error('sRollNo') is-invalid @enderror" name="sRollNo" value="{{ old('sRollNo') }}" placeholder="  Roll no" id="sRollNo" onchange="isEmpty6()">
+                <td> <input type="text" class="effect-3 @error('sRollNo') is-invalid @enderror" name="sRollNo" value="{{ old('sRollNo') }}" placeholder="  Roll no" id="sRollNo" onchange="isEmpty6()">
+                  <span class="focus-border"></span>
                 </td>
             </tr>
             <tr>
@@ -211,7 +214,8 @@
               <td> <br> <br> <br></td>
             </tr>
             <tr>
-                <td><input type="password" name="sPassword" value="" placeholder="  New Password" id="sPassword" onchange="isEmpty5()" >
+                <td><input type="password" class="effect-4" name="sPassword" value="" placeholder="  New Password" id="sPassword" onchange="isEmpty5()" >
+                  <span class="focus-border"></span>
                 </td>
             </tr>
             <tr>

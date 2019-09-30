@@ -29,6 +29,12 @@ class TeachersController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+    private function createTime($date)
+    {
+        $date = Carbon::parse($date)->format('H:i:s');
+        return $date;
+    }
+
     private function createDate($date)
     {
         $date = Carbon::parse($date)->format('Y-m-d');
@@ -42,11 +48,11 @@ class TeachersController extends Controller
 
     public function submissions()
     {
-        $allSubmissions = Submissions::getAllSubmissions();
-        //dd($allSubmissions);
-        $upcoming_submissions = $allSubmissions[0];
-        $ongoing_submissions = $allSubmissions[1];
-        $finished_submissions = $allSubmissions[2];
+        $segregatedSubmissions = Submissions::getTeacherSubmissions();
+        //dd($segregatedSubmissions);
+        $upcoming_submissions = $segregatedSubmissions[0];
+        $ongoing_submissions = $segregatedSubmissions[1];
+        $finished_submissions = $segregatedSubmissions[2];
         /*dd($upcoming_submissions);
         dd($ongoing_submissions);
         dd($finished_submissions);*/
@@ -58,7 +64,7 @@ class TeachersController extends Controller
     public function createSubmissions()
     {
         if (Auth::user()->type === "Teacher") {
-        $subjects = Subjects::getSubjects();
+        $subjects = Subjects::getTeacherSubjects();
         $branches = Subjects::select('branch')->groupBy('branch')->get()->toArray();
         $years = Subjects::select('year')->groupBy('year')->get()->toArray();
         //dd($years);
@@ -105,9 +111,63 @@ class TeachersController extends Controller
             'submission_date' => $this->createDate($request['submission_date']),
             'start_time' => $request['start_time'],
             'end_time' => $request['end_time'],
+            'venue' => $request['venue'],
         ]);
 
         return redirect()->route('teacher.submissions');
-        submissions();
+        //submissions();
+    }
+
+    public function updateSubmission(Request $request){
+        //todays date
+        $currentDateTime = new Carbon;
+        //dd(self::createTime($currentDateTime->subMinutes(1)));
+        //dd($request);
+        $submission = Submissions::findOrFail($request['submission_id']);
+        //dd($submission);
+        //Make sure you have got the page model
+        if ($submission) {
+            $submission->status = (int)$request['new_status'];
+            $submission->venue = $request['new_venue'];
+
+            if ($request['new_status'] == 0) {
+                $submission->end_time = self::createTime($currentDateTime->subMinutes(1));
+
+                if ($currentDateTime->diffInSeconds(Carbon::parse($submission['submission_date'].$request['new_start_time']),false) > 0) {
+                    $submission->start_time = self::createTime($currentDateTime->subMinutes(1));
+                }
+                else{
+                    $submission->start_time = $request['new_start_time'];
+                }
+            }
+            else{
+                $submission->start_time = $request['new_start_time'];
+                $submission->end_time = $request['new_end_time'];
+                if ($currentDateTime->diffInSeconds(Carbon::parse($submission['submission_date'].$request['new_end_time']),false) < 0) {
+                    $submission->status = 0;
+                    $submission->end_time = self::createTime($currentDateTime->subMinutes(1));
+                    if ($currentDateTime->diffInSeconds(Carbon::parse($submission['submission_date'].$request['new_start_time']),false) > 0) {
+                        $submission->start_time = self::createTime($currentDateTime->subMinutes(1));
+                    }
+                    else{
+                        $submission->start_time = $request['new_start_time'];
+                    }
+                }
+            }
+
+            $submission->save();
+        }
+        return redirect()->route('teacher.submissions');
+    }
+
+    public function removeSubmission(Request $request) {
+        //dd($request);
+        $submission = Submissions::findOrFail($request['submission_id']);
+        //dd($submission);
+        //Make sure you have got the page model
+        if ($submission) {
+            $submission->delete();
+        }
+        return redirect()->route('teacher.submissions');
     }
 }

@@ -39,7 +39,7 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {dd($request);
         //check if participant exists
         $participant = null;
         $student_id=$request->user()->student->id;
