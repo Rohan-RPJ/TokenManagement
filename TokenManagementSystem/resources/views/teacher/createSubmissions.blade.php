@@ -32,7 +32,7 @@ function hideQues(){
 <div class="inner-container">
   <div class="create">
 
-    <form method="POST" action="{{ route('questions.store') }}" onsubmit="updateTotal();" autocomplete="off"  >
+    <form method="POST" action="{{ route('questions.store') }}" onsubmit="updateTotal();" autocomplete="off" class="form" >
       @csrf
       <table>
         <!-- Select Year: -->

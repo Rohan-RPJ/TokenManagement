@@ -7,10 +7,29 @@ body {
 }
 
 
+@media screen and (max-width: 10em) {
+    body {
+      display: flex;
+      flex-direction: column;
+        font-size:10%;
+    }
+
+    .circle-area{
+      display: none;
+    }
+
+}
 @media screen and (max-width: 40em) {
     body {
+      display: flex;
+      flex-direction: column;
         font-size:90%;
     }
+
+    .circle-area{
+      display: none;
+    }
+
 }
 
 @media screen and (max-width: 30em) {
@@ -85,7 +104,7 @@ h2,h1,h3{
 /* -----------------------------------------------------For Home---------------------------------------------------------------------------- */
 
 .inner-elements   {
-  background-color: #9c88ff;
+  /* background-color: #9c88ff; */
   /* margin-top: 30px; */
   /* padding-top: 20px;   */
   /* border: 9px solid red; */

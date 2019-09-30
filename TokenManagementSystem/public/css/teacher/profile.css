@@ -1,0 +1,45 @@
+.profile-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 130px;
+  height: 93.5vh;
+  background-color: #ce93d8;
+  /* border: 2px solid red; */
+}
+
+
+.left-stuff{
+  display: flex;
+  flex-direction: column;
+    /* margin-right: 500px; */
+}
+
+.user-img{
+
+}
+
+.btn{
+  margin-right: 70px;
+  text-align: right;
+}
+
+.edit-btn{
+  border-radius: 9px;
+  width: 210px;
+  font-size: 30px;
+  color: white;
+  background-color: #3f51b5;
+}
+
+.update{
+  width: 210px;
+  font-size: 30px;
+  color: white;
+  background-color: #3f51b5;
+}
+
+.user-detail{
+  color: white;
+  font-size: 30px;
+}

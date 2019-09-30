@@ -23,8 +23,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
-    <!-- <link rel="stylesheet" href="{{ asset('css/design.css') }}"> -->
+    {{-- <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> --> --}}
+    {{-- <!-- <link rel="stylesheet" href="{{ asset('css/design.css') }}"> --> --}}
 
 </head>
 <body style="padding-top: 10px;">

@@ -50,7 +50,7 @@
       onclick="" class="events">Submissions</a></li>
       <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
       <li><a href="#" class="notif">Notifications</a></li>
-      <li><a href="#">Profile</a></li>
+      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.profile') : route('student.profile') }}">Profile</a></li>
       <li><a href="#">History</a></li>
       @guest
         <li>

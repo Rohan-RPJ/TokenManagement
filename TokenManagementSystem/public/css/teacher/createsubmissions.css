@@ -8,15 +8,14 @@
   box-sizing: border-box;
 }
 
-
 .question_cards_item{
   margin-right: 700px;
   /* border: 2px solid red; */
 
 }
 
-#question1TextArea{
-  height: 200px;
+.qtext{
+  height: 170px;
   font-size: 20px;
   /* background-color: red; */
 }
@@ -176,9 +175,6 @@ input[name="question"]{
   color: #f4f4f4;
 }
 
-.section{
-  background-color: #e1bee7;
-}
 
 #question-div {
   display: none;

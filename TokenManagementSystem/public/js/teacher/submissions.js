@@ -15,13 +15,6 @@ function getTimeValue(distance) {
       return [days, hours, minutes, seconds];
   }
 
-function getUpcomingtime() {function events() {
-  // var c = document.getElementById('n-inner-elements');
-  // c.write(" <h1>Yooooooooooooooooooooooooooooooo</h1> ")
-  var myWindow = window.open("file:///home/shubham/Desktop/WDLproject/Dashboard/events.html", "MsgWindow", "width=800, height=800");
-  myWindow.document.write("<h1>Shubham</h1>");
-  // document.write("hi");
-}
 
 
   if (document.getElementById('submissions') === null) {
