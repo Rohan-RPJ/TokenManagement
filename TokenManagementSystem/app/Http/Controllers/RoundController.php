@@ -6,7 +6,7 @@ use App\Round;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Submissions;
-
+use App\Participant;
 class RoundController extends Controller
 {
     /**
@@ -14,9 +14,17 @@ class RoundController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function __construct()
+    // {
+    //     dd($this);
+    // }
+
+    public function index(Submissions $submission,Round $round_id,Request $request)
     {
-        return view('round/startround');
+        $student_id= $request->user()->student->id;
+        //checks if user is a participant of that round
+        $participant = Participant::where('student_id',$student_id)->where('submission_id',$submission->id)->firstOrFail();
+        return view('round/startround',compact('submission','round_id'));
     }
 
     /**
