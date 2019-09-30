@@ -57,6 +57,7 @@ class ParticipantController extends Controller
                             'score'=>0,
                         ]);
         //dd($participant);
+       // dd($message);
         $message="Created a participant with ".$participant->id;
         event (new NewParticipantJoined($participant));
         }
@@ -70,7 +71,9 @@ class ParticipantController extends Controller
                 $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();//re get the round id
                 dd('Conditional inside',$round);
             }
+
          $message="Already a participant for ".$participant->submission->subject->name.' in Round '.$round->round_id ;
+         //dd($message);
         }
 
 
