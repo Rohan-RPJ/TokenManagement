@@ -46,3 +46,5 @@ Route::get('student/submissions/join','ParticipantController@join');
 //see all the participants for a submission
 Route::get('student/submissions/{submission}/participants','ParticipantController@index');
 
+Route::get('rounds/{submission}/{round_id}/','RoundController@shouldStartRound');
+Route::get('rounds/{submission}/{round_id}/startRound','RoundController@index');
