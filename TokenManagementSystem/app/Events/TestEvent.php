@@ -9,8 +9,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class TestEvent implements ShouldBroadcast
+class TestEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -23,6 +24,7 @@ class TestEvent implements ShouldBroadcast
 
     public function __construct($message)
     {
+            \Log::debug("TestEvent called");
             $this->message=$message;
     }
 
@@ -33,6 +35,7 @@ class TestEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('test-channel');
+        //return new PrivateChannel('test-channel');
+        return ['private-test-channel'];
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Round;
 use Illuminate\Http\Request;
+use \Illuminate\Http\Response;
+use App\Submissions;
 
 class RoundController extends Controller
 {
@@ -14,7 +16,7 @@ class RoundController extends Controller
      */
     public function index()
     {
-        //
+        return view('round/startround');
     }
 
     /**
@@ -81,5 +83,13 @@ class RoundController extends Controller
     public function destroy(Round $round)
     {
         //
+    }
+
+    public function shouldStartRound(Submissions $submission, $round_id){
+        $max_participants=5;
+        $submission_id=$submission->id;
+        $count=Round::where('submission_id',$submission_id)->where('round_id',$round_id)->count();
+        $result=['result'=>$count==$max_participants];
+        return response($result,200);
     }
 }

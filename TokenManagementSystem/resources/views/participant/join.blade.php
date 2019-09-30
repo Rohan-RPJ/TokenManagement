@@ -9,7 +9,7 @@
 
 @section('content')
 	
-	
+
 		@if($message  = Session::get('success'))
 		<div><strong>{{$message}}</strong></div>
 		@endif
@@ -29,5 +29,10 @@
 		<button type="submit">JOIN</button>
 	</form>
 
-<script src="{{ asset('js/app.js') }}" defer></script>
+
+<script type="module" > //module ensures that the script are loaded in parallel and run one after the other in the order encountered
+	
+	console.log(window.Echo);
+	
+</script>
 @endsection

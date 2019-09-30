@@ -42,8 +42,8 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         //check if participant exists
-        broadcast(new TestEvent('YO wassup'));
-
+        event(new TestEvent('YO wassup'));
+        
         $participant = null;
         $student_id=$request->user()->student->id;
         $participant = Participant::where('submission_id',$request->submission_id)->get()->where('student_id',$student_id)->first();
@@ -86,6 +86,7 @@ class ParticipantController extends Controller
      */
     public function join(Request $request)
     {
+       // event(new TestEvent('YO wassup'));
         $branch=$request->user()->student->sBranch;
         $year=$request->user()->student->sYear;
         $submissions= Submissions::where('year',$year)->get();

@@ -51,8 +51,8 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS:true,
-    //encrypted: true
+    forceTLS:false,
+    //encrypted: false,
 });
 console.log('bootstrap called');
 
@@ -65,3 +65,13 @@ else
 channel.listen('.my-event',function(data){
 	alert(JSON.stringify(data));
 });
+
+var testChannel = window.Echo.private('test-channel');
+    console.log(testChannel);
+    testChannel.listen('.test-event',function(data){
+        alert(JSON.stringify(data));
+    });
+    // .listen("TestEvent",function(data){
+    //     alert(JSON.stringify(data));
+    // });
+
