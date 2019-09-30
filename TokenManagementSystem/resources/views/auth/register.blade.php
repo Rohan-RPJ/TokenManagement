@@ -2,6 +2,97 @@
 
 @section('content')
 
+<head>
+  <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+
+  <script type="text/javascript">
+  function isEmpty1() {
+    var e = document.getElementById('sName').value;
+    if(e.length > 0)
+    {
+      document.getElementById('sn').innerHTML="";
+    }
+  }
+
+  function isEmpty2() {
+    var e = document.getElementById('sEmail').value;
+    if(e.length > 0)
+    {
+      document.getElementById('se').innerHTML="";
+    }
+  }
+
+  function isEmpty3() {
+    var e = document.getElementById('sYear').value;
+    if(e.length > 0)
+    {
+      document.getElementById('sy').innerHTML="";
+    }
+  }
+
+  function isEmpty4() {
+    var e = document.getElementById('sBranch').value;
+    if(e.length > 0)
+    {
+      document.getElementById('sb').innerHTML="";
+    }
+  }
+
+  function isEmpty5() {
+    var e = document.getElementById('sPassword').value;
+    if(e.length > 0)
+    {
+      document.getElementById('spass').innerHTML="";
+    }
+  }
+
+  function isEmpty6() {
+    var e = document.getElementById('sRollNo').value;
+    if(e.length > 0)
+    {
+      document.getElementById('srn').innerHTML="";
+    }
+  }
+
+
+
+  // ------------------------------------------------------checking for empty (Teacher)-----------------------------------------------------------------
+
+  function isEmpty11() {
+    var e = document.getElementById('tName').value;
+    if(e.length > 0)
+    {
+      document.getElementById('tn').innerHTML="";
+    }
+  }
+
+  function isEmpty22() {
+    var e = document.getElementById('tEmail').value;
+    if(e.length > 0)
+    {
+      document.getElementById('te').innerHTML="";
+    }
+  }
+
+  function isEmpty33() {
+    var e = document.getElementById('tBranch').value;
+    if(e.length > 0)
+    {
+      document.getElementById('tb').innerHTML="";
+    }
+  }
+
+  function isEmpty44() {
+    var e = document.getElementById('tPassword').value;
+    if(e.length > 0)
+    {
+      document.getElementById('tpass').innerHTML="";
+    }
+  }
+
+  </script>
+</head>
+
 <div id="main">
 <h1 style="text-align: center; color: violet; font-size: 50px;" > <b>Create a new Account</b> </h1>
 
@@ -36,7 +127,7 @@
               </td>
             </tr>
             <tr>
-              <td> 
+              <td>
                 <span id='se' style="color:red; font-size: 18px;" >
                   @error('sEmail')
                     <span class="">
@@ -50,7 +141,7 @@
                       <alert>{{ $message }}</alert>
                     </span>
                   @enderror
-                </span> 
+                </span>
               </td>
             </tr>
 
@@ -105,7 +196,7 @@
                 </td>
             </tr>
             <tr>
-              <td> 
+              <td>
                 <span id='srn' style="color:red; font-size: 18px;" >
                   @error('sRollNo')
                     <span class="" role="">
@@ -246,4 +337,4 @@
       });
 
 </script>
-@endsection()
+@endsection

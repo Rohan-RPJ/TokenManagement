@@ -1,20 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+
+<head>
+
+    <link rel="stylesheet" href="{{ asset('css/design.css') }}">
+
+</head>
 <script src="{{ asset('js/Login.js') }}"></script>
 <div class="center">
-  <form class="form" action="{{ route('login') }}" method="POST"  name="form" onsubmit="return validation()" >
+  <form class="" action="{{ route('login') }}" method="POST"  name="" onsubmit="return validation()" >
     @csrf
 
     <h1> <b>Log in</b> </h1>
 
     <table border="0">
       <tr>
-        <td><input type="email" id="username" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" autocomplete="off" onchange="isEmpty1()" required autofocus></td>
+        <td><input type="email" id="username" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="   Email" autocomplete="off" onchange="isEmpty1()" required autofocus></td>
       </tr>
 
       <tr>
-        <td> 
+        <td>
             <span id="user" style="color:red; font-size: 18px;">
                 @error('email')
                     <span class="">
@@ -28,10 +34,10 @@
         <td>  <br> </td>
       </tr>
       <tr>
-        <td><input type="password" class="@error('password') is-invalid @enderror" name="password" placeholder=" Password"  id="password" onchange="isEmpty2()" required></td>
+        <td><input type="password" class="@error('password') is-invalid @enderror" name="password" placeholder="   Password"  id="password" onchange="isEmpty2()" required></td>
       </tr>
       <tr>
-        <td> 
+        <td>
             <span id="pass" style="color:red; font-size: 16px;">
                 @error('password')
                     <span class="" >
@@ -49,19 +55,21 @@
       <tr>
 
         <td style="display: flex;">
-            <input id="radio" type="radio" class="@error('type') is-invalid @enderror" name="type" value="Teacher"  onclick="usertype(this.value)"> 
-            <h2 style = "font-size: 30px;"> <b>Teacher</b> </h2> 
+            <input id="radio" type="radio" class="@error('type') is-invalid @enderror" name="type" value="Teacher"  onclick="usertype(this.value)">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <h2 style = "font-size: 30px; color: purple;"> <b>Teacher</b> </h2>
         </td>
 
       </tr>
       <tr>
-        <td style="display: flex;"> 
-          <input id="radio" type="radio" class="@error('type') is-invalid @enderror" name="type" value="Student" onclick="usertype(this.value)"> 
-            <h2 style = "font-size: 30px;"> <b>Student</b> </h2> 
+        <td style="display: flex;">
+          <input id="radio" type="radio" class="@error('type') is-invalid @enderror" name="type" value="Student" onclick="usertype(this.value)">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+            <h2 style = "font-size: 30px,; color: purple; "> <b>Student</b> </h2>
         </td>
       </tr>
       <tr>
-        <td> 
+        <td>
             <span id="type" style="color:red; font-size: 16px;">
                 @error('type')
                     <span class="" >
@@ -83,7 +91,11 @@
       </tr>
 
       <tr>
-        <td><button type="submit" class="signin"  > <b>Sign in</b> </button> </td>
+        <td> <input type="submit" name="" value="Signin" class="signin" > </td>
+      </tr>
+
+      <tr>
+        <td> <br> </td>
       </tr>
 
       <tr>

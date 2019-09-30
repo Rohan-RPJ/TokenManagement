@@ -11,7 +11,7 @@ function getTimeValue(distance) {
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);    
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       return [days, hours, minutes, seconds];
   }
 
@@ -49,8 +49,8 @@ function getUpcomingtime() {
         seconds = getValues[3];
         // Output the result in an element with id="demo"
         document.getElementById("starts-in"+up.toString()).innerHTML = days + "d " +hours + "h "
-        + minutes + "m " + seconds + "s "; 
-        
+        + minutes + "m " + seconds + "s ";
+
         // If the count down is over, write some text
         if (distance < 0) {
         clearInterval(x);
@@ -62,14 +62,14 @@ function getUpcomingtime() {
   }, 1000);
 
   return false;
-} 
+}
 
 function getOngoingtime() {
 
   if (document.getElementById('submissions') === null) {
     return false;
   }
-  
+
   var ongoingCountDown=[];
   for (var on = 0; on < ongoing_submissions.length; on++) {
     ongoingCountDown[on] = new Date(ongoing_submissions[on]['submission_date']+" "+ongoing_submissions[on]['end_time']).getTime();
@@ -95,8 +95,8 @@ function getOngoingtime() {
 
         // Output the result in an element with id="demo"
         document.getElementById("ends-in"+on.toString()).innerHTML = days + "d " +hours + "h "
-        + minutes + "m " + seconds + "s "; 
-        
+        + minutes + "m " + seconds + "s ";
+
         // If the count down is over, write some text
       if (distance < 0) {
         clearInterval(x);
@@ -108,4 +108,4 @@ function getOngoingtime() {
   }, 1000);
 
   return false;
-} 
+}

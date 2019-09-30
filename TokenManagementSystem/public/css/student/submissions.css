@@ -1,6 +1,9 @@
+
 .e-inner-elements   {
   background-color: #9c88ff;
-  height: 895px;
+  height: 915px;
+  /* border: 2px solid red; */
+  /* z-index: 3; */
 }
 .db{
   background-color: #74b9ff;
