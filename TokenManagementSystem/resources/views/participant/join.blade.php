@@ -30,9 +30,4 @@
 	</form>
 
 
-<script type="module" > //module ensures that the script are loaded in parallel and run one after the other in the order encountered
-	
-	console.log(window.Echo);
-	
-</script>
 @endsection
