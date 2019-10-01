@@ -129,7 +129,7 @@
 								}).done(function(){
 
 
-									var card_html='<div class="row">\
+									var card_html='<div class="row" id="question_'+question_id+'">\
 									    <div class="col s12 m6 l12">\
 					      				<div class="card blue-grey darken-1">\
 					        					<div class="card-content white-text">\
@@ -145,7 +145,8 @@
 					    					</div>\
 					  					</div>';
 
-				  						document.getElementById("question_display").innerHTML+=card_html;
+				  						//document.getElementById("question_display").innerHTML+=card_html;
+				  						document.getElementById("question_display").insertAdjacentHTML('afterend',card_html);
 				  						var clr_btn=document.getElementById("clear_"+question_id);
 				  						clr_btn.addEventListener("click",uncheck,false);
 								});
