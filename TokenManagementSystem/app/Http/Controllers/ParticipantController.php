@@ -40,7 +40,7 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {dd($request);
         //check if participant exists
         event(new TestEvent('YO wassup'));
         

@@ -11,7 +11,7 @@ use \Auth;
 class Submissions extends Model
 {
     protected $fillable = [
-        'subject_id', 'teacher_id', 'year', 'branch', 'type', 'submission_date', 'start_time', 'end_time',
+        'subject_id', 'teacher_id', 'year', 'branch', 'type', 'submission_date', 'start_time', 'end_time', 'venue', 'status' ,
     ];
 
     public function subject(){
@@ -30,18 +30,8 @@ class Submissions extends Model
         return $this->hasMany('\App\Round',$foreignKey='submission_id');
     }
 
-    public static function getAllSubmissions(){
-        $submissions = Submissions::all()->toArray();
-        $subject_names = [];
-        $teacher_names = [];
-        for ($i=0; $i < count($submissions); $i++) { 
-            $subject_names[$i] = Subjects::find($submissions[$i]['subject_id'])['name'];
-            $teacher_names[$i] = Teachers::find($submissions[$i]['teacher_id'])['tName'];
-        }
-        //dd($submissions);
+    private static function segregateSubmissions($required_submissions) {
         //dd($subject_names);
-        //dd($teacher_names);
-
         //upcoming submissions
         $up=0;
         $upcoming_submissions = [];
@@ -51,40 +41,78 @@ class Submissions extends Model
         //Finished submissions
         $fi=0;
         $finished_submissions = [];
-
         //todays date
         $currentDateTime = new Carbon;
         //dd($date);
         //dd($currentDateTime->diffInSeconds(Carbon::parse($submissions[0]['submission_date'].$submissions[0]['start_time']),false));
         //dd($date->diffInHours(Carbon::parse($submissions[9]['start_time']),false));
-        for ($i=count($submissions)-1; $i >=0  ; $i--) { 
-            if ($submissions[$i]['teacher_id'] !== Auth::user()->teacher['id']) {
-                continue;
-            }
-            if ($currentDateTime->diffInSeconds(Carbon::parse($submissions[$i]['submission_date'].$submissions[$i]['start_time']),false) > 0) {
-                $upcoming_submissions[$up] = $submissions[$i];
-                $upcoming_submissions[$up]['subject_name'] = $subject_names[$i];
-                $upcoming_submissions[$up]['teacher_name'] = $teacher_names[$i];
-                $up++;
+
+        for ($i=count($required_submissions)-1; $i >=0  ; $i--) { 
+            
+            if ($currentDateTime->diffInSeconds(Carbon::parse($required_submissions[$i]['submission_date'].$required_submissions[$i]['start_time']),false) > 0) {
+                $upcoming_submissions[$up++] = $required_submissions[$i];
                 //dd(Carbon::parse($submissions[$i]['submission_date']));
                 //dd($date->diffInDays(Carbon::parse($submissions[$i]['submission_date']),false));
             }
             else {
-                if ($currentDateTime->diffInSeconds(Carbon::parse($submissions[$i]['submission_date'].$submissions[$i]['end_time']),false) > 0) {
-                    $ongoing_submissions[$on] = $submissions[$i];
-                    $ongoing_submissions[$on]['subject_name'] = $subject_names[$i];
-                    $ongoing_submissions[$on]['teacher_name'] = $teacher_names[$i];
+                if ($currentDateTime->diffInSeconds(Carbon::parse($required_submissions[$i]['submission_date'].$required_submissions[$i]['end_time']),false) > 0) {
+                    $ongoing_submissions[$on] = $required_submissions[$i];
+                    if ($ongoing_submissions[$on]['status'] == null) {
+                        $ongoing_submissions[$on]['status'] = 1;
+                    }
+                    
                     $on++;
                 }
                 else {
-                    $finished_submissions[$fi] = $submissions[$i];        
-                    $finished_submissions[$fi]['subject_name'] = $subject_names[$i];
-                    $finished_submissions[$fi]['teacher_name'] = $teacher_names[$i];
-                    $fi++;
+                    $finished_submissions[$fi++] = $required_submissions[$i];        
                 }
             }
         }
         return [$upcoming_submissions,$ongoing_submissions,$finished_submissions];
+    }
+
+    public static function getTeacherSubmissions(){
+
+        $user = Auth::user();
+        $submissions = Submissions::all()->toArray();
+        $required_submissions = [];
+        $rs = 0;
+
+        for ($i=0; $i < count($submissions); $i++) { 
+            if ($submissions[$i]['teacher_id'] !== $user->teacher['id']) {
+                continue;
+            }    
+            $required_submissions[$rs] = $submissions[$i];
+            $required_submissions[$rs]['subject_name'] = Subjects::find($submissions[$i]['subject_id'])['name'];
+            $required_submissions[$rs]['teacher_name'] =Teachers::find($submissions[$i]['teacher_id'])['tName'];
+            $rs++;
+        }
+
+        //dd($submissions);
+        //dd($subject_names);
+        //dd($teacher_names);
+        
+        return self::segregateSubmissions($required_submissions);
+    }
+
+    public static function getStudentSubmissions(){
+
+        $user = Auth::user();
+        $submissions = Submissions::all()->toArray();
+        $required_submissions = [];
+        $rs = 0;
+        $year = Auth::user()->student['sYear'];
+        $branch = Auth::user()->student['sBranch'];
+
+        for ($i=0; $i < count($submissions); $i++) { 
+            if (Subjects::find($submissions[$i]['subject_id'])['year'] === $year && Subjects::find($submissions[$i]['subject_id'])['branch'] === $branch) {
+                $required_submissions[$rs] = $submissions[$i];
+                $required_submissions[$rs]['subject_name'] = Subjects::find($submissions[$i]['subject_id'])['name'];
+                $required_submissions[$rs]['teacher_name'] =Teachers::find($submissions[$i]['teacher_id'])['tName'];
+                $rs++;
+            }
+        }   
+        return self::segregateSubmissions($required_submissions);
     }
  //    public function getRouteKeyName()
 	// {

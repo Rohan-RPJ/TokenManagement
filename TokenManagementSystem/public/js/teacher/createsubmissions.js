@@ -4,13 +4,13 @@ var questionCardsItem = "<li id='QNO' class='question_cards_item'>"
 var questionCardDiv = "<div class='questionCard'>"
 var cardContentDiv = "<div class='card_content'>"
 var cardTitleHeading = "<h2 id='h2' class='card_title'>Question No. QNO</h2>"
-var questionTextArea = "<textarea id='questionQNOTextArea' name='questionQNO' placeholder='Write your question here...' autocomplete='on'></textarea>";
+var questionTextArea = "<textarea id='questionQNOTextArea' name='questionQNO' placeholder='Write your question here...' autocomplete='on' required></textarea>";
 var cardOptionsDiv = "<div class='card_options'>";
-var correctOptionRadio = "<input type='radio' name='qQNOcorrectOption'>";
-var optionInput1 = "<input type='text' name='qQNOoption1' placeholder='Enter option 1'>";
-var optionInput2 = "<input type='text' name='qQNOoption2' placeholder='Enter option 2'>";
-var optionInput3 = "<input type='text' name='qQNOoption3' placeholder='Enter option 3'>";
-var optionInput4 = "<input type='text' name='qQNOoption4' placeholder='Enter option 4'>";
+var correctOptionRadio = "<input type='radio' name='qQNOcorrectOption' required>";
+var optionInput1 = "<input type='text' name='qQNOoption1' placeholder='Enter option 1' required>";
+var optionInput2 = "<input type='text' name='qQNOoption2' placeholder='Enter option 2' required>";
+var optionInput3 = "<input type='text' name='qQNOoption3' placeholder='Enter option 3' required>";
+var optionInput4 = "<input type='text' name='qQNOoption4' placeholder='Enter option 4' required>";
 var cardOptionsCloseDiv = "</div>";
 var appendButton = "<input type='button' name='append' class='btn card_btn' style='float: right;' value='Append'>";
 var removeButton = "<input type='button' name='remove' class='btn card_btn' style='float: left;' value='Remove' onclick='removeQuestion(QNO);'>";
@@ -18,6 +18,17 @@ var cardContentCloseDiv = "</div>";
 var questionCardCloseDiv = "</div>";
 var questionCardsItemCloseLi = "</li>";
 
+function questionValidation(){
+    if(document.getElementById('quiz-radio-btn').checked){
+        questions = document.getElementById('questionsList').getElementsByTagName("li").length;    
+        if(questions < 3){
+            document.getElementById('error').innerHTML = "*Add atleast 3 questions";
+            document.getElementById('error').style = "display:block;color:red;";
+            return false;
+        }
+    }
+    return true;
+}
 
 function showValue(){
     console.log(document.getElementById('subject').value);
@@ -26,7 +37,7 @@ function showValue(){
 function fillSubjectsdropdown(){
     var selectedYear = document.getElementById('year').value;
     var selectedBranch = document.getElementById('branch').value;
-    var subjectDropDown = "";
+    var subjectDropDown = "<option value=''>----Select--Subject----</option>";
     if (!(selectedYear.trim() === "") && !(selectedBranch.trim() === "")) {
         //console.log(selectedYear);
         //console.log(selectedBranch);
@@ -38,7 +49,13 @@ function fillSubjectsdropdown(){
         document.getElementById('subject').innerHTML = subjectDropDown;
     }
     else{
-        document.getElementById('subject').innerHTML = "<option value=''>---Select--Subject---</option>";
+        document.getElementById('subject').innerHTML = subjectDropDown;
+    }
+    if(selectedBranch){
+      document.getElementById('br').innerHTML="";
+    }
+    if(selectedYear){
+      document.getElementById('yr').innerHTML="";
     }
 }
 
@@ -49,6 +66,7 @@ function getList(){
 
 function addQuestion(){
     document.getElementById('questionsList').insertAdjacentHTML('beforeend',getList());
+    document.getElementById('error').style = "display:none;";
 }
 
 function removeQuestion(qno) {
@@ -89,15 +107,66 @@ function updateQuestions(){
                 inputs[k-1].setAttribute('name', 'q'+jstring+'option'+optionx);
             }
             else if (inputs[k-1].getAttribute('name') == 'remove') {
-                inputs[k-1].setAttribute('onclick', 'removeCard('+jstring+');');
+                inputs[k-1].setAttribute('onclick', 'removeQuestion('+jstring+');');
             }
         }
     }
-    console.log(listItems);
+    //console.log(listItems);
 }
 
 function updateTotal(){
   var listItems = document.getElementById('questionsList').getElementsByTagName("li");
   console.log(listItems.length.toString());
   document.getElementById('hiddenText').value = listItems.length.toString();
+}
+
+function validateForm(){
+          // alert("Hello");
+          var selectedYear = document.getElementById('year').value;
+          var branch = document.getElementById('branch').value;
+          var subject = document.getElementById('subject').value;
+          var type = document.getElementById('chk-btn').value;
+          // var date = document.getElementById('chk-date').value;
+          // var st = document.getElementById('chk-start-time').value;
+          // var et = document.getElementById('chk-end-time').value;
+          // console.log(type);
+          //console.log(selectedYear);
+          if (!selectedYear) {
+            document.getElementById('yr').innerHTML="*Year should not be empty";
+            return false;
+          }
+          if (!branch) {
+            document.getElementById('br').innerHTML="*Branch should not be empty";
+            return false;
+          }
+          if (!subject) {
+            document.getElementById('sub').innerHTML="*Subject should not be empty";
+            return false;
+          }
+          /*if (!type) {
+            document.getElementById('radio-btn').innerHTML="*Select submission type";
+            return false;
+          }*/
+          // if (!date) {
+            // var a = document.getElementById('chk-date').innerHTML="*Enter Date";
+            // console.log(type);
+          //   return false;
+          // }
+          // }
+          // if (!st) {
+          //   document.getElementById('st').innerHTML="*Enter start time";
+          //   return false;
+          // }
+          // if (!et) {
+          //   document.getElementById('et').innerHTML="*Enter end time";
+          //   return false;
+          // }
+          return questionValidation();
+}
+
+function isEmpty(){
+  var a = document.getElementById('chk-btn').value;
+  if (a) {
+    document.getElementById('radio-btn').innerHTML="";
+  }
 }

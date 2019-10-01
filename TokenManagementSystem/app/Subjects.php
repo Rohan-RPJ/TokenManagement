@@ -54,10 +54,10 @@ class Subjects extends Model
         return Subjects::select('id')->where('name',$subName)->where('year',$year)->where('branch',$branch)->first()['id'];
     }
 
-    public static function getSubjects(){
+    public static function getTeacherSubjects(){
         $subjects = Subjects::all()->toArray();
 
-        $submissions = Submissions::getAllSubmissions();
+        $submissions = Submissions::getTeacherSubmissions();
         $upcoming_submissions = $submissions[0];
         $ongoing_submissions = $submissions[1];
         //$finished_submissions = $submissions[2];

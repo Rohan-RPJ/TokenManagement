@@ -8,6 +8,26 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.create-div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+  /*display: flex;*/
+  position: absolute;
+  left: 5px;
+  /*border: 2px solid black; */
+  font-size: 25px;
+  width: 100%;
+  /*justify-content: left;
+  text-align: left;*/
+  color: white;
+}
+
 .questionDiv{
   max-width: 1200px;
   margin: 0px;
@@ -47,13 +67,13 @@
 }
 
 @media (min-width: 40rem) {
-  .question_cards_item {
+  .question_cards_item, .create-div {
     width: 50%;
   }
 }
 
 @media (min-width: 56rem) {
-  .question_cards_item {
+  .question_cards_item, .create-div {
     width: 100%;
   }
 }
@@ -101,7 +121,7 @@
 }
 
 .card_options input[type=radio] {
-
+  font-size: 30px;
 }
 
 textarea {
@@ -126,23 +146,19 @@ textarea {
   margin-top: 40px;
 }
 
-.create{
-  /* border: 2px solid black; */
-  font-size: 30px;
-  color: purple;
-}
-
 .years,.branches,.subjects{
   width: 400px;
   height: 40px;
   font-size: 30px;
   border-radius: 9px;
 }
-input{
+
+input[type="text"],input[type="number"],input[type="date"],input[type="time"]{
   width: 400px;
   height: 40px;
   font-size: 30px;
-  border-radius: 9px;
+  border-radius: 10px;
+  background-color: #dfe6e9;
   /* text-align: center; */
 }
 
@@ -151,7 +167,93 @@ input[name="type"]{
 
 }
 
-
 #question-div {
   display: none;
+}
+
+
+/* Reset Select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 15em;
+  height: 2em;
+  line-height: 2;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+.btn {
+  color: #ffffff;
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 30%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+input[type="submit"]{
+  background: linear-gradient(to bottom left, #018786 40%, #03dac6 100%);
+  border: transparent;
+  margin: 0 auto;
+  
+}
+
+input[type="submit"]:hover{
+  background: linear-gradient(to top left, #018786 40%, #03dac6 100%);
+  border: transparent;
+}
+
+input[type="radio"]:hover{
+  cursor: pointer;
 }
