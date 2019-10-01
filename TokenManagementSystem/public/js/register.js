@@ -72,7 +72,7 @@ function validation1(){
     document.getElementById('spass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-  alert("Succesfully Registered!");
+  // alert("Succesfully Registered!");
 }
 
 
@@ -109,7 +109,7 @@ function validation2(){
     document.getElementById('tpass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-    alert("Succesfully Registered!");
+    // alert("Succesfully Registered!");
 }
 
 
