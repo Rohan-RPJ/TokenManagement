@@ -57,20 +57,35 @@
 						 //creating an invisible form now
 						 question_form = document.createElement('form');
 						 question_form.name = "response";
+						 question_form.method= "POST";
 
 
 						 // for(var i=1;questionsIterator(i,roundData);i++){
 						 // 		var q="q"+i;
 							// 	 createQuestionInput(i,roundData[q]);
 						 // }
-						 var q="q",i=1;
+						 var q="q",i=1, questionsLength=getQuestionsLength(roundData);
 
 						 var x=setInterval(function(){
+						 							//hide previous question
+						 						if(i>1){
+						 							var j=i-1;
+						 							console.log("i:"+i+"Hiding "+"question_"+roundData[q+j]);
+						 							document.getElementById("question_"+roundData[q+j]).style.display="none";
+						 						}
 						 							createQuestionInput(i,roundData[q+i])
 						 							i=i+1;
+
 						 							if(!questionsIterator(i,roundData))
 						 								{clearInterval(x);}
 						 				},timer_sec*1000);
+
+						 //Hiding last question
+						 setTimeout(function(){
+						 	i=i-1;
+						 	console.log("i:"+i+"Hiding "+"question_"+roundData[q+i]);
+						 	document.getElementById("question_"+roundData[q+i]).style.display="none";
+						 }, questionsLength*timer_sec*1000);
 						 //createQuestionInput(1,1);
 
 					}
@@ -80,6 +95,18 @@
 
 	checkroundstatus = window.setInterval(getRoundStatus ,1000);
 
+	function getQuestionsLength(data){
+			var count=1;
+			while(questionsIterator(count,data)){
+				count++;
+			}
+			
+			count-=1;
+			console.log("Number of question is:"+count);
+
+			return count;
+
+	}
 	function questionsIterator(i,data){
 			var q="q"+i;
 			if (q in data){return true;}
