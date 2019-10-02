@@ -122,23 +122,23 @@
   <!-- -------------------------------------------------------------------------------------- HOME PAGE ------------------------------------------------------------------------------------------------ -->
 
  <div class="main">
-    <div class="nav-header" >
-        <div class="f-s" style="color: #ddbcff;" ><a href="#" class="logo" style="border:0;"><h1 class="logo">FILE SUBMISSION</h1></a></div>
+    <header class="nav-header">
+        <a href="#" class="logo"><b>FILE SUBMISSION</b></a>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <ul class="menu">
         @if (Route::has('login'))
             @auth
-                <div class=""><a href="{{ url('/home') }}"><h2  class="home" >Home</h2></a></div>
-                <div class=""><a href="#"><h2 class="events" >Events</h2></a></div>
+                <li><a href="{{ url('/home') }}" class="home">Home</a></li>
             @else
-                <div class="login"><a href="{{ route('login') }}"><h2 class="nav-link">Login</h2></a></div>
+                <li><a href="{{ route('login') }}">Login</a></li>
                 @if (Route::has('register'))
-                    <div class="register"><a href="{{ route('register') }}"><h2 class="nav-link">Register</h2></a></div>
-                @endif  
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                @endif
             @endauth
         @endif
-    </div>
-
+    </ul>
+</header>
     <div class="inner-elements">
         <div class="animation-area">
         <ul class="circle-area">

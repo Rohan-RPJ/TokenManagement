@@ -94,7 +94,16 @@
 </head>
 
 <div id="main">
-<h1 style="text-align: center; color: #3f51b5; font-size: 50px;" > <b>Create a new Account</b> </h1>
+<h1 style="text-align: center; color: #3f51b5; font-size: 50px;margin-bottom: 30px;" > <b>Create a new Account</b> </h1>
+
+  {{-- Same email error --}}
+    <span id='email-error' style="color:red; font-size: 18px;" >
+      @error('email')
+        <span class="">
+          <alert>{{ $message }}</alert>
+        </span>
+      @enderror
+    </span>
 
     <div id="taps">
        <a href="#" class="ssignin s2"  onclick="usertype('Student')" style="text-decoration: none;"> <b> Student</b></a>
@@ -113,7 +122,7 @@
 
           <table>
             <tr>
-              <td><input type="text"  class="effect-1" name="sName" value="" placeholder="  Full name" id="sName" onchange="isEmpty1()">
+              <td><input type="text"  class="" name="sName" value="" placeholder="  Full name" id="sName" onchange="isEmpty1()">
                 <span class="focus-border"></span>
               </td>
             </tr>
@@ -124,7 +133,7 @@
               <td>   <br>  <br> <br>  </td>
             </tr>
             <tr>
-              <td><input type="email" class="effect-2 @error('sEmail') is-invalid @enderror" name="sEmail" value="{{ old('sEmail') }}" placeholder="  Email"  id="sEmail" onchange="isEmpty2()">
+              <td><input type="email" class="@error('sEmail') is-invalid @enderror" name="sEmail" value="{{ old('sEmail') }}" placeholder="  Email"  id="sEmail" onchange="isEmpty2()">
                 <span class="focus-border"></span>
               </td>
             </tr>
@@ -134,13 +143,6 @@
                   @error('sEmail')
                     <span class="">
                       <alert>{{ str_replace('s email','email',$message) }}</alert>
-                    </span>
-                  @enderror
-                </span>
-                <span id='sspanemail' style="color:red; font-size: 18px;" >
-                  @error('email')
-                    <span class="">
-                      <alert>{{ $message }}</alert>
                     </span>
                   @enderror
                 </span>
@@ -269,13 +271,6 @@
                     <alert>{{ str_replace('t email','email',$message) }}</alert>
                   </span>
                 @enderror
-              </span>
-              <span style="color:red; font-size: 18px;" >
-                  @error('email')
-                    <span id='tspanemail' class="">
-                      <alert>{{ $message }}</alert>
-                    </span>
-                  @enderror
               </span>
              </td>
           </tr>

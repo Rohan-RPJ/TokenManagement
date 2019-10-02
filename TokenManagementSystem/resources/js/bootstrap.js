@@ -75,3 +75,8 @@ var testChannel = window.Echo.private('test-channel');
     //     alert(JSON.stringify(data));
     // });
 
+/*var schannel= window.Echo.channel('students-called');
+if(schannel)
+    console.log(schannel);
+else
+    console.log('Some error with channel');*/

@@ -10,14 +10,15 @@ use App\Participant;
 class RoundController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    // public function __construct()
-    // {
-    //     dd($this);
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+        //$this->middleware('checkUserType:teacher');
+    }
 
     public function index(Submissions $submission,Round $round_id,Request $request)
     {

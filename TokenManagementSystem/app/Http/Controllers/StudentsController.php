@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Subjects;
 use App\Submissions;
 use App\Students;
+use App\Teachers;
+use App\StudentCalls;
 use \Auth;
 
 class StudentsController extends Controller
@@ -19,6 +21,7 @@ class StudentsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkUserType:student');
     }
 
     /**
@@ -40,4 +43,48 @@ class StudentsController extends Controller
 
         return view('student/submissions', compact('upcoming_submissions', 'ongoing_submissions', 'finished_submissions'));
     }
+
+    public function showNotifications(){
+        $all_notifications = StudentCalls::all()->toArray();
+        $notifications = [];
+        $n=0;
+        $student_id = Auth::user()->student['id'];
+
+        $submissions = [];
+        //dd($student_id);
+        for ($i=0; $i < count($all_notifications); $i++) { 
+            if ($all_notifications[$i]['student_id'] == $student_id) {
+                $notifications[$n] = $all_notifications[$i];
+                $submissions[$n] = Submissions::find($all_notifications[$i]['submission_id']);
+                $submissions[$n]['subject_name'] = Subjects::find($submissions[$n]['subject_id'])['name'];
+                $submissions[$n]['teacher_name'] = Teachers::find($submissions[$n]['teacher_id'])['tName'];
+                $n++;
+            }
+        }
+        return view('student/notifications', compact('notifications', 'submissions'));
+    }
+
+    public function profile()
+    {
+      return view('student/profile');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

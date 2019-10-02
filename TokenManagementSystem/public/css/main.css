@@ -3,8 +3,8 @@ body {
     font-size: 100%; /* start with a flexible baseline, more on this in the next section */
     /*background: linear-gradient(to bottom left, #0f0c29 40%, #302b63 100%);*/
   /*background-color: #242424;*/
-  /*background-image: linear-gradient(to right,#7f53ac 0,#657ced 100%);*/
-  background: linear-gradient(to right,#ba68c8 40%, #ce93d8 80%);
+  background-image: linear-gradient(to right,#7f53ac 0,#657ced 100%);
+  /*background: linear-gradient(to right,#ba68c8 40%, #ce93d8 80%);*/
   margin: 0;
   font-family: 'Droid Serif', serif;
   /*background-color: #f4f4f4;*/
@@ -105,6 +105,7 @@ h2,h1,h3{
 
 a {
   color: #000;
+  outline: none;
 }
 
 
@@ -143,7 +144,7 @@ a {
 .header li a:hover,
 .header .menu-btn:hover {
   /* background-color: #f4f4f4; */
-  border-bottom: 4px solid white;
+  border-bottom: 2px solid white;
 }
 
 .header .logo {
