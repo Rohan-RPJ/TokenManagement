@@ -8,6 +8,8 @@
 @extends('layouts.main')
 
 @section('content')
+	
+
 		@if($message  = Session::get('success'))
 		<div><strong>{{$message}}</strong></div>
 		@endif
@@ -26,5 +28,6 @@
 		</select>
 		<button type="submit">JOIN</button>
 	</form>
+
 
 @endsection

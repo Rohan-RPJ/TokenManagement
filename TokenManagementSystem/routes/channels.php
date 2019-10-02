@@ -14,3 +14,13 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('test-channel', function ($user) {
+    //return $user->student !== null;
+    \Log::debug("Met test-channel route");
+    return true;
+});
+
+Broadcast::channel('my-channel', function () {
+    return true;
+});

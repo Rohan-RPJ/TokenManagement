@@ -25,7 +25,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\NewRoundNeeded'=>[
             'App\Listeners\CreateNewRound',
-        ]
+        ],
+        'App\Events\TestEvent'=>[
+            'App\Listeners\TestEventListener',
+        ],
     ];
 
 

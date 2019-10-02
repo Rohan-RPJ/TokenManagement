@@ -8,6 +8,7 @@ use App\Students;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Events\NewParticipantJoined;
+use App\Events\TestEvent;
 
 class ParticipantController extends Controller
 {
@@ -41,6 +42,8 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {dd($request);
         //check if participant exists
+        event(new TestEvent('YO wassup'));
+        
         $participant = null;
         $student_id=$request->user()->student->id;
         $participant = Participant::where('submission_id',$request->submission_id)->get()->where('student_id',$student_id)->first();
@@ -54,6 +57,7 @@ class ParticipantController extends Controller
                             'score'=>0,
                         ]);
         //dd($participant);
+       // dd($message);
         $message="Created a participant with ".$participant->id;
         event (new NewParticipantJoined($participant));
         }
@@ -67,7 +71,9 @@ class ParticipantController extends Controller
                 $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();//re get the round id
                 dd('Conditional inside',$round);
             }
+
          $message="Already a participant for ".$participant->submission->subject->name.' in Round '.$round->round_id ;
+         //dd($message);
         }
 
 
@@ -83,6 +89,7 @@ class ParticipantController extends Controller
      */
     public function join(Request $request)
     {
+       // event(new TestEvent('YO wassup'));
         $branch=$request->user()->student->sBranch;
         $year=$request->user()->student->sYear;
         $submissions= Submissions::where('year',$year)->get();

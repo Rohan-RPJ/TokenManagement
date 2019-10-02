@@ -24,4 +24,9 @@ class Round extends Model
     {
     	return $this->hasManyThrough('\App\Questions','\App\Submissions');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'round_id';
+    }
 }

@@ -103,7 +103,6 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-
     }
     /**
      * Get the failed login response instance.
