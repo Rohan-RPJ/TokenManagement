@@ -33,8 +33,16 @@
 		var checkroundstatus= null;
 		var roundData=null;
 		var question_form=null;
-
+		var participant_id= {{$participant->id}};
+		var form_id="response_"+participant_id;
 		var timer_sec=5;
+		var submit_url="{{url()->current()}}";
+		submit_url=submit_url.replace("/startRound","/");
+
+		var csrf_tag= document.createElement('meta'); //<meta name="csrf-token" content="{{ csrf_token() }}">
+		csrf_tag.name="csrf_token";
+		csrf_tag.content="{{ csrf_token() }}";
+		console.log(csrf_tag);
 
 		function getRoundStatus(){
 					console.log("Executing getRoundStatus");
@@ -56,8 +64,13 @@
 						console.log(roundData.q2);
 						 //creating an invisible form now
 						 question_form = document.createElement('form');
-						 question_form.name = "response";
+						 question_form.id=form_id;
+						 console.log("Question form id "+question_form.id);
+						 question_form.name = "question_response";
 						 question_form.method= "POST";
+						 question_form.action= submit_url;
+						 console.log("Submit url:"+question_form.action);
+						 question_form.appendChild(csrf_tag);
 
 
 						 // for(var i=1;questionsIterator(i,roundData);i++){
@@ -71,9 +84,13 @@
 						 						if(i>1){
 						 							var j=i-1;
 						 							console.log("i:"+i+"Hiding "+"question_"+roundData[q+j]);
-						 							document.getElementById("question_"+roundData[q+j]).style.display="none";
+						 							var qtn=document.getElementById("question_"+roundData[q+j])
+						 							qtn.style.display="none";
+
+						 							question_form.appendChild(qtn);
 						 						}
 						 							createQuestionInput(i,roundData[q+i])
+						 							
 						 							i=i+1;
 
 						 							if(!questionsIterator(i,roundData))
@@ -84,8 +101,17 @@
 						 setTimeout(function(){
 						 	i=i-1;
 						 	console.log("i:"+i+"Hiding "+"question_"+roundData[q+i]);
-						 	document.getElementById("question_"+roundData[q+i]).style.display="none";
-						 }, questionsLength*timer_sec*1000);
+						 	var qtn=document.getElementById("question_"+roundData[q+i])
+						 	qtn.style.display="none";
+
+						 	question_form.appendChild(qtn);
+						 	
+						 	console.log("Round is over");
+							$("#start-message").text("ROUND IS  NOW OVER....SUBMITTING");
+							document.body.appendChild(question_form);
+							question_form.submit();
+						
+						 }, (questionsLength+1)*timer_sec*1000);
 						 //createQuestionInput(1,1);
 
 					}
@@ -176,6 +202,8 @@
 				  						document.getElementById("question_display").insertAdjacentHTML('afterend',card_html);
 				  						var clr_btn=document.getElementById("clear_"+question_id);
 				  						clr_btn.addEventListener("click",uncheck,false);
+
+				  						
 								});
 		
 	}

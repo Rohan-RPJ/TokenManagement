@@ -14,8 +14,9 @@ class QuestionsController extends Controller
     	    			 "option2"=>$question->option2,
     	    			 "option3"=>$question->option3,
     	    			 "option4"=>$question->option4,);
+
     	return response($result,200);
     }
 
-    
+
 }

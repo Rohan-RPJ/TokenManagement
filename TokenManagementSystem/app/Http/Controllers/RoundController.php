@@ -24,7 +24,7 @@ class RoundController extends Controller
         $student_id= $request->user()->student->id;
         //checks if user is a participant of that round
         $participant = Participant::where('student_id',$student_id)->where('submission_id',$submission->id)->firstOrFail();
-        return view('round/startround',compact('submission','round_id'));
+        return view('round/startround',compact('submission','round_id','participant'));
     }
 
     /**
@@ -99,5 +99,9 @@ class RoundController extends Controller
         $count=Round::where('submission_id',$submission_id)->where('round_id',$round_id)->count();
         $result=['result'=>$count==$max_participants];
         return response($result,200);
+    }
+
+    public function submitAnswers(Request $request ){
+        dd($request);
     }
 }
