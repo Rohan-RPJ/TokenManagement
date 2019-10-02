@@ -44,6 +44,12 @@
 		csrf_tag.content="{{ csrf_token() }}";
 		console.log(csrf_tag);
 
+		// var participant_tag=document,createElement("input");
+		// participant_tag.type="hidden";
+		// participant_tag.value=participant_id;
+		// participant_tag.name="participant_id";
+		// console.log(participant_tag);
+
 		function getRoundStatus(){
 					console.log("Executing getRoundStatus");
 
@@ -71,7 +77,7 @@
 						 question_form.action= submit_url;
 						 console.log("Submit url:"+question_form.action);
 						 question_form.appendChild(csrf_tag);
-
+						 //question_form.appendChild(participant_tag);
 
 						 // for(var i=1;questionsIterator(i,roundData);i++){
 						 // 		var q="q"+i;

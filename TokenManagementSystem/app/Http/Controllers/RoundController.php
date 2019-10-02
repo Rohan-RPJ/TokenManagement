@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Submissions;
 use App\Participant;
+use App\Questions;
 class RoundController extends Controller
 {
     /**
@@ -101,7 +102,45 @@ class RoundController extends Controller
         return response($result,200);
     }
 
-    public function submitAnswers(Request $request ){
-        dd($request);
+    public function submitAnswers(Submissions $submission, Round $round_id,Request $request ){
+        //dd($request->post());
+        //dd($round_id);
+        $student_id=$request->user()->student->id;
+        $participant = Participant::where("student_id",$student_id)->where("submission_id",$submission->id)->first();
+        //dd($participant); 
+
+        $answers=$request->post();
+        $correct=0;
+        $wrong=0;
+        //dd($answers);
+        print "No of answers is ".count($answers);
+
+        foreach($answers as $answer_id=>$answer_value){
+            $question_id= explode("_",$answer_id)[1];
+            //dd($question_id);
+            $question = Questions::find($question_id);
+            print "Answer Received for $question_id is $answer_value";
+
+            if($question->correct_option == $answer_value){
+                $correct++;
+                print "Answer is correct\n";
+                $participant->update(["correct"=>$correct]);
+            } 
+            else
+            {
+                $wrong++;
+                print"Answer is wrong\n";
+                $participant->update(["wrong"=>$wrong]);
+            }
+
+           
+        }
+        $score= $participant->roundsParticipated;
+        $score+= $correct*3 + $wrong*(-1);
+        
+        $participant->update(["score"=>$score]);
+
+         dd("Total:",$request->post(),"C:",$correct,"W:",$wrong, "score",$score);
+
     }
 }
