@@ -114,6 +114,8 @@
   <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+  {{-- <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> --> --}}
+
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
   </script>
 </head>
@@ -134,7 +136,7 @@
                 <div class="login"><a href="{{ route('login') }}"><h2 class="nav-link">Login</h2></a></div>
                 @if (Route::has('register'))
                     <div class="register"><a href="{{ route('register') }}"><h2 class="nav-link">Register</h2></a></div>
-                @endif  
+                @endif
             @endauth
         @endif
     </div>
@@ -150,10 +152,12 @@
           <li></li>
         </ul>
         <div class="">
+
           <h1>WELCOME TO FILE SUBMISSION!. <br> USING TOKEN MANAGEMENT SYSTEM.</h1>
           <br>
           <h3>A token management system is used to control queues.<br> Queues of people form in various situations and locations in a queue area.</h3>
         </div>
+      </div>
     </div>
     </div>
  </div>

@@ -1,0 +1,71 @@
+.profile-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 30px;
+  height: 99.5vh;
+  background-color: #cd84f1;
+  /* border: 2px solid red; *
+}
+
+
+.left-stuff{
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+    /* margin-right: 500px; */
+}
+
+.user-img{
+
+}
+
+.btn{
+  margin-right: 70px;
+  text-align: right;
+}
+
+input{
+  width: 415px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 25px;
+    background-color: #dcdde1;
+}
+
+.edit-btn{
+  border-radius: 9px;
+  width: 210px;
+  font-size: 30px;
+  color: white;
+  background-color: #ba68c8;
+}
+
+.edit-btn:hover{
+  background-color: #6c5ce7;
+}
+
+.update{
+  /* border: 2px solid red; */
+  width: 210px;
+  font-size: 30px;
+  color: white;
+  background-color: #ba68c8;
+}
+
+.update:hover{
+  background-color: #6c5ce7;
+}
+
+.user-detail{
+  color: white;
+  font-size: 30px;
+}
+
+.year,.branch{
+  width: 415px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 25px;
+
+}

@@ -15,10 +15,10 @@ Route::get('/', function () {
 	//dd(Auth::check());
 	if (Auth::check()) {
 		if (Auth::user()->type === "Teacher") {
-			
+
 		}
 		elseif (Auth::user()->type === "Student") {
-			
+
 		}
 		return view('home');
 	}
@@ -32,14 +32,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Auth::routes(['register' => false]);
 
 Route::get('teacher/submissions', 'TeachersController@submissions')->name('teacher.submissions');
+Route::get('teacher/profile', 'TeachersController@profile')->name('teacher.profile');
 Route::get('teacher/create/submissions', 'TeachersController@createSubmissions')->name('teacher.create.submissions');
 Route::post('teacher/', 'TeachersController@storeSubmission')->name('questions.store');
 Route::get('teacher/update/submissions', 'TeachersController@updateSubmission')->name('submission.update');
 Route::get('teacher/remove/submissions', 'TeachersController@removeSubmission')->name('submission.remove');
 
 Route::get('student/submissions', 'StudentsController@submissions')->name('student.submissions');
+Route::get('student/profile', 'StudentsController@profile')->name('student.profile');
 
-//subjects 
+//subjects
 Route::get('/subjects/','SubjectsController@index');
 Route::get('/subjects/{subject}','SubjectsController@show');
 //joins a student to a submission

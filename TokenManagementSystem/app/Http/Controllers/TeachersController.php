@@ -41,6 +41,11 @@ class TeachersController extends Controller
         return $date;
     }
 
+    public function profile()
+    {
+      return view('teacher/profile');
+    }
+
     public function submissions()
     {
         $segregatedSubmissions = Submissions::getTeacherSubmissions();

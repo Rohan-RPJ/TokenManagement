@@ -21,6 +21,11 @@ class StudentsController extends Controller
         $this->middleware('auth');
     }
 
+    public function profile()
+    {
+      return view('student/profile');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -33,7 +38,7 @@ class StudentsController extends Controller
         $upcoming_submissions = $segregatedSubmissions[0];
         $ongoing_submissions = $segregatedSubmissions[1];
         $finished_submissions = $segregatedSubmissions[2];
-        
+
         //dd($upcoming_submissions);
         //dd($ongoing_submissions);
         //dd($finished_submissions);

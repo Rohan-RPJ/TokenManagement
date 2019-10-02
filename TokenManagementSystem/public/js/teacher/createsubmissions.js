@@ -12,7 +12,7 @@ var optionInput2 = "<input type='text' name='qQNOoption2' placeholder='Enter opt
 var optionInput3 = "<input type='text' name='qQNOoption3' placeholder='Enter option 3' required>";
 var optionInput4 = "<input type='text' name='qQNOoption4' placeholder='Enter option 4' required>";
 var cardOptionsCloseDiv = "</div>";
-var appendButton = "<input type='button' name='append' class='btn card_btn' style='float: right;' value='Append'>";
+var appendButton = "<input type='button' name='append' id='submit'  class='btn card_btn' style='float: right;' value='Append' onclick='qValidate()' >";
 var removeButton = "<input type='button' name='remove' class='btn card_btn' style='float: left;' value='Remove' onclick='removeQuestion(QNO);'>";
 var cardContentCloseDiv = "</div>";
 var questionCardCloseDiv = "</div>";
@@ -20,7 +20,7 @@ var questionCardsItemCloseLi = "</li>";
 
 function questionValidation(){
     if(document.getElementById('quiz-radio-btn').checked){
-        questions = document.getElementById('questionsList').getElementsByTagName("li").length;    
+        questions = document.getElementById('questionsList').getElementsByTagName("li").length;
         if(questions < 3){
             document.getElementById('error').innerHTML = "*Add atleast 3 questions";
             document.getElementById('error').style = "display:block;color:red;";
@@ -29,6 +29,40 @@ function questionValidation(){
     }
     return true;
 }
+
+// function qValidate(){
+//   var a = document.querySelector(".qtext").value;
+//   var o1 = document.querySelector("#qoption1").value;
+//   var o2 = document.querySelector("#qoption2").value;
+//   var o3 = document.querySelector("#qoption3").value;
+//   var o4 = document.querySelector("#qoption4").value;
+//   var b = document.getElementById("radio").value;
+//   console.log(b);
+//   if (!a) {
+//       alert("Enter question ");
+//       return false;
+//   }
+//   if (!o1) {
+//     alert("Please enter option 1");
+//     return false;
+//   }
+//   if (!o2) {
+//     alert("Please enter option 2");
+//     return false;
+//   }
+//   if (!o3) {
+//     alert("Please enter option 3");
+//     return false;
+//   }
+//   if (!o4) {
+//     alert("Please enter option 4");
+//     return false;
+//   }
+//   if (!b) {
+//       alert("Choose correct option");
+//       return false;
+//   }
+// }
 
 function showValue(){
     console.log(document.getElementById('subject').value);
@@ -50,6 +84,12 @@ function fillSubjectsdropdown(){
     }
     else{
         document.getElementById('subject').innerHTML = subjectDropDown;
+    }
+    if(selectedBranch){
+      document.getElementById('br').innerHTML="";
+    }
+    if(selectedYear){
+      document.getElementById('yr').innerHTML="";
     }
     if(selectedBranch){
       document.getElementById('br').innerHTML="";
@@ -111,10 +151,13 @@ function updateQuestions(){
             }
         }
     }
+    console.log(listItems);
+
     //console.log(listItems);
 }
 
 function updateTotal(){
+
   var listItems = document.getElementById('questionsList').getElementsByTagName("li");
   console.log(listItems.length.toString());
   document.getElementById('hiddenText').value = listItems.length.toString();
