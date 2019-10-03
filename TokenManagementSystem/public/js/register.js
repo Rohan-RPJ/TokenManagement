@@ -117,11 +117,6 @@ function validation2(){
     document.getElementById('tpass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-<<<<<<< HEAD
-    // alert("Succesfully Registered!");
-=======
-    //alert("Succesfully Registered!");
->>>>>>> 495fa71a52cbddbceb36d11832b10647b42bbc8a
 }
 
 
