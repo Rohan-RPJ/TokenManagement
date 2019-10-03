@@ -55,5 +55,6 @@ Route::get('student/submissions/{submission}/participants','ParticipantControlle
 
 Route::get('rounds/{submission}/{round_id}/','RoundController@shouldStartRound');
 Route::get('rounds/{submission}/{round_id}/startRound','RoundController@index');
+Route::post('rounds/{submission}/{round_id}/','RoundController@submitAnswers')->name("round.submit");
 
 Route::get('questions/{question}','QuestionsController@show'); //retrieves the question object

@@ -52,9 +52,9 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {dd($request);
+    {//dd($request);
         //check if participant exists
-        event(new TestEvent('YO wassup'));
+        //event(new TestEvent('YO wassup'));
         
         $participant = null;
         $student_id=$request->user()->student->id;

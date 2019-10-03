@@ -7,25 +7,28 @@ use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Submissions;
 use App\Participant;
+use App\Questions;
+use App\Token;
+use App\Events\RoundCompletedEvent;
+
 class RoundController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        //$this->middleware('checkUserType:teacher');
-    }
+    // public function __construct()
+    // {
+    //     dd($this);
+    // }
 
     public function index(Submissions $submission,Round $round_id,Request $request)
     {
         $student_id= $request->user()->student->id;
         //checks if user is a participant of that round
         $participant = Participant::where('student_id',$student_id)->where('submission_id',$submission->id)->firstOrFail();
-        return view('round/startround',compact('submission','round_id'));
+        return view('round/startround',compact('submission','round_id','participant'));
     }
 
     /**
@@ -100,5 +103,56 @@ class RoundController extends Controller
         $count=Round::where('submission_id',$submission_id)->where('round_id',$round_id)->count();
         $result=['result'=>$count==$max_participants];
         return response($result,200);
+    }
+
+    public function submitAnswers(Submissions $submission, Round $round_id,Request $request ){
+        //dd($request->post());
+        //dd($round_id);
+        $student_id=$request->user()->student->id;
+        $participant = Participant::where("student_id",$student_id)->where("submission_id",$submission->id)->first();
+        //dd($participant); 
+
+        $answers=$request->post();
+        $correct=0;
+        $wrong=0;
+        //dd($answers);
+        print "No of answers is ".count($answers);
+
+        foreach($answers as $answer_id=>$answer_value){
+            $question_id= explode("_",$answer_id)[1];
+            //dd($question_id);
+            $question = Questions::find($question_id);
+            print "Answer Received for $question_id is $answer_value";
+
+            if($question->correct_option == $answer_value){
+                $correct++;
+                print "Answer is correct\n";
+                $participant->update(["correct"=>$correct]);
+            } 
+            else
+            {
+                $wrong++;
+                print"Answer is wrong\n";
+                $participant->update(["wrong"=>$wrong]);
+            }
+
+           
+        }
+        $score= $participant->roundsParticipated;
+        $score+= $correct*3 + $wrong*(-1);
+        
+        $participant->update(["score"=>$score]);
+
+         //dd("Total:",$request->post(),"C:",$correct,"W:",$wrong, "score",$score);
+        sleep(5);
+
+        event(new RoundCompletedEvent($submission,$round_id,$participant));
+
+        sleep(5);
+        
+        $token=Token::where('student_id',$student_id)->where('submission_id',$submission->id)->where('round_id',$round_id->round_id)->first();
+        //dd("Token",$token);
+        return redirect()->route('student.notifications');
+
     }
 }

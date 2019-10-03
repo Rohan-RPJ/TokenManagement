@@ -47,10 +47,11 @@ class Submissions extends Model
         //dd($date);
         //dd($currentDateTime->diffInSeconds(Carbon::parse($submissions[0]['submission_date'].$submissions[0]['start_time']),false));
         //dd($date->diffInHours(Carbon::parse($submissions[9]['start_time']),false));
-        $students = Students::all();
-
+        $students = Students::all()->toArray();
+        $tokens = Token::all()->toArray();
+        $required_students = [];
         for ($i=count($required_submissions)-1; $i >=0  ; $i--) { 
-            $required_students = [];
+            
             $rs = 0;
             
             if ($currentDateTime->diffInSeconds(Carbon::parse($required_submissions[$i]['submission_date'].$required_submissions[$i]['start_time']),false) > 0) {
@@ -67,9 +68,27 @@ class Submissions extends Model
                     // add students in ongoing submission
                     for ($j=0; $j < count($students); $j++) { 
                         if ($ongoing_submissions[$on]['year'] == $students[$j]['sYear'] &&  $ongoing_submissions[$on]['branch'] == $students[$j]['sBranch']) {
-                            $required_students[$rs++] = $students[$j];
+                            
+                            //dd($required_students);
+                            //dd($students[$j]['id'],$ongoing_submissions[$on]['id']);
+                            $token_value = Token::where('student_id',$students[$j]['id'])->where('submission_id',$ongoing_submissions[$on]['id'])->get()->sortByDesc("round_id")->first()['value'];
+                            //dd($token_value);
+                            if ($token_value != -1 && $token_value != null) {
+                                $students[$j]['token'] = $token_value;
+                                $required_students[$rs] = $students[$j];
+                                $rs++;
+                            }
+                            
+                            //dd($required_students);
                         }
                     }
+
+                    $tokens = array();
+                    foreach ($required_students as $key => $row)
+                    {
+                        $tokens[$key] = $row['token'];
+                    }
+                    array_multisort($tokens, $required_students);
 
                     $ongoing_submissions[$on]['students'] = $required_students;
                     $on++;
@@ -79,6 +98,7 @@ class Submissions extends Model
                 }
             }
         }
+        //dd($required_students,$students);
         //dd($ongoing_submissions);
         return [$upcoming_submissions,$ongoing_submissions,$finished_submissions];
     }

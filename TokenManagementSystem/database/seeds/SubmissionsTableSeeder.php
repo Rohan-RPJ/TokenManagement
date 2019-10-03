@@ -43,7 +43,9 @@ class SubmissionsTableSeeder extends Seeder
                             'teacher_id'=>$faker->numberBetween($min=1,$max=$teachers),
                             'submission_date'=>now()->toDateString(),
                             'start_time'=>now()->toTimeString(),
-                            'end_time'=>'23:59:59',      
+                            'end_time'=>'23:59:59',
+                            'venue'=>'111',
+                            'status'=>0,      
                         ]);
         }
     }
