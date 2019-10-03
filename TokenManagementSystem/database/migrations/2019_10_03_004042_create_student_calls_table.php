@@ -17,6 +17,7 @@ class CreateStudentCallsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('submission_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
+            $table->tinyInteger('isRead')->default(0); //0-> not read, 1->read
             $table->timestamps();
 
             $table->foreign('submission_id')->references('id')->on('submissions')->onDelete('cascade');
