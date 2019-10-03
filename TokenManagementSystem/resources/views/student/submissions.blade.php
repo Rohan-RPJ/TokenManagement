@@ -34,6 +34,7 @@
   </div>
 </div>
 --}}
+    @include('student.alerts')
 
 <div id="ongoing_submissions" class="main">
   <h1>Ongoing Submissions</h1>
