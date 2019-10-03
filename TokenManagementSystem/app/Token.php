@@ -14,7 +14,7 @@ class Token extends Model
     }
 
     public function submission(){
-    	return $this->hasOne('\App\Submissions', $foreignKey="id");
+    	return $this->hasOne('\App\Submissions', $foreignKey="id",$localKey="submission_id");
     }
 
 }

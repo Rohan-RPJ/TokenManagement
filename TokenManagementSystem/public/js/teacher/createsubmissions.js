@@ -12,7 +12,7 @@ var optionInput2 = "<input type='text' name='qQNOoption2' placeholder='Enter opt
 var optionInput3 = "<input type='text' name='qQNOoption3' placeholder='Enter option 3' required>";
 var optionInput4 = "<input type='text' name='qQNOoption4' placeholder='Enter option 4' required>";
 var cardOptionsCloseDiv = "</div>";
-var appendButton = "<input type='button' name='append' id='submit'  class='btn card_btn' style='float: right;' value='Append' onclick='qValidate()' >";
+var appendButton = "<input type='button' name='append' class='btn card_btn' style='float: right;' value='Reset' onclick='resetQue(QNO)'>";
 var removeButton = "<input type='button' name='remove' class='btn card_btn' style='float: left;' value='Remove' onclick='removeQuestion(QNO);'>";
 var cardContentCloseDiv = "</div>";
 var questionCardCloseDiv = "</div>";
@@ -212,4 +212,11 @@ function isEmpty(){
   if (a) {
     document.getElementById('radio-btn').innerHTML="";
   }
+}
+
+function resetQue(qno)
+{
+  //console.log(qno);
+    $('#'+qno.toString()).find('input:text').val('');
+    $('#'+qno.toString()).find('textarea').val('');
 }
