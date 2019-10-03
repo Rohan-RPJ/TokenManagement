@@ -1,7 +1,7 @@
 @extends('round.base')
 
 @section('title')
-<title>Start ROund</title>
+<title>Start Round</title>
 @endsection
 
 @section('content')
@@ -10,7 +10,12 @@
 		<h2>{{$submission->subject->name}}</h2>
 	</div>
 
-	<div class="timer">	
+	<div class="timer" >
+		<span id="iTimeShow"  >Time Remaining: </span><br><span id='timer' style="font-size:25px;"></span></h4>
+
+		<div id="myProgress" >
+  <div id="myBar"></div>
+		</div>
 
 	</div>
 
@@ -21,11 +26,17 @@
 		<h5>
 			<div id="question_display"></div>
 		</h5>
-		
+
 	</div>
 </div>
 
 <script type="module" src="{{asset('js/app.js')}}"></script>
+
+{{--
+<script type="module">
+	move();
+	timedCount();
+</script> --}}
 
 <script type="module">
 
@@ -43,7 +54,7 @@
 		csrf_tag.name="csrf_token";
 		csrf_tag.content="{{ csrf_token() }}";
 		console.log(csrf_tag);
-
+		 var c=timer_sec;
 		// var participant_tag=document,createElement("input");
 		// participant_tag.type="hidden";
 		// participant_tag.value=participant_id;
@@ -66,7 +77,7 @@
 						//fetching the round_data now
 						console.log("Round data"+roundData);
 						console.log(roundData);
-						
+
 						console.log(roundData.q2);
 						 //creating an invisible form now
 						 question_form = document.createElement('form');
@@ -96,7 +107,7 @@
 						 							question_form.appendChild(qtn);
 						 						}
 						 							createQuestionInput(i,roundData[q+i])
-						 							
+
 						 							i=i+1;
 
 						 							if(!questionsIterator(i,roundData))
@@ -111,17 +122,17 @@
 						 	qtn.style.display="none";
 
 						 	question_form.appendChild(qtn);
-						 	
+
 						 	console.log("Round is over");
 							$("#start-message").text("ROUND IS  NOW OVER....SUBMITTING");
 							document.body.appendChild(question_form);
 							question_form.submit();
-						
+
 						 }, (questionsLength+1)*timer_sec*1000);
 						 //createQuestionInput(1,1);
 
 					}
-				
+
 				});
 	}
 
@@ -132,12 +143,12 @@
 			while(questionsIterator(count,data)){
 				count++;
 			}
-			
+
 			count-=1;
 			console.log("Number of question is:"+count);
 
 			return count;
-
+http://127.0.0.1:8000/
 	}
 	function questionsIterator(i,data){
 			var q="q"+i;
@@ -154,7 +165,7 @@
 		console.log(parent);
 		console.log("Parent id:"+parent.id);
 		var radiogroup	= parent.id.split("_")[1];
-		
+
 		radiogroup = document.getElementsByName("answer_"+radiogroup);
 		console.log(radiogroup);
 
@@ -170,12 +181,13 @@
 	}
 
 	function createQuestionInput(questionNo,question_id){
-		
+		timedCount();
+		move();
 		var question_description;
 		var option1,option2,option3,option4;
-		
+
 		var questionData= $.ajax({
-									method:"GET", 
+									method:"GET",
 									url:"/questions/"+question_id,
 									async:false,
 									success:function(data){
@@ -209,9 +221,9 @@
 				  						var clr_btn=document.getElementById("clear_"+question_id);
 				  						clr_btn.addEventListener("click",uncheck,false);
 
-				  						
+
 								});
-		
+
 	}
 
 function makeOptionDiv(question_id,option,option_no){
@@ -222,6 +234,68 @@ function makeOptionDiv(question_id,option,option_no){
 }
 //	getRoundData();
 
-</script>	
+
+
+function timedCount()
+	{
+		if(c == timer_sec)
+		{
+			return false;
+		}
+
+		// var hours = parseInt( c / 3600 ) % 24;
+		var minutes = parseInt( c / 60 ) % 60;
+		var seconds = c % 60;
+		var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+		$('#timer').html(result);
+
+		if(c == 0 )
+		{
+					displayScore();
+					$('#iTimeShow').html('Quiz Time Completed!');
+					// $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+					c=30;
+					// $(document).find(".preButton").text("View Answer");
+					// $(document).find(".nextButton").text("Play Again?");
+					// quizOver = true;
+					return false;
+
+		}
+		c = c - 1;
+		t = setTimeout(function()
+		{
+			timedCount()
+		},1000);
+	}
+
+
+	function move() {
+		// alert("started");
+	  var elem = document.getElementById("myBar");
+	  var width = 1;
+	  var id = setInterval(frame, 300);
+	  function frame() {
+	    if (width >= 100) {
+	      clearInterval(id);
+	    } else {
+	      width++;
+	      elem.style.width = width + '%';
+	    }
+	  }
+	}
+
+</script>
+
+<style media="screen">
+	#myBar{
+		width: 1%;
+		height: 30px;
+		background-color: red;
+	}
+	#myProgress{
+		width: 100%;
+		background-color: aqua;
+	}
+</style>
 
 @endsection

@@ -1,10 +1,10 @@
-function events() {
-  // var c = document.getElementById('n-inner-elements');
-  // c.write(" <h1>Yooooooooooooooooooooooooooooooo</h1> ")
-  var myWindow = window.open("file:///home/shubham/Desktop/WDLproject/Dashboard/events.html", "MsgWindow", "width=800, height=800");
-  myWindow.document.write("<h1>Shubham</h1>");
-  // document.write("hi");
-}
+// function events() {
+//   // var c = document.getElementById('n-inner-elements');
+//   // c.write(" <h1>Yooooooooooooooooooooooooooooooo</h1> ")
+//   var myWindow = window.open("file:///home/shubham/Desktop/WDLproject/Dashboard/events.html", "MsgWindow", "width=800, height=800");
+//   myWindow.document.write("<h1>Shubham</h1>");
+//   // document.write("hi");
+// }
 
 function getTimeValue(distance) {
     // Time calculations for days, hours, minutes and seconds
