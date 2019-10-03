@@ -44,7 +44,7 @@
 </div>
 --}}
 
-<div id="submissions" class="main">
+<div id="ongoing_submissions" class="main">
   <h1>Ongoing Submissions</h1>
   @if(count($ongoing_submissions) === 0)
     <p>👋 There are no ongoing submissions right now. Come Again later to search your submission.</p>
@@ -89,7 +89,7 @@
     @endfor
   </ul>
 </div>
-<div class="main">
+<div id="upcoming_submissions" class="main">
   <h1>Upcoming Submissions</h1>
   @if(count($upcoming_submissions) === 0)
     <p>👋 There are no upcoming submissions right now. Come Again later to search your submission.</p>
@@ -123,7 +123,7 @@
     @endfor
   </ul>
 </div>
-<div class="main">
+<div id="finished_submissions" class="main">
   <h1>Finished Submissions</h1>
   @if(count($finished_submissions) === 0)
     <p>👋 There are no finished submissions right now.</p>

@@ -7,6 +7,8 @@ use App\Subjects;
 use App\Questions;
 use App\Submissions;
 use App\Teachers;
+use App\Students;
+use App\StudentCalls;
 use \Auth;
 use App\Events\QuestionsStored;
 use Carbon\Carbon;
@@ -21,6 +23,7 @@ class TeachersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkUserType:teacher');
     }
 
     /**
@@ -169,5 +172,28 @@ class TeachersController extends Controller
             $submission->delete();
         }
         return redirect()->route('teacher.submissions');
+    }
+
+    public function callStudent(Request $request){
+        //dd($request);
+        $students = $request['students_called'];
+        //store students submissions
+        for ($i=0; $i < count($request['students_called']); $i++) { 
+            StudentCalls::create([
+                'submission_id' => $request['submission_id'],
+                'student_id' => $students[$i],
+            ]);    
+        }
+        
+        return redirect()->route('teacher.submissions');
+    }
+
+    public function showNotifications() {
+        return view('teacher/notifications');
+    }
+
+    public function profile()
+    {
+      return view('teacher/profile');
     }
 }

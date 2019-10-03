@@ -37,8 +37,12 @@ Route::get('teacher/create/submissions', 'TeachersController@createSubmissions')
 Route::post('teacher/', 'TeachersController@storeSubmission')->name('questions.store');
 Route::get('teacher/update/submissions', 'TeachersController@updateSubmission')->name('submission.update');
 Route::get('teacher/remove/submissions', 'TeachersController@removeSubmission')->name('submission.remove');
+Route::get('teacher/call/students/', 'TeachersController@callStudent')->name('student.call');
+Route::get('teacher/notifications', 'TeachersController@showNotifications')->name('teacher.notifications');
+Route::get('teacher/profile', 'TeachersController@profile')->name('teacher.profile');
 
 Route::get('student/submissions', 'StudentsController@submissions')->name('student.submissions');
+Route::get('student/notifications', 'StudentsController@showNotifications')->name('student.notifications');
 Route::get('student/profile', 'StudentsController@profile')->name('student.profile');
 
 //subjects
@@ -53,6 +57,5 @@ Route::get('student/submissions/{submission}/participants','ParticipantControlle
 Route::get('rounds/{submission}/{round_id}/','RoundController@shouldStartRound');
 Route::get('rounds/{submission}/{round_id}/startRound','RoundController@index');
 Route::post('rounds/{submission}/{round_id}/','RoundController@submitAnswers')->name("round.submit");
-
 
 Route::get('questions/{question}','QuestionsController@show'); //retrieves the question object

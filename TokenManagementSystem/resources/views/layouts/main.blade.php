@@ -29,7 +29,7 @@
   <script type="text/javascript">
     var user = {!! json_encode(Auth::user()->toArray(), JSON_HEX_TAG) !!};
     function showCreate(){
-      console.log(user['type']);
+      //console.log(user['type']);
       if (user['type'] === 'Teacher') {
         document.getElementById('create-nav-btn').style.display = 'inherit';
       }
@@ -47,10 +47,8 @@
       <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.submissions') : route('student.submissions') }}"
       onclick="" class="events">Submissions</a></li>
       <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
-      <li><a href="#" class="notif">Notifications</a></li>
+      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.notifications') : route('student.notifications') }}" class="notif">Notifications</a></li>
       <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.profile') : route('student.profile') }}">Profile</a></li>
-      <li><a href="#">History</a></li>
-
       @guest
         <li>
           <a href="">Login</a>

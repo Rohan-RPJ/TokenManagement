@@ -197,7 +197,7 @@ function hideQues(){
               <input class="btn" id="addQuestionButton" type="button" value="Add Question" name="question" onclick="addQuestion();" style="cursor: pointer;">
               <span id="error" style="display: none;"></span>
             </div>
-            <input class="btn" type="submit" name="submit" value="Submit">
+            <input class="btn" type="submit" name="submit" value="Submit" style="outline: none;">
         </form>
       </div>
     </div>

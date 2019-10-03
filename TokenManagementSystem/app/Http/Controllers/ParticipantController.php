@@ -12,6 +12,18 @@ use App\Events\TestEvent;
 
 class ParticipantController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        //$this->middleware('checkUserType:teacher');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +54,7 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {//dd($request);
         //check if participant exists
-        event(new TestEvent('YO wassup'));
+        //event(new TestEvent('YO wassup'));
         
         $participant = null;
         $student_id=$request->user()->student->id;
