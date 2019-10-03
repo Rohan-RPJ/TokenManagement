@@ -44,10 +44,6 @@ class TeachersController extends Controller
         return $date;
     }
 
-    public function profile()
-    {
-      return view('teacher/profile');
-    }
 
     public function submissions()
     {
@@ -178,13 +174,13 @@ class TeachersController extends Controller
         //dd($request);
         $students = $request['students_called'];
         //store students submissions
-        for ($i=0; $i < count($request['students_called']); $i++) { 
+        for ($i=0; $i < count($request['students_called']); $i++) {
             StudentCalls::create([
                 'submission_id' => $request['submission_id'],
                 'student_id' => $students[$i],
-            ]);    
+            ]);
         }
-        
+
         return redirect()->route('teacher.submissions');
     }
 

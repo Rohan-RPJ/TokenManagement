@@ -24,11 +24,6 @@ class StudentsController extends Controller
         $this->middleware('checkUserType:student');
     }
 
-    public function profile()
-    {
-      return view('student/profile');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -57,7 +52,7 @@ class StudentsController extends Controller
 
         $submissions = [];
         //dd($student_id);
-        for ($i=0; $i < count($all_notifications); $i++) { 
+        for ($i=0; $i < count($all_notifications); $i++) {
             if ($all_notifications[$i]['student_id'] == $student_id) {
                 $notifications[$n] = $all_notifications[$i];
                 $submissions[$n] = Submissions::find($all_notifications[$i]['submission_id']);
@@ -74,22 +69,3 @@ class StudentsController extends Controller
       return view('student/profile');
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

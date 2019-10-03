@@ -125,7 +125,7 @@ h2,h1,h3{
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to bottom right,#ba68c8 40%, #ce93d8 80%);
+  /* background: linear-gradient(to bottom right,#ba68c8 40%, #ce93d8 80%); */
 }
 
 .animation-area{
