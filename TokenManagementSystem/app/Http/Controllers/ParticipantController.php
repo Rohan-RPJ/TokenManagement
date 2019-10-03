@@ -57,9 +57,18 @@ class ParticipantController extends Controller
         //check if participant exists
         //event(new TestEvent('YO wassup'));
         $messageStatus="success";
+        $student_id=$request->user()->student->id;
+        $student=Students::find($student_id);
+        //fetch Submission
+        $submission= Submissions::find($request->submission_id);
+        
+        if($submission->type=="fcfs")
+                {
+                    return redirect()->route('token.fcfs',['student'=>$student,'submission'=>$submission]);
+                }
         
         $participant = null;
-        $student_id=$request->user()->student->id;
+        
         $participant = Participant::where('submission_id',$request->submission_id)->get()->where('student_id',$student_id)->first();
         
         $latestExistingToken = Token::where("student_id",$student_id)
