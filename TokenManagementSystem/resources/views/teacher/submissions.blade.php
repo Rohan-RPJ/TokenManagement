@@ -28,7 +28,7 @@
 <div id="ongoing_submissions" class="main">
   <h1>Ongoing Submissions</h1>
   @if(count($ongoing_submissions) === 0)
-    <p>👋 There are no ongoing submissions right now. Want to add Submissions? 
+    <p>👋 There are no ongoing submissions right now. Want to add Submissions?
     Then Create it using above Create link.</p>
   @endif
   <ul class="cards">
@@ -41,7 +41,7 @@
             <h4 class="img-header">{{ $ongoing_submissions[$on]['subject_name'] }}</h4>
             <h4 class="img-content">Professor : &nbsp {{ $ongoing_submissions[$on]['teacher_name'] }}</h4>
             <h4 class="img-content inline" id="on_venue{{ $on }}">Venue : {{ $ongoing_submissions[$on]['venue'] }}</h4>
-            <h4 class="img-content inline" id="on_status{{ $on }}">Status : 
+            <h4 class="img-content inline" id="on_status{{ $on }}">Status :
               @if($ongoing_submissions[$on]['status'] === 0)
                 Over
               @elseif($ongoing_submissions[$on]['status'] === 1)
@@ -59,7 +59,7 @@
         </div>
         <div class="card_content">
           <p class="card_text">
-            Started at: 
+            Started at:
             <span id="started-at{{ $on }}">
               {{ $ongoing_submissions[$on]['start_time'] }}
             </span>
@@ -79,7 +79,7 @@
 <div id="upcoming_submissions" class="main">
   <h1>Upcoming Submissions</h1>
   @if(count($upcoming_submissions) === 0)
-    <p>👋 There are no upcoming submissions right now. Want to add Submissions? 
+    <p>👋 There are no upcoming submissions right now. Want to add Submissions?
     Then Create it using above Create link.</p>
   @endif
   <ul class="cards">
@@ -99,7 +99,7 @@
         </div>
         <div class="card_content">
           <p class="card_text">
-              Starts in : 
+              Starts in :
               <span id="starts-in{{ $up }}"></span>
             </p>
             <p class="card_text">
@@ -130,9 +130,9 @@
             <h4 class="">Professor : &nbsp {{ $finished_submissions[$fi]['teacher_name'] }}</h4>
             <h4 class="img-content" id="fi_venue{{ $fi }}">Venue : {{ $finished_submissions[$fi]['venue'] }}</h4>
           </div>
-        </div> 
+        </div>
         <div class="card_content">
-          
+
           <p class="card_text">
             Started at :
             <span id="">{{ $finished_submissions[$fi]['start_time'] }}</span>
@@ -177,7 +177,7 @@
     <div class="modal-content">
       <span class="close-button" onclick="toggleUpdateModal();">×</span>
       <h1 style="color: black;">Change Details</h1>
-      <form method="GET" action="{{ route('submission.update') }}" 
+      <form method="GET" action="{{ route('submission.update') }}"
       onsubmit="" autocomplete="off">
       @csrf
       <table border="0">
@@ -229,7 +229,7 @@
       <h1 style="color: red;">Warning !!</h1>
       <h3 style="color: black;">You are about to remove a submission!</h3>
       <h4>Click remove to proceed.</h4>
-      <form method="GET" action="{{ route('submission.remove') }}" 
+      <form method="GET" action="{{ route('submission.remove') }}"
       onsubmit="" autocomplete="off">
       @csrf
       <input name="submission_id" id="remove_submission_id" value="" style="display: none;">
@@ -293,7 +293,6 @@ function removeSubmission(submission_id){
   document.getElementById('remove_submission_id').value = submission_id;
 }
 
-window.addEventListener("click", windowOnClick);  
+window.addEventListener("click", windowOnClick);
 </script>
 @endsection
-  

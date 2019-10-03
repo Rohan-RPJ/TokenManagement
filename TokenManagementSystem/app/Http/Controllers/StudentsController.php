@@ -37,7 +37,7 @@ class StudentsController extends Controller
         $upcoming_submissions = $segregatedSubmissions[0];
         $ongoing_submissions = $segregatedSubmissions[1];
         $finished_submissions = $segregatedSubmissions[2];
-        
+
         //dd($upcoming_submissions);
         //dd($ongoing_submissions);
         //dd($finished_submissions);
@@ -53,7 +53,7 @@ class StudentsController extends Controller
 
         $submissions = [];
         //dd($student_id);
-        for ($i=0; $i < count($all_notifications); $i++) { 
+        for ($i=0; $i < count($all_notifications); $i++) {
             if ($all_notifications[$i]['student_id'] == $student_id) {
                 $notifications[$n] = $all_notifications[$i];
                 $submissions[$n] = Submissions::find($all_notifications[$i]['submission_id']);
@@ -74,25 +74,8 @@ class StudentsController extends Controller
 
     public function profile()
     {
-      return view('student/profile');
+      $student_id = Auth::user()->student['id'];
+      $student=Students::find($student_id);
+      return view('student/profile',compact('student'));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

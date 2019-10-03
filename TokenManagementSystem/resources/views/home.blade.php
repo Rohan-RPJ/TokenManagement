@@ -40,7 +40,7 @@
   background-color: #242424;
 }
 </style>
-    <div class="inner-elements">
+    <div class="inner-elements"  >
       <div class="animation-area">
         <ul class="circle-area">
           <li></li>
@@ -50,7 +50,7 @@
           <li></li>
           <li></li>
         </ul>
-        <div class="">
+        <div class="" >
           <!-- <div class="dept"> -->
               <h3 style="text-align: center;" id="user-name"><span class="dept" > </span> </h3>
           <!-- </div> -->

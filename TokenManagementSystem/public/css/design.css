@@ -2,6 +2,7 @@ body{
   /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaTtlpP33Jz8Elqx2WN59nwyb7S9Js_tmAb9xuwcoTkrEvEHiT); */
   /*background-color: #6a89cc;*/
   display: flex;
+  height: 829px;
   justify-content: center;
   margin-top: 0px;
   background-color: #dfe6e9;
@@ -39,9 +40,10 @@ h1{
   /* border: purple 1px solid; */
   /* border-style: dotted; */
   /*border-width: thick;*/
+  /* border-width: thick; */
   border-radius: 10px;
   /* background-color: rgb(255,192,203); */
-  /* opacity: 0.5; */
+  /* opacity: 0.7; */
   background-color: white;
   filter: alpha(opacity=50);
   box-shadow: 1px 1px 1px 2px;

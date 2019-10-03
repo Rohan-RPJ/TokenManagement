@@ -1,7 +1,7 @@
 @extends('round.base')
 
 @section('title')
-<title>Start ROund</title>
+<title>Start Round</title>
 @endsection
 
 @section('content')
@@ -10,7 +10,12 @@
 		<h2>{{$submission->subject->name}}</h2>
 	</div>
 
-	<div class="timer">	
+	<div class="timer" >
+		<span id="iTimeShow"  >Time Remaining: </span><br><span id='timer' style="font-size:25px;"></span></h4>
+{{--
+		<div id="myProgress" >
+  <div id="myBar"></div>
+		</div> --}}
 
 	</div>
 
@@ -21,15 +26,26 @@
 		<h5>
 			<div id="question_display"></div>
 		</h5>
-		
+
 	</div>
 </div>
 
 <script type="module" src="{{asset('js/app.js')}}"></script>
 
+
+<script type="module">
+	// move();
+	// timedCount();
+
+</script>
+
 <script type="module">
 
 	//checks whether a round can be started or not via a GET request
+		var queslength=0;
+		var questionsLength;
+		var count=0;
+		var t=null;
 		var checkroundstatus= null;
 		var roundData=null;
 		var question_form=null;
@@ -66,7 +82,7 @@
 						//fetching the round_data now
 						console.log("Round data"+roundData);
 						console.log(roundData);
-						
+
 						console.log(roundData.q2);
 						 //creating an invisible form now
 						 question_form = document.createElement('form');
@@ -95,8 +111,9 @@
 
 						 							question_form.appendChild(qtn);
 						 						}
+
+
 						 							createQuestionInput(i,roundData[q+i])
-						 							
 						 							i=i+1;
 
 						 							if(!questionsIterator(i,roundData))
@@ -111,17 +128,17 @@
 						 	qtn.style.display="none";
 
 						 	question_form.appendChild(qtn);
-						 	
+
 						 	console.log("Round is over");
 							$("#start-message").text("ROUND IS  NOW OVER....SUBMITTING");
 							document.body.appendChild(question_form);
 							question_form.submit();
-						
+
 						 }, (questionsLength+1)*timer_sec*1000);
 						 //createQuestionInput(1,1);
 
 					}
-				
+
 				});
 	}
 
@@ -132,7 +149,7 @@
 			while(questionsIterator(count,data)){
 				count++;
 			}
-			
+
 			count-=1;
 			console.log("Number of question is:"+count);
 
@@ -154,7 +171,7 @@
 		console.log(parent);
 		console.log("Parent id:"+parent.id);
 		var radiogroup	= parent.id.split("_")[1];
-		
+
 		radiogroup = document.getElementsByName("answer_"+radiogroup);
 		console.log(radiogroup);
 
@@ -169,13 +186,16 @@
 			}
 	}
 
+
 	function createQuestionInput(questionNo,question_id){
-		
+
+
+		// move();
 		var question_description;
 		var option1,option2,option3,option4;
-		
+
 		var questionData= $.ajax({
-									method:"GET", 
+									method:"GET",
 									url:"/questions/"+question_id,
 									async:false,
 									success:function(data){
@@ -184,6 +204,7 @@
 											option2=data.option2;
 											option3=data.option3;
 											option4=data.option4;
+
 											}
 								}).done(function(){
 
@@ -206,12 +227,13 @@
 
 				  						//document.getElementById("question_display").innerHTML+=card_html;
 				  						document.getElementById("question_display").insertAdjacentHTML('afterend',card_html);
+
 				  						var clr_btn=document.getElementById("clear_"+question_id);
 				  						clr_btn.addEventListener("click",uncheck,false);
 
-				  						
+											t= setInterval(timedCount,1000);
 								});
-		
+
 	}
 
 function makeOptionDiv(question_id,option,option_no){
@@ -222,6 +244,88 @@ function makeOptionDiv(question_id,option,option_no){
 }
 //	getRoundData();
 
-</script>	
+var c=timer_sec-1;
+var queslength = 3;
+function timedCount()
+	{console.log("inside time");
+		// if(c == timer_sec)
+		// {
+		// 	return true;
+		// }
+			// c=c*3;
+		var hours = parseInt( c / 3600 ) % 24;
+		var minutes = parseInt( c / 60 ) % 60;
+		var seconds = c % 60;
+		var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+		$('#timer').html(result);
+// console.log("result"+result);
+		if(c == 0 )
+		{
+
+					console.log("question length:"+queslength);
+					console.log("count:"+count);
+
+					// this.displayScore();
+					// $('#iTimeShow').html('Quiz Time Completed!');
+					// $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+				if (count <= queslength) {
+					console.log('inside if');
+					count+=1;
+					queslength-=1;
+					c=timer_sec-1;
+					clearInterval(t);
+
+				}
+				else {
+
+					return false;
+				}
+
+
+					// $(document).find(".preButton").text("View Answer");
+					// $(document).find(".nextButton").text("Play Again?");
+					// quizOver = true;
+					// return false;
+
+		}
+		else{
+			c = c - 1;
+		}
+
+		// var t = setTimeout(function()
+		// {
+		// 	timedCount()
+		// },1000);
+	}
+
+	//
+	// function move() {
+	// 	// alert("started");
+	//   var elem = document.getElementById("myBar");
+	//   var width = 1;
+	//   var id = setInterval(frame, 3000);
+	//   function frame() {
+	//     if (width >= 100) {
+	//       clearInterval(id);
+	//     } else {
+	//       width++;
+	//       elem.style.width = width + '%';
+	//     }
+	//   }
+	// }
+
+</script>
+{{--
+<style media="screen">
+	#myBar{
+		width: 1%;
+		height: 30px;
+		background-color: red;
+	}
+	#myProgress{
+		width: 100%;
+		background-color: aqua;
+	}
+</style> --}}
 
 @endsection

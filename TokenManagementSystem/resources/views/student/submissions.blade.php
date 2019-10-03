@@ -6,12 +6,21 @@
   var upcoming_submissions = {!! json_encode($upcoming_submissions, JSON_HEX_TAG) !!};
   var ongoing_submissions = {!! json_encode($ongoing_submissions, JSON_HEX_TAG) !!};
   var finished_submissions = {!! json_encode($finished_submissions, JSON_HEX_TAG) !!};
-  //console.log(ongoing_submissions); 
+  //console.log(ongoing_submissions);
 </script>
 {{--
 <div class="submissions">
   <div class="e-inner-elements">
     <div class="db"> <h1> Dashboard </h1> </div>
+    <div class="animation-area">
+      <ul class="circle-area">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     <div class="" style=" text-align:center " >  <h1>Ongoing Submissions</h1>   </div>
     <div class="on-events">
       <div class="card" >
@@ -50,7 +59,7 @@
             <h4 class="img-header">{{ $ongoing_submissions[$on]['subject_name'] }}</h4>
             <h4 class="img-content">Professor : &nbsp {{ $ongoing_submissions[$on]['teacher_name'] }}</h4>
             <h4 class="img-content" id="on_venue{{ $on }}">Venue : {{ $ongoing_submissions[$on]['venue'] }}</h4>
-            <h4 class="img-content" id="on_status{{ $on }}">Status : 
+            <h4 class="img-content" id="on_status{{ $on }}">Status :
               @if($ongoing_submissions[$on]['status'] === 0)
                 Over
               @elseif($ongoing_submissions[$on]['status'] === 1)
@@ -63,7 +72,7 @@
         </div>
         <div class="card_content">
           <p class="card_text">
-            Started at: 
+            Started at:
             <span id="started-at{{ $on }}">
               {{ $ongoing_submissions[$on]['start_time'] }}
             </span>
@@ -99,7 +108,7 @@
         </div>
         <div class="card_content">
           <p class="card_text">
-              Starts in : 
+              Starts in :
               <span id="starts-in{{ $up }}"></span>
             </p>
             <p class="card_text">
@@ -130,9 +139,9 @@
             <h4 class="">Professor : &nbsp {{ $finished_submissions[$fi]['teacher_name'] }}</h4>
             <h4 class="img-content" id="fi_venue{{ $fi }}">Venue : {{ $finished_submissions[$fi]['venue'] }}</h4>
           </div>
-        </div> 
+        </div>
         <div class="card_content">
-          
+
           <p class="card_text">
             Started at :
             <span id="">{{ $finished_submissions[$fi]['start_time'] }}</span>
@@ -154,7 +163,7 @@
     <div class="modal-content">
       <span class="close-button" onclick="toggleParticipantModal();">×</span>
       <h1 style="color: #9f9fc9;">Join Submission</h1>
-      <form method="POST" action="{{ route('participant.join') }}" 
+      <form method="POST" action="{{ route('participant.join') }}"
       onsubmit="" autocomplete="off">
       @csrf
       <table border="0">
@@ -191,6 +200,7 @@
 
 <style type="text/css">
 </style>
+</div>
 <script type="text/javascript">
   getUpcomingtime();
   getOngoingtime();
@@ -213,18 +223,18 @@ function getDetails(card_id, submission_id){
   document.getElementById('professor_label').innerHTML = ongoing_submissions[card_id]['teacher_name'];
 
   if (ongoing_submissions[card_id]['status'] == 0) {
-    document.getElementById('status_label').innerHTML = "Over";  
+    document.getElementById('status_label').innerHTML = "Over";
   }
   else if (ongoing_submissions[card_id]['status'] == 1) {
-    document.getElementById('status_label').innerHTML = "Active";  
+    document.getElementById('status_label').innerHTML = "Active";
   }
   else if (ongoing_submissions[card_id]['status'] == 2) {
-    document.getElementById('status_label').innerHTML = "Pause";  
+    document.getElementById('status_label').innerHTML = "Pause";
   }
-  
+
   document.getElementById('hidden_submission_id').value = submission_id;
 }
 
-window.addEventListener("click", windowOnClick);  
+window.addEventListener("click", windowOnClick);
 </script>
 @endsection

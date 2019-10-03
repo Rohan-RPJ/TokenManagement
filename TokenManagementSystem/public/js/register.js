@@ -8,7 +8,7 @@ function usertype(type){
   }
   else if (usertype === 'Teacher') {
     document.getElementById(tspanemail).style = "display:all;color:red; font-size: 18px;";
-    document.getElementById(sspanemail).style = "display:none;"; 
+    document.getElementById(sspanemail).style = "display:none;";
   }*/
 }
 
@@ -80,7 +80,7 @@ function validation1(){
     document.getElementById('spass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-  //alert("Succesfully Registered!");
+  // alert("Succesfully Registered!");
 }
 
 
@@ -117,7 +117,11 @@ function validation2(){
     document.getElementById('tpass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
+<<<<<<< HEAD
+    // alert("Succesfully Registered!");
+=======
     //alert("Succesfully Registered!");
+>>>>>>> 495fa71a52cbddbceb36d11832b10647b42bbc8a
 }
 
 
