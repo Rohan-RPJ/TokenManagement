@@ -8,6 +8,9 @@ use \Illuminate\Http\Response;
 use App\Submissions;
 use App\Participant;
 use App\Questions;
+use App\Token;
+use App\Events\RoundCompletedEvent;
+
 class RoundController extends Controller
 {
     /**
@@ -140,7 +143,16 @@ class RoundController extends Controller
         
         $participant->update(["score"=>$score]);
 
-         dd("Total:",$request->post(),"C:",$correct,"W:",$wrong, "score",$score);
+         //dd("Total:",$request->post(),"C:",$correct,"W:",$wrong, "score",$score);
+        sleep(5);
+
+        event(new RoundCompletedEvent($submission,$round_id,$participant));
+
+        sleep(5);
+        
+        $token=Token::where('student_id',$student_id)->where('submission_id',$submission->id)->where('round_id',$round_id->round_id)->first();
+        //dd("Token",$token);
+        return response($token,200);
 
     }
 }

@@ -8,6 +8,7 @@ use App\Submissions;
 
 class Token extends Model
 {
+	protected $guarded= [];
     public function student(){
     	return $this->hasOne('\App\Students',$foreignKey='student_id');
     }
