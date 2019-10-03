@@ -74,6 +74,8 @@ class StudentsController extends Controller
 
     public function profile()
     {
-      return view('student/profile');
+      $student_id = Auth::user()->student['id'];
+      $student=Students::find($student_id);
+      return view('student/profile',compact('student'));
     }
 }

@@ -190,6 +190,8 @@ class TeachersController extends Controller
 
     public function profile()
     {
-      return view('teacher/profile');
+      $teacher_id = Auth::user()->teacher['id'];
+      $teacher=Teachers::find($teacher_id);
+      return view('teacher/profile',compact('teacher'));
     }
 }
