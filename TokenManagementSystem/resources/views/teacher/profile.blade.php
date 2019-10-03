@@ -33,8 +33,8 @@
       <br>
       <input type="password" name="" value="{{$teacher->tPassword}}" required  class="edit2" >
       {{-- <br><br><br><br> --}}
-      <hr>
-      {{-- <br><br><br><br><br> --}}
+      {{-- <hr> --}}
+      <br><br><br>
       <input type="submit" name="" value="Update" class="update" >
       <button type="button" name="button" class="edit-btn"  onclick="enable()" >Edit Profile</button>
   </form>

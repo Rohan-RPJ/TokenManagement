@@ -61,10 +61,10 @@
       <span class="user-detail" >Roll Number:</span>
       <br>
       <input type="text"  name="sRollNo"  value="{{$student->sRollNo}}" placeholder="" id="sRollNo"  class='edit5' required >
-        <hr>
+        {{-- <hr> --}}
       {{-- <br><br><br><br> --}}
       {{-- <input type="password" class="effect-4" name="sPassword" value="" placeholder="  New Password" id="sPassword" onchange="isEmpty5()"  required > --}}
-      {{-- <br><br><br><br> --}}
+      <br><br><br>
       {{-- <hr> --}}
       <input type="submit" name="" value="Update" class="update" >
       <button type="button" name="button" class="edit-btn" onclick="enable()"  >Edit Profile</button>
