@@ -44,7 +44,7 @@ body{
   background-color: #dcdde1;
   /*background-image: linear-gradient(to right,#7f53ac 0,#657ced 100%);*/
   padding-bottom: 30px;
-  /* border: 2px solid #9c88ff; */
+  /* border: 2px solid black; */
   /* margin-left: 100px; */
 }
 
@@ -72,7 +72,7 @@ body{
 }
 
 #taps a:hover{
- /*background-image: linear-gradient(to bottom right,#657ced 0%,#7f53ac 100%);*/ 
+ /*background-image: linear-gradient(to bottom right,#657ced 0%,#7f53ac 100%);*/
  color: white;
 }
 

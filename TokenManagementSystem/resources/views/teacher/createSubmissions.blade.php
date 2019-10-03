@@ -59,7 +59,7 @@ function hideQues(){
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
 
 
@@ -79,7 +79,7 @@ function hideQues(){
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
         <!-- Select Subject: -->
         <tr>
@@ -95,7 +95,17 @@ function hideQues(){
 
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td>
+            Select Submission type
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <br>
+          </td>
         </tr>
         <tr>
           <td>
@@ -105,14 +115,22 @@ function hideQues(){
             <span id='d' style=" color: red;"  ></span>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
         <tr>
+          {{-- <td>
+            <input id="fcfs-radio-btn" type="radio" name="type" value="fcfs" onclick="hideQues();">
+            &nbsp;&nbsp;
+            FCFS
+            <!-- stores submission type -->
+            <input type="text" name="" value="" id="chk-btn" style="display: none" onchange="isEmpty()" >
+            <span id='radio-btn' style=" color: red; padding-left: 215px;"  ></span>
+          </td> --}}
           <td>Enter Start Time of Submission:</td>
           <td> <input type="time" name="start_time" id="chk-start-time" required></td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
 
         <tr>
@@ -123,6 +141,8 @@ function hideQues(){
           <tr>
             <td><br></td>
         </tr>
+        <tr>
+          <td><br></td>
           <tr>
           <td>Enter Venue of Submission:</td>
           <td><input type="number" name="venue" placeholder="Enter room no." required></td>
@@ -161,7 +181,7 @@ function hideQues(){
           </td>
         </tr>
         <tr>
-            <td><br></td>
+          <td><br></td>
         </tr>
           <tr>
             <td>
@@ -181,4 +201,5 @@ function hideQues(){
         </form>
       </div>
     </div>
-    @endsection
+  </div>
+  @endsection

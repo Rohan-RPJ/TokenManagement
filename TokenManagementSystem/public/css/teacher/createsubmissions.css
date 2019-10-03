@@ -8,6 +8,18 @@
   box-sizing: border-box;
 }
 
+
+/* .question_cards_item{
+  margin-right: 700px;
+  /* border: 2px solid red; */
+
+/* }
+
+.qtext{
+  height: 170px;
+  font-size: 20px;
+  /* background-color: red; */
+/* } */ */ */
 body {
   display: flex;
   justify-content: center;
@@ -33,6 +45,7 @@ body {
   margin: 0px;
 }
 
+
 .question_cards_item .btn {
   color: #ffffff;
   padding: 0.8rem;
@@ -48,7 +61,7 @@ body {
 }
 
 .question_cards_item .btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: #ba68c8;
 }
 
 .questionCards {
@@ -92,7 +105,7 @@ body {
 
 .card_content {
   padding: 1rem;
-  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+  background: linear-gradient(to bottom left, #f48fb1 40%, #f8bbd0 100%);
 }
 
 .card_title {
@@ -146,11 +159,18 @@ textarea {
   margin-top: 40px;
 }
 
+/* .create{
+  /* border: 2px solid black; */
+  font-size: 30px;
+  color: #9c27b0;
+} */
+
 .years,.branches,.subjects{
   width: 400px;
   height: 40px;
   font-size: 30px;
   border-radius: 9px;
+  background-color: #dfe6e9;
 }
 
 input[type="text"],input[type="number"],input[type="date"],input[type="time"]{
@@ -164,7 +184,16 @@ input[type="text"],input[type="number"],input[type="date"],input[type="time"]{
 
 input[name="type"]{
   width: 75px;
+}
 
+input[name="submit"]{
+  background-color: #ea80fc;
+  color: #f4f4f4;
+}
+
+input[name="question"]{
+  background-color: #ea80fc;
+  color: #f4f4f4;
 }
 
 #question-div {
