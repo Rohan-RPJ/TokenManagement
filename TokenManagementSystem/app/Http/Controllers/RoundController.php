@@ -14,15 +14,14 @@ use App\Events\RoundCompletedEvent;
 class RoundController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        //$this->middleware('checkUserType:teacher');
-    }
+    // public function __construct()
+    // {
+    //     dd($this);
+    // }
 
     public function index(Submissions $submission,Round $round_id,Request $request)
     {
@@ -153,7 +152,7 @@ class RoundController extends Controller
         
         $token=Token::where('student_id',$student_id)->where('submission_id',$submission->id)->where('round_id',$round_id->round_id)->first();
         //dd("Token",$token);
-        return response($token,200);
+        return redirect()->route('student.notifications');
 
     }
 }

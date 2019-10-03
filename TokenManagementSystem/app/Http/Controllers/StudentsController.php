@@ -9,6 +9,7 @@ use App\Submissions;
 use App\Students;
 use App\Teachers;
 use App\StudentCalls;
+use App\Token;
 use \Auth;
 
 class StudentsController extends Controller
@@ -61,7 +62,14 @@ class StudentsController extends Controller
                 $n++;
             }
         }
-        return view('student/notifications', compact('notifications', 'submissions'));
+
+        //fetching if there are any positive tokens
+        $tokens = Token::where("student_id",$student_id)->where("value",">",0)->get();
+        $tokenCount=$tokens->count();
+        if($tokenCount==0){
+            $tokens=[];
+        }
+        return view('student/notifications', compact('notifications', 'submissions','tokens'));
     }
 
     public function profile()
