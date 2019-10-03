@@ -30,7 +30,7 @@ function showStudents(card_id) {
       for (var i = 0; i < required_students.length; i++) {
         //Token value
         tableInnerHTML += "<tr><td data-label='Token' id='token" 
-        + required_students[i]['id'].toString() + "'>" + (i+1).toString() + "</td>"; 
+        + required_students[i]['id'].toString() + "'>" + required_students[i]['token'].toString() + "</td>"; 
         //Name
         tableInnerHTML += "<td data-label='Name' id='name" 
         + required_students[i]['id'].toString() + "'>" + required_students[i]['sName'] + "</td>";
