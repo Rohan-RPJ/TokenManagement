@@ -17,7 +17,7 @@ function getTimeValue(distance) {
 
 function getUpcomingtime() {
 
-  if (document.getElementById('submissions') === null) {
+  if (document.getElementById('upcoming_submissions') === null) {
     return false;
   }
   // Set the date we're counting down to
@@ -68,7 +68,7 @@ function getUpcomingtime() {
 
 function getOngoingtime() {
 
-  if (document.getElementById('submissions') === null) {
+  if (document.getElementById('ongoing_submissions') === null) {
     return false;
   }
 

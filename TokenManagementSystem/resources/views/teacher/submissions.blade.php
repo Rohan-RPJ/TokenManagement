@@ -2,16 +2,30 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/submissions.css') }}">
-
+<script type="text/javascript" src="{{ asset('js/teacher/submissions.js') }}"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script type="text/javascript">
   var upcoming_submissions = {!! json_encode($upcoming_submissions, JSON_HEX_TAG) !!};
   var ongoing_submissions = {!! json_encode($ongoing_submissions, JSON_HEX_TAG) !!};
   var finished_submissions = {!! json_encode($finished_submissions, JSON_HEX_TAG) !!};
-  //console.log(upcoming_submissions);
+  //console.log(ongoing_submissions);
+
+  //check if atleast one stud is selected to call
+  var checkBoxes = null;
+  function initStudCB(submission_id){
+    checkBoxes = $('.students_called');
+    console.log('CB'+checkBoxes);
+    checkBoxes.change(function () {
+    console.log('CB'+checkBoxes);
+    $('#notify-form').prop('disabled', checkBoxes.filter(':checked').length < 1);
+  });
+  checkBoxes.change(); // or add disabled="true" in the HTML  
+  document.getElementById('call-modal-subm-id').value = submission_id;
+}
+
 </script>
 
-<div id="submissions" class="main">
+<div id="ongoing_submissions" class="main">
   <h1>Ongoing Submissions</h1>
   @if(count($ongoing_submissions) === 0)
     <p>👋 There are no ongoing submissions right now. Want to add Submissions? 
@@ -40,7 +54,8 @@
               Edit Submission &nbsp &nbsp<i class='fas fa-edit'></i>
             </button>
           </div>
-          <button class="float-btn">CALL</button>
+          <button class="float-btn" onclick="toggleCallModal();showStudents('{{ $on }}');
+          initStudCB('{{ $ongoing_submissions[$on]['id'] }}');"><i class="fas fa-user"></i></button>
         </div>
         <div class="card_content">
           <p class="card_text">
@@ -61,7 +76,7 @@
     @endfor
   </ul>
 </div>
-<div class="main">
+<div id="upcoming_submissions" class="main">
   <h1>Upcoming Submissions</h1>
   @if(count($upcoming_submissions) === 0)
     <p>👋 There are no upcoming submissions right now. Want to add Submissions? 
@@ -99,7 +114,7 @@
     @endfor
   </ul>
 </div>
-<div class="main">
+<div id="finished_submissions" class="main">
   <h1>Finished Submissions</h1>
   @if(count($finished_submissions) === 0)
     <p>👋 There are no finished submissions right now.</p>
@@ -134,6 +149,29 @@
   </ul>
 </div>
 
+<div class="modal_callParticipant">
+    <div class="call-modal-content">
+      <span class="close-button" onclick="toggleCallModal();">×</span>
+      <h1 style="color: black;display: none;" id="call-modal-header">👋 Congratulations, You have checked all your submissions.</h1>
+      <form method="GET" action="{{ route('student.call') }}" onsubmit="" autocomplete="off">
+        @csrf
+      <table id="call-modal-table" class="call-modal-table">
+  <caption><input type="submit" id="notify-form" name="notify" value="Notify Students"></caption>
+  <thead>
+    <tr>
+      <th scope="col">Token</th>
+      <th scope="col">Name</th>
+      <th scope="col">Roll No</th>
+      <th scope="col">Notify</th>
+    </tr>
+  </thead>
+  <tbody id="call-student-table-body">
+  </tbody>
+</table>
+<input name="submission_id" type="text" id="call-modal-subm-id" value="" style="display: none;">
+</form>
+</div>
+</div>
 
 <div class="modal_updateSubmission">
     <div class="modal-content">
@@ -204,14 +242,21 @@
 <script type="text/javascript">
   getUpcomingtime();
   getOngoingtime();
+  
   var modal_updateSubmission = document.querySelector(".modal_updateSubmission");
   var modal_removeSubmission = document.querySelector(".modal_removeSubmission");
-  function toggleUpdateModal() {
+  var modal_callParticipant = document.querySelector(".modal_callParticipant");
+
+function toggleUpdateModal() {
     modal_updateSubmission.classList.toggle("show-modal");
 }
 
 function toggleRemoveModal() {
     modal_removeSubmission.classList.toggle("show-modal");
+}
+
+function toggleCallModal(){
+  modal_callParticipant.classList.toggle("show-modal");
 }
 
 function windowOnClick(event) {
@@ -220,6 +265,9 @@ function windowOnClick(event) {
     }
     if (event.target === modal_removeSubmission) {
         toggleRemoveModal();
+    }
+    if (event.target === modal_callParticipant) {
+        toggleCallModal();
     }
 }
 

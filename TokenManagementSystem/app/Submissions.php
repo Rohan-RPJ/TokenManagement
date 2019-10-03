@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use App\Subjects;
 use App\Teachers;
+use App\Students;
 use \Auth;
 
 class Submissions extends Model
@@ -46,8 +47,11 @@ class Submissions extends Model
         //dd($date);
         //dd($currentDateTime->diffInSeconds(Carbon::parse($submissions[0]['submission_date'].$submissions[0]['start_time']),false));
         //dd($date->diffInHours(Carbon::parse($submissions[9]['start_time']),false));
+        $students = Students::all();
 
         for ($i=count($required_submissions)-1; $i >=0  ; $i--) { 
+            $required_students = [];
+            $rs = 0;
             
             if ($currentDateTime->diffInSeconds(Carbon::parse($required_submissions[$i]['submission_date'].$required_submissions[$i]['start_time']),false) > 0) {
                 $upcoming_submissions[$up++] = $required_submissions[$i];
@@ -60,7 +64,14 @@ class Submissions extends Model
                     if ($ongoing_submissions[$on]['status'] == null) {
                         $ongoing_submissions[$on]['status'] = 1;
                     }
-                    
+                    // add students in ongoing submission
+                    for ($j=0; $j < count($students); $j++) { 
+                        if ($ongoing_submissions[$on]['year'] == $students[$j]['sYear'] &&  $ongoing_submissions[$on]['branch'] == $students[$j]['sBranch']) {
+                            $required_students[$rs++] = $students[$j];
+                        }
+                    }
+
+                    $ongoing_submissions[$on]['students'] = $required_students;
                     $on++;
                 }
                 else {
@@ -68,6 +79,7 @@ class Submissions extends Model
                 }
             }
         }
+        //dd($ongoing_submissions);
         return [$upcoming_submissions,$ongoing_submissions,$finished_submissions];
     }
 

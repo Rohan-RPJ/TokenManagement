@@ -1,7 +1,15 @@
 //---------------------------------------------------------------------------------------- TO KNOW TEACHER OR STUDENT------------------------------------------------------------------------------
 
-function usertype(s){
-  var usertype = s;
+function usertype(type){
+  var usertype = type;
+  /*if (usertype === 'Student') {
+    document.getElementById(tspanemail).style = "display:none;";
+    document.getElementById(sspanemail).style = "display:all;color:red; font-size: 18px;";
+  }
+  else if (usertype === 'Teacher') {
+    document.getElementById(tspanemail).style = "display:all;color:red; font-size: 18px;";
+    document.getElementById(sspanemail).style = "display:none;"; 
+  }*/
 }
 
 
@@ -72,7 +80,7 @@ function validation1(){
     document.getElementById('spass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-  alert("Succesfully Registered!");
+  //alert("Succesfully Registered!");
 }
 
 
@@ -109,7 +117,7 @@ function validation2(){
     document.getElementById('tpass').innerHTML="*Password should be atleast 8 character long";
     return false;
   }
-    alert("Succesfully Registered!");
+    //alert("Succesfully Registered!");
 }
 
 
