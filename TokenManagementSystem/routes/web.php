@@ -11,16 +11,20 @@
 |
 */
 use App\Subjects;
+use App\StudentCalls;
+
 Route::get('/', function () {
 	//dd(Auth::check());
 	if (Auth::check()) {
 		if (Auth::user()->type === "Teacher") {
-
+			return view('home');
 		}
 		elseif (Auth::user()->type === "Student") {
-
+			$unReadNotifCount = StudentCalls::getUnReadNotifCount();
+			//dd($unReadNotifCount);
+			return view('home', compact('unReadNotifCount'));
 		}
-		return view('home');
+		
 	}
     return view('welcome');
 });

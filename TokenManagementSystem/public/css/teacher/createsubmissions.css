@@ -178,7 +178,7 @@ input[type="text"],input[type="number"],input[type="date"],input[type="time"]{
   height: 40px;
   font-size: 30px;
   border-radius: 10px;
-  background-color: #2c3e50;
+  /*background-color: #2c3e50;*/
   /* text-align: center; */
 }
 
@@ -271,7 +271,7 @@ select {
   background-color: rgba(255, 255, 255, 0.12);
 }
 
-input[type="submit"]{
+.create-submit-btn{
   background: #2c3e50;
   border: transparent;
   border-radius: 3em;
@@ -282,8 +282,8 @@ input[type="submit"]{
   margin-top: 10px;
 }
 
-input[type="submit"]:hover{
-  background: #2c3e50;background: #2c3e50;
+.create-submit-btn{
+  background: #2c3e50;
   width: 40%;
   border-radius: 2em;
 }

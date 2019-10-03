@@ -195,15 +195,15 @@ a{
 
 .inner-elements   {
   background-color: #9c88ff;
-  position: fixed;
+  position: relative;
   padding-top: 170px;
-  width: 200vh;
+  width: 100%;
   /* margin-top: 30px; */
   /* padding-top: 20p x;   */
   /* border: 2px solid red; */
   /* height: 915px; */
   font-size: 30px;
-  height: 895px;
+  height: auto;
   text-align: center;
   /* display: flex; */
   /* justify-content: center; */
