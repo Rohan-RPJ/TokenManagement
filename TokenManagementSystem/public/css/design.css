@@ -2,11 +2,12 @@ body{
   /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaTtlpP33Jz8Elqx2WN59nwyb7S9Js_tmAb9xuwcoTkrEvEHiT); */
   /*background-color: #6a89cc;*/
   display: flex;
-  height: 829px;
+  height: 100vh;
   justify-content: center;
   margin-top: 0px;
+  /* padding-top: 90px; */
   background-color: #dfe6e9;
-  background: linear-gradient(to bottom right,#ba68c8 60%,#ce93d8 20%);
+  background: linear-gradient(to bottom right,#ba68c8 55%,#ce93d8 20%);
   /* border: 2px solid red; */
 
 
@@ -22,7 +23,7 @@ h1{
 .center {
   /* text-align: center; */
   /* font-size: 30px; */
-  /* margin-top: 200px; */
+  margin-top: 100px;
   padding-left: 50px;
   /* margin-right: 700px; */
   /* margin-top: 150px; */
