@@ -5,8 +5,13 @@
  */
 
 require('./bootstrap');
-
+//require('./sw');
 window.Vue = require('vue');
+console.log(document.location.href);
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('./sw.js');
+//     //console.log("Registered");
+// }
 
 /**
  * The following block of code may be used to automatically register your
