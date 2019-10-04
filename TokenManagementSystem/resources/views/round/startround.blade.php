@@ -17,7 +17,11 @@
 	</div>
 
 	<div class="timer" >
-		<span id="iTimeShow"  >Time Remaining: </span><br><span id='timer' style="font-size:25px;"></span></h4>
+		<span id="iTimeShow" style="font-size: 20px;" > </span><br><span id='timer' style="font-size:30px;"></span></h4>
+{{--
+		<div id="myProgress" >
+  <div id="myBar"></div>
+		</div> --}}
 
 	</div>
 
@@ -87,6 +91,8 @@
 						console.log("Round can be started");
 						$("#loading").addClass("hidden");
 						$("#start-message").text("ROUND IS  NOW STARTING....");
+						$("#iTimeShow").text("Quiz Starting in:");
+						t= setInterval(timedCount,1000);
 						clearInterval(checkroundstatus);
 						getRoundData();
 						//fetching the round_data now
@@ -114,6 +120,8 @@
 						 var questionsLength=getQuestionsLength(roundData);
 
 						 var x=setInterval(function(){
+
+							 					$("#start-message").text("ROUND STARTED GIVE THE QUIZ !!");
 						 							//hide previous question
 						 						if(i>1){
 						 							var j=i-1;
@@ -130,6 +138,7 @@
 
 						 							if(!questionsIterator(i,roundData))
 						 								{clearInterval(x);}
+
 						 				},timer_sec*1000);
 
 						 //Hiding last question
@@ -150,6 +159,11 @@
 								console.log("Round is over");
 							$("#start-message").text("ROUND IS  NOW OVER....SUBMITTING");
 								//debugger;
+
+							$("#iTimeShow").text("Time Finished:");
+							$("#timer").hide();
+
+
 							document.body.appendChild(question_form);
 							question_form.submit();
 							});
@@ -281,11 +295,12 @@
 
 				  						//document.getElementById("question_display").innerHTML+=card_html;
 				  						document.getElementById("question_display").insertAdjacentHTML('afterend',card_html);
-
 				  						var clr_btn=document.getElementById("clear_"+question_id);
 				  						clr_btn.addEventListener("click",uncheck,false);
 
-											//t= setInterval(timedCount,1000);
+											$("#iTimeShow").text("Time Remaining:");
+											t= setInterval(timedCount,1000);
+
 								});
 
 	}
@@ -297,76 +312,6 @@ function makeOptionDiv(question_id,option,option_no){
 	return optiondiv;
 }
 //	getRoundData();
-
-// var c=timer_sec-1;
-// var queslength = 3;
-// function timedCount()
-// 	{console.log("inside time");
-// 		// if(c == timer_sec)
-// 		// {
-// 		// 	return true;
-// 		// }
-// 			// c=c*3;
-// 		var hours = parseInt( c / 3600 ) % 24;
-// 		var minutes = parseInt( c / 60 ) % 60;
-// 		var seconds = c % 60;
-// 		var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
-// 		$('#timer').html(result);
-// // console.log("result"+result);
-// 		if(c == 0 )
-// 		{
-
-// 					console.log("question length:"+queslength);
-// 					console.log("count:"+count);
-
-// 					// this.displayScore();
-// 					// $('#iTimeShow').html('Quiz Time Completed!');
-// 					// $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
-// 				if (count <= queslength) {
-// 					console.log('inside if');
-// 					count+=1;
-// 					queslength-=1;
-// 					c=timer_sec-1;
-// 					clearInterval(t);
-
-// 				}
-// 				else {
-
-// 					return false;
-// 				}
-
-
-// 					// $(document).find(".preButton").text("View Answer");
-// 					// $(document).find(".nextButton").text("Play Again?");
-// 					// quizOver = true;
-// 					// return false;
-
-// 		}
-// 		else{
-// 			c = c - 1;
-// 		}
-
-// 		// var t = setTimeout(function()
-// 		// {
-// 		// 	timedCount()
-// 		// },1000);
-// 	}
-
-	//
-	// function move() {
-	// 	// alert("started");
-	//   var elem = document.getElementById("myBar");
-	//   var width = 1;
-	//   var id = setInterval(frame, 3000);
-	//   function frame() {
-	//     if (width >= 100) {
-	//       clearInterval(id);
-	//     } else {
-	//       width++;
-	//       elem.style.width = width + '%';
-	//     }
-	//   }
-	// }
 	$(window).on("load",function () {
 		console.log("Loaded start-message");
   		t1=setTimeout(createParticipantStatus,2000);
@@ -375,18 +320,60 @@ function makeOptionDiv(question_id,option,option_no){
 		console.log("DOM loaded");
 	});
 
+
+
+var c=timer_sec-1;
+var queslength = 4;
+function timedCount()
+	{console.log("inside time");
+
+		// var hours = parseInt( c / 3600 ) % 24;
+		var minutes = parseInt( c / 60 ) % 60;
+		var seconds = c % 60;
+		var result = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+		$('#timer').html(result);
+// console.log("result"+result);
+		if(c == 0 )
+		{
+
+					console.log("question length:"+queslength);
+					console.log("count:"+count);
+
+					// this.displayScore();
+					// $('#iTimeShow').html('Quiz Time Completed!');
+					// $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+				if (count <= queslength) {
+					console.log('inside if');
+					count+=1;
+					queslength-=1;
+					c=timer_sec-1;
+					clearInterval(t);
+
+				}
+				else {
+
+					return false;
+				}
+
+
+					// $(document).find(".preButton").text("View Answer");
+					// $(document).find(".nextButton").text("Play Again?");
+					// quizOver = true;
+					// return false;
+
+		}
+		else{
+			c = c - 1;
+		}
+
+		// var t = setTimeout(function()
+		// {
+		// 	timedCount()
+		// },1000);
+	}
+
+
 </script>
-{{--
-<style media="screen">
-	#myBar{
-		width: 1%;
-		height: 30px;
-		background-color: red;
-	}
-	#myProgress{
-		width: 100%;
-		background-color: aqua;
-	}
-</style> --}}
+
 
 @endsection
