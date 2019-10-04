@@ -338,12 +338,12 @@ img {
 }
 
 input[type="submit"]{
-  background: #2c3e50;
-  border: transparent;
+  /*background: #2c3e50;*/
+  /*border: transparent;
   border-radius: 3em;
   margin: 0 auto;
   width: 50%;
-  font-size: 25px;
+  font-size: 25px;*/
 }
 
 input[type="submit"]:hover{

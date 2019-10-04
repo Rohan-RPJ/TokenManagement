@@ -41,8 +41,8 @@ class StudentsController extends Controller
         //dd($upcoming_submissions);
         //dd($ongoing_submissions);
         //dd($finished_submissions);
-
-        return view('student/submissions', compact('upcoming_submissions', 'ongoing_submissions', 'finished_submissions'));
+        $unReadNotifCount = StudentCalls::getUnReadNotifCount();
+        return view('student/submissions', compact('upcoming_submissions', 'ongoing_submissions', 'finished_submissions','unReadNotifCount'));
     }
 
     public function showNotifications(){
@@ -69,13 +69,19 @@ class StudentsController extends Controller
         if($tokenCount==0){
             $tokens=[];
         }
-        return view('student/notifications', compact('notifications', 'submissions','tokens'));
+
+        //update all notification to isRead = 1
+        StudentCalls::updateToIsRead();
+        $unReadNotifCount = StudentCalls::getUnReadNotifCount();
+        return view('student/notifications', compact('notifications', 'submissions','tokens', 'unReadNotifCount'));
     }
 
     public function profile()
     {
       $student_id = Auth::user()->student['id'];
       $student=Students::find($student_id);
-      return view('student/profile',compact('student'));
+
+      $unReadNotifCount = StudentCalls::getUnReadNotifCount();
+      return view('student/profile',compact('student', 'unReadNotifCount'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \Auth;
+use App\StudentCalls;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (Auth::user()->type === "Teacher") {
+            $unReadNotifCount = 0;
+            return view('home', compact('unReadNotifCount'));
+        }
+        elseif (Auth::user()->type === "Student") {
+            $unReadNotifCount = StudentCalls::getUnReadNotifCount();
+            //dd($unReadNotifCount);
+            return view('home', compact('unReadNotifCount'));
+        }
     }
 }
