@@ -118,7 +118,7 @@
 						 var q="q";
 						 var i=1; 
 						 var questionsLength=getQuestionsLength(roundData);
-						 debugger;
+						 //debugger;
 						 var x=setInterval(function(){
 
 							 					$("#start-message").text("ROUND STARTED GIVE THE QUIZ !!");

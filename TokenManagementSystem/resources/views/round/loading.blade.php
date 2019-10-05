@@ -59,7 +59,7 @@
 		var x=setTimeout(function(){
 			clearTimeout(x);
 			console.log("Force submitting...");
-			$.get("/rounds/{{submission}}/{{round_id}}/{{participant}}/forcesubmit");
+			$.get("/rounds/{{$submission->id}}/{{$round_id->round_id}}/{{$participant->id}}/forcesubmit");
 		}, 1.25*60*1000); //1.25 minutes
 	})
 </script>

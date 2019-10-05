@@ -157,9 +157,9 @@ class RoundController extends Controller
         {
             event(new RoundCompletedEvent($submission,$round_id,$participant));
         }
-        else{
+        
             return view('round.loading',compact('participant','submission','round_id'));
-        }
+        //}
 
         //sleep(5);
         
