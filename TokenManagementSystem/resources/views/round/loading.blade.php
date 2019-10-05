@@ -55,7 +55,12 @@
 	
 	$(document).ready(function(){
 		t= setInterval(checkToken,1000);
-
+		//manually call the token allocation if 1.25 minute is over
+		var x=setTimeout(function(){
+			clearTimeout(x);
+			console.log("Force submitting...");
+			$.get("/rounds/{{submission}}/{{round_id}}/{{participant}}/forcesubmit");
+		}, 1.25*60*1000); //1.25 minutes
 	})
 </script>
 @endsection

@@ -61,6 +61,7 @@ Route::get('student/submissions/{submission}/participants','ParticipantControlle
 Route::get('rounds/{submission}/{round_id}/','RoundController@shouldStartRound');
 Route::get('rounds/{submission}/{round_id}/startRound','RoundController@index')->name("round.start");
 Route::post('rounds/{submission}/{round_id}/','RoundController@submitAnswers')->name("round.submit");
+Route::get('rounds/{submission}/{round_id}/{participant}/forcesubmit','RoundController@forceFireRoundCompletedEvent')->name('round.force');
 
 Route::get('questions/{question}','QuestionsController@show'); //retrieves the question object
 

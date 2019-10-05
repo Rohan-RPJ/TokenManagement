@@ -51,13 +51,13 @@
 
 </script>
 
-<script type="module" defer>
+<script type="module" >
 
 	//checks whether a round can be started or not via a GET request
 		var queslength=0;
 		var questionsLength;
 		var count=0;
-		//var t=null;
+		var t=null;
 		var checkroundstatus= null;
 		var roundData=null;
 		var question_form=null;
@@ -118,7 +118,7 @@
 						 var q="q";
 						 var i=1; 
 						 var questionsLength=getQuestionsLength(roundData);
-
+						 debugger;
 						 var x=setInterval(function(){
 
 							 					$("#start-message").text("ROUND STARTED GIVE THE QUIZ !!");

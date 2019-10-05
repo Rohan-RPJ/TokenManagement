@@ -106,6 +106,10 @@ class RoundController extends Controller
         return response($result,200);
     }
 
+    public function forceFireRoundCompletedEvent(Submissions $submission, Round $round_id, Participant $participant){
+        event(new RoundCompletedEvent($submission,$round_id,$participant));
+    }
+
     public function submitAnswers(Submissions $submission, Round $round_id,Request $request ){
         //dd($request->post());
         //dd($round_id);
