@@ -46,7 +46,7 @@ class AllocateToken
                             ->exists();
         if($checkToken)
             {
-                dd("Print here",$checkToken,"TOken exists so returning for event handler");
+                //dd("Print here",$checkToken,"TOken exists so returning for event handler");
 
                 return false;
 
@@ -57,8 +57,8 @@ class AllocateToken
                                     ->pluck("participant_id")->toArray();
         
         $participants=Participant::find($round_participants_id)
-                                    ->sortBy("wrong")
-                                    ->sortByDesc("correct")
+                                    //->sortBy("wrong")
+                                    //->sortByDesc("correct")
                                     ->sortByDesc("score")
                                     ->values();
 
@@ -92,7 +92,7 @@ class AllocateToken
                             'round_id'=>$round->round_id,
                             'value'=>-1,
                             ]);
-        });
+        }); 
 
       }
     }

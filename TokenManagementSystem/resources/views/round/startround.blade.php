@@ -5,9 +5,15 @@
 @endsection
 
 @section('content')
+
+
+
 <div class="container">
 	<div class="center-align grey lighten-2">
 		<h2>{{$submission->subject->name}}</h2>
+	</div>
+	<div class="right-align grey lighten-4">
+		<h5>{{$participant->student->sName}}</h5>
 	</div>
 
 	<div class="timer" >
@@ -28,9 +34,15 @@
 		</h5>
 
 	</div>
+
+
+	<div id="loading" class="center-align">
+		<i class="fa fa-circle-o-notch fa-spin" style="font-size:72px"></i>
+	</div>
+
 </div>
 
-<script type="module" src="{{asset('js/app.js')}}"></script>
+
 
 
 <script type="module">
@@ -39,7 +51,7 @@
 
 </script>
 
-<script type="module">
+<script type="module" >
 
 	//checks whether a round can be started or not via a GET request
 		var queslength=0;
@@ -51,9 +63,10 @@
 		var question_form=null;
 		var participant_id= {{$participant->id}};
 		var form_id="response_"+participant_id;
-		var timer_sec=5;
+		var timer_sec=10;
 		var submit_url="{{url()->current()}}";
 		submit_url=submit_url.replace("/startRound","/");
+		var t1,t2,t3;
 
 		var csrf_tag= document.createElement('meta'); //<meta name="csrf-token" content="{{ csrf_token() }}">
 		csrf_tag.name="csrf_token";
@@ -76,6 +89,7 @@
 					{
 
 						console.log("Round can be started");
+						$("#loading").addClass("hidden");
 						$("#start-message").text("ROUND IS  NOW STARTING....");
 						$("#iTimeShow").text("Quiz Starting in:");
 						t= setInterval(timedCount,1000);
@@ -101,9 +115,10 @@
 						 // 		var q="q"+i;
 							// 	 createQuestionInput(i,roundData[q]);
 						 // }
-
-						 var q="q",i=1, questionsLength=getQuestionsLength(roundData);
-
+						 var q="q";
+						 var i=1; 
+						 var questionsLength=getQuestionsLength(roundData);
+						 //debugger;
 						 var x=setInterval(function(){
 
 							 					$("#start-message").text("ROUND STARTED GIVE THE QUIZ !!");
@@ -127,7 +142,10 @@
 						 				},timer_sec*1000);
 
 						 //Hiding last question
-						 setTimeout(function(){
+						 t2=setTimeout(function(){
+						 	
+						 	clearTimeout(t2);
+
 						 	i=i-1;
 						 	console.log("i:"+i+"Hiding "+"question_"+roundData[q+i]);
 						 	var qtn=document.getElementById("question_"+roundData[q+i])
@@ -135,14 +153,21 @@
 
 						 	question_form.appendChild(qtn);
 
-						 	console.log("Round is over");
+						$.get("/participantstatus/{{$participant->id}}/{{$round_id->round_id}}/updateStatus/?t="+Math.random(), function(){
+			
+								console.log("updateParticipantStatus done again");
+								console.log("Round is over");
 							$("#start-message").text("ROUND IS  NOW OVER....SUBMITTING");
+								//debugger;
+
 							$("#iTimeShow").text("Time Finished:");
 							$("#timer").hide();
 
 
 							document.body.appendChild(question_form);
 							question_form.submit();
+							});
+						 	
 
 						 }, (questionsLength+1)*timer_sec*1000);
 						 //createQuestionInput(1,1);
@@ -152,8 +177,41 @@
 				});
 	}
 
-	checkroundstatus = window.setInterval(getRoundStatus ,1000);
+	function checkRoundStatus()
+	{checkroundstatus = window.setInterval(getRoundStatus ,1000);}
+	
+	function checkAllParticipantsReady(){
 
+			console.log("checkAllParticipantsReady starting...");
+
+		$.get("/participantstatus/{{$submission->id}}/{{$round_id->round_id}}/1", function(data,status){
+			console.log("checkAllParticipantsReady done");
+			console.log(data);
+			if (data.count==5){
+				clearInterval(t1);
+				console.log("Participants are online and ready");
+				checkRoundStatus();	
+			}
+		});
+	}
+	
+	function updateParticipantStatus(){
+		console.log("updateParticipantStatus starting...");
+		$.get("/participantstatus/{{$participant->id}}/{{$round_id->round_id}}/updateStatus/?t="+Math.random(), function(){
+			
+			console.log("updateParticipantStatus done");
+			t1=setInterval(checkAllParticipantsReady,1000);
+		});
+	}
+
+	function createParticipantStatus(){
+		console.log("createParticipantStatus starting...");
+		$.get("/participantstatus/{{$participant->id}}/{{$round_id->round_id}}/create/?t="+Math.random(), function(){
+			clearTimeout(t1);
+			console.log("createParticipantStatus done");
+			updateParticipantStatus();
+		});
+	}
 	function getQuestionsLength(data){
 			var count=1;
 			while(questionsIterator(count,data)){
@@ -239,6 +297,7 @@
 				  						document.getElementById("question_display").insertAdjacentHTML('afterend',card_html);
 				  						var clr_btn=document.getElementById("clear_"+question_id);
 				  						clr_btn.addEventListener("click",uncheck,false);
+
 											$("#iTimeShow").text("Time Remaining:");
 											t= setInterval(timedCount,1000);
 
@@ -253,6 +312,15 @@ function makeOptionDiv(question_id,option,option_no){
 	return optiondiv;
 }
 //	getRoundData();
+	$(window).on("load",function () {
+		console.log("Loaded start-message");
+  		t1=setTimeout(createParticipantStatus,2000);
+});
+	$(document).ready(function(){
+		console.log("DOM loaded");
+	});
+
+
 
 var c=timer_sec-1;
 var queslength = 4;

@@ -9,7 +9,7 @@ class Participant extends Model
     protected $guarded = []; //allowing mass assignment
 
     public function student(){
-    	return $this->hasOne('\App\Students');
+    	return $this->hasOne('\App\Students',$foreignKey="id",$ownerKey="student_id");
     }
 
 	public function round(){
