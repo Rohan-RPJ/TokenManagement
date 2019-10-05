@@ -23,7 +23,7 @@ class CreateTokensTable extends Migration
 
             $table->bigInteger('value');
 
-            $table->bigInteger('round_id')->unsigned();
+            $table->bigInteger('round_id')->unsigned()->default(0);
             //$table->foreign('submission_id')->references('id')->on('submissions');
 
 

@@ -8,7 +8,9 @@ use App\Students;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Events\NewParticipantJoined;
+use App\Events\NewRoundNeeded;
 use App\Events\TestEvent;
+use App\Token;
 
 class ParticipantController extends Controller
 {
@@ -55,12 +57,27 @@ class ParticipantController extends Controller
     {//dd($request);
         //check if participant exists
         //event(new TestEvent('YO wassup'));
+        $messageStatus="success";
+        $student_id=$request->user()->student->id;
+        $student=Students::find($student_id);
+        //fetch Submission
+        $submission= Submissions::find($request->submission_id);
+        
+        if($submission->type=="fcfs")
+                {
+                    return redirect()->route('token.fcfs',['student'=>$student,'submission'=>$submission]);
+                }
         
         $participant = null;
-        $student_id=$request->user()->student->id;
+        
         $participant = Participant::where('submission_id',$request->submission_id)->get()->where('student_id',$student_id)->first();
         
-        if($participant==null){
+        $latestExistingToken = Token::where("student_id",$student_id)
+                                ->where("submission_id",$request->submission_id)
+                                ->latest("round_id")
+                                ->first();
+
+        if($participant==null and $latestExistingToken==null ){
         $participant = Participant::create([
                             'student_id'=>$student_id,
                             'submission_id'=>$request->submission_id,
@@ -73,23 +90,49 @@ class ParticipantController extends Controller
         $message="Created a participant with ".$participant->id;
         event (new NewParticipantJoined($participant));
         }
+        else if(!($latestExistingToken==null or $latestExistingToken->value<0))
+        {
+            $message="Token $latestExistingToken->value has already been assigned";
+            $messageStatus="warning";
+        }
         else
         {
             //check if round has been assigned
-            $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();
+            $round=$participant->submission->rounds->where('participant_id',$participant->id)->last();
 
             if( $round==null){
                 event (new NewParticipantJoined($participant));
-                $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();//re get the round id
+                $round=$participant->submission->rounds->where('participant_id',$participant->id)->last();//re get the round id
                 dd('Conditional inside',$round);
             }
+            else{
+                $latestExistingToken = Token::where("student_id",$student_id)
+                                ->where("submission_id",$request->submission_id)
+                                ->where("round_id",$round->round_id)
+                                ->first();
+                
+                if($latestExistingToken!=null){
+                    if($latestExistingToken->value<0){
+                        //updating rounds participated
+                        $roundsParticipated=$participant->roundsParticipated+1;
+                        $participant->update(["roundsParticipated"=>$roundsParticipated]);
+                        
+                        event (new NewParticipantJoined($participant));
+                        dd("Joined a new round",$round->round_id+1);
+                    }
+                }
 
+            }
+         //check if the round is over or not
          $message="Already a participant for ".$participant->submission->subject->name.' in Round '.$round->round_id ;
+         $messageStatus="info";
+         return redirect()->route('round.start', ['submission' => $request->submission_id, 'round_id'=>$round->round_id]);
          //dd($message);
         }
 
 
-        return back()->with('success',$message);
+
+        return back()->with($messageStatus,$message);
 
     }
 

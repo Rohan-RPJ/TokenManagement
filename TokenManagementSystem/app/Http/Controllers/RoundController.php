@@ -97,12 +97,17 @@ class RoundController extends Controller
         //
     }
 
+
     public function shouldStartRound(Submissions $submission, $round_id){
         $max_participants=5;
         $submission_id=$submission->id;
         $count=Round::where('submission_id',$submission_id)->where('round_id',$round_id)->count();
         $result=['result'=>$count==$max_participants];
         return response($result,200);
+    }
+
+    public function forceFireRoundCompletedEvent(Submissions $submission, Round $round_id, Participant $participant){
+        event(new RoundCompletedEvent($submission,$round_id,$participant));
     }
 
     public function submitAnswers(Submissions $submission, Round $round_id,Request $request ){
@@ -142,17 +147,37 @@ class RoundController extends Controller
         $score+= $correct*3 + $wrong*(-1);
         
         $participant->update(["score"=>$score]);
-
+        \Log::debug("Submission:{$submission->id} Round_id:{$round_id->round_id} P_id:{$participant->id} Name:{$participant->student->sName} C:{$participant->correct} W:{$participant->wrong}");
          //dd("Total:",$request->post(),"C:",$correct,"W:",$wrong, "score",$score);
-        sleep(5);
-
-        event(new RoundCompletedEvent($submission,$round_id,$participant));
-
-        sleep(5);
+        //sleep(10);
+        $response=app('App\Http\Controllers\ParticipantStatusController')->count($participant->submission,$round_id,2);
+        $count=$response->original['count'];
+        //dd($response,$count);
+        if($count==5) //checking all 5 participants have finished
+        {
+            //dd("Count five reachd");
+            event(new RoundCompletedEvent($submission,$round_id,$participant));
+        }
         
-        $token=Token::where('student_id',$student_id)->where('submission_id',$submission->id)->where('round_id',$round_id->round_id)->first();
-        //dd("Token",$token);
-        return redirect()->route('student.notifications');
+            return view('round.loading',compact('participant','submission','round_id'));
+        //}
+
+        //sleep(5);
+        
+        // $token=Token::where('student_id',$student_id)->where('submission_id',$submission->id)->where('round_id',$round_id->round_id)->first();
+        // //dd("Token",$token);
+        // $message="";
+        // $msgsts="success";
+
+        // if($token->value<0){
+        //     $msgsts="info";
+        //     $message="No token was allocated. Try in next round!";
+        // }
+        // else{
+        //     $msgsts="success";
+        //     $message="Token #{$token->value} has been allocated";
+        // }
+        // return redirect()->route('student.notifications')->with($msgsts,$message);
 
     }
 }

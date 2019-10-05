@@ -59,7 +59,23 @@ Route::get('student/submissions/join','ParticipantController@join');
 Route::get('student/submissions/{submission}/participants','ParticipantController@index');
 
 Route::get('rounds/{submission}/{round_id}/','RoundController@shouldStartRound');
-Route::get('rounds/{submission}/{round_id}/startRound','RoundController@index');
+Route::get('rounds/{submission}/{round_id}/startRound','RoundController@index')->name("round.start");
 Route::post('rounds/{submission}/{round_id}/','RoundController@submitAnswers')->name("round.submit");
+Route::get('rounds/{submission}/{round_id}/{participant}/forcesubmit','RoundController@forceFireRoundCompletedEvent')->name('round.force');
 
 Route::get('questions/{question}','QuestionsController@show'); //retrieves the question object
+
+Route::get('createfcfs/{student}/{submission}','TokenController@createFCFS')->name('token.fcfs');
+
+Route::get('participantstatus/{participant}/{round}/status/','ParticipantStatusController@getStatus')->name('participantstatus.status');
+
+Route::get('participantstatus/{participant}/{round}/updateStatus','ParticipantStatusController@updateStatus')->name('participantstatus.update');
+
+Route::get('participantstatus/{participant}/{round}/create','ParticipantStatusController@create')->name('participantstatus.create');
+
+Route::get('participantstatus/{submission}/{round}/{statuscode}','ParticipantStatusController@count')->name('participantstatus.count');
+
+Route::view('loading','round.loading')->name('round.wait');
+
+Route::get('tokens/{participant}/{round}','TokenController@getTokenForSubmissionRound')->name('token.get');
+Route::get('tokens/redirect/{participant}/{round}','TokenController@redirectToNotification')->name('token.redirect');
