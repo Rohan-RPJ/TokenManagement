@@ -8,6 +8,7 @@ use App\Students;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use App\Events\NewParticipantJoined;
+use App\Events\NewRoundNeeded;
 use App\Events\TestEvent;
 use App\Token;
 
@@ -97,12 +98,26 @@ class ParticipantController extends Controller
         else
         {
             //check if round has been assigned
-            $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();
+            $round=$participant->submission->rounds->where('participant_id',$participant->id)->last();
 
             if( $round==null){
                 event (new NewParticipantJoined($participant));
-                $round=$participant->submission->rounds->where('participant_id',$participant->id)->first();//re get the round id
+                $round=$participant->submission->rounds->where('participant_id',$participant->id)->last();//re get the round id
                 dd('Conditional inside',$round);
+            }
+            else{
+                $latestExistingToken = Token::where("student_id",$student_id)
+                                ->where("submission_id",$request->submission_id)
+                                ->where("round_id",$round->round_id)
+                                ->first();
+                
+                if($latestExistingToken!=null){
+                    if($latestExistingToken->value<0){
+                        event (new NewParticipantJoined($participant));
+                        dd("Joined a new round",$round->round_id+1);
+                    }
+                }
+
             }
          //check if the round is over or not
          $message="Already a participant for ".$participant->submission->subject->name.' in Round '.$round->round_id ;

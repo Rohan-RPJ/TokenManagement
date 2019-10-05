@@ -155,7 +155,7 @@ class RoundController extends Controller
         //dd($response,$count);
         if($count==5) //checking all 5 participants have finished
         {
-            dd("Count five reachd");
+            //dd("Count five reachd");
             event(new RoundCompletedEvent($submission,$round_id,$participant));
         }
         
