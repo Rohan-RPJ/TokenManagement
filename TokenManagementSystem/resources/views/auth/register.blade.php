@@ -94,7 +94,7 @@
 </head>
 
 <div id="main">
-<h1 style="text-align: center; color: #3f51b5; font-size: 50px;margin-bottom: 30px;" > <b>Create a new Account</b> </h1>
+<h1 style="text-align: center; color: #3f51b5; font-size: 50px;margin: 30px;" > <b>Create a new Account</b> </h1>
 
   {{-- Same email error --}}
     <span id='email-error' style="color:red; font-size: 18px;" >

@@ -61,7 +61,7 @@ body {
 }
 
 .question_cards_item .btn:hover {
-  background-color: #ba68c8;
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 .questionCards {
@@ -105,7 +105,8 @@ body {
 
 .card_content {
   padding: 1rem;
-  background: linear-gradient(to bottom left, #ff80ab 20%, #e040fb 70%);
+  background: linear-gradient(to bottom left, #ff80ab 100%, #e040fb 0%);
+  /*background: white;*/
 }
 
 .card_title {
@@ -127,15 +128,40 @@ body {
 
 .card_options {
     margin-bottom: 1.25rem;
+    position: relative;
 }
 
 .card_options input[type=text] {
     width: 98%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    background: linear-gradient(to bottom left, #ff80ab 100%, #e040fb 0%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .card_options input[type=radio] {
   font-size: 30px;
 }
+
+:focus{outline: none;}
+
+.effect-1, .effect-2, .effect-3, .effect-4 {
+  border: 0; padding: 7px 0; border-bottom: 1px solid #ccc;
+}
+
+.effect-1 ~ .focus-border{position: absolute; bottom: 0; right: 0%; width: 0; height: 2px; background-color: #000000; transition: 0.4s;}
+.effect-1:focus ~ .focus-border{width: 98%; transition: 0.4s;right: 0;}
+
+.effect-2 ~ .focus-border{position: absolute; bottom: 0;right: 0%; width: 0; height: 2px; background-color: #000000; transition: 0.4s;}
+.effect-2:focus ~ .focus-border{width: 98%; transition: 0.4s; right: 0;}
+
+.effect-3 ~ .focus-border{position: absolute;bottom: 0; right: 0%; width: 0; height: 2px; background-color: #000000; transition: 0.4s;}
+.effect-3:focus ~ .focus-border{width: 98%; transition: 0.4s; right: 0;}
+
+.effect-4 ~ .focus-border{position: absolute; bottom: 0; right: 0%; width: 0; height: 2px; background-color: #000000; transition: 0.4s;}
+.effect-4:focus ~ .focus-border{width: 98%; transition: 0.4s; right: 0;}
 
 textarea {
     resize: none;
@@ -173,7 +199,7 @@ textarea {
   background-color: #dfe6e9;
 }
 
-input[type="text"],input[type="number"],input[type="date"],input[type="time"]{
+input[type="number"],input[type="date"],input[type="time"]{
   width: 400px;
   height: 40px;
   font-size: 30px;
@@ -187,11 +213,6 @@ input[name="type"]{
 }
 
 input[name="submit"]{
-  background-color: #ea80fc;
-  color: #f4f4f4;
-}
-
-input[name="question"]{
   background-color: #ea80fc;
   color: #f4f4f4;
 }

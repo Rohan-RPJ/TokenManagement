@@ -14,7 +14,8 @@ body{
    /* display: flex; */
    /* justify-content: center; */
    /* margin: 50px auto; */
-   margin-top: 0px;
+   position: relative;
+   width: 100%;
    /* border: 2px solid blue; */
 
 }

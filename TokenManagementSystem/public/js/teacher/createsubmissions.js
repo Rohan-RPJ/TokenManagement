@@ -7,12 +7,13 @@ var cardTitleHeading = "<h2 id='h2' class='card_title'>Question No. QNO</h2>"
 var questionTextArea = "<textarea id='questionQNOTextArea' name='questionQNO' placeholder='Write your question here...' autocomplete='on' required></textarea>";
 var cardOptionsDiv = "<div class='card_options'>";
 var correctOptionRadio = "<input type='radio' name='qQNOcorrectOption' required>";
-var optionInput1 = "<input type='text' name='qQNOoption1' placeholder='Enter option 1' required>";
-var optionInput2 = "<input type='text' name='qQNOoption2' placeholder='Enter option 2' required>";
-var optionInput3 = "<input type='text' name='qQNOoption3' placeholder='Enter option 3' required>";
-var optionInput4 = "<input type='text' name='qQNOoption4' placeholder='Enter option 4' required>";
+var optionInput1 = "<input class='effect-1 que' type='text' name='qQNOoption1' placeholder='Enter option 1' required>";
+var optionInput2 = "<input class='effect-2 que' type='text' name='qQNOoption2' placeholder='Enter option 2' required>";
+var optionInput3 = "<input class='effect-3 que' type='text' name='qQNOoption3' placeholder='Enter option 3' required>";
+var optionInput4 = "<input class='effect-4 que' type='text' name='qQNOoption4' placeholder='Enter option 4' required>";
+var spanBorder = "<span class='focus-border'></span>";
 var cardOptionsCloseDiv = "</div>";
-var appendButton = "<input type='button' name='append' class='btn card_btn' style='float: right;' value='Reset' onclick='resetQue(QNO)'>";
+var resetButton = "<input type='button' name='reset' class='btn card_btn' style='float: right;' value='Reset' onclick='resetQue(QNO)'>";
 var removeButton = "<input type='button' name='remove' class='btn card_btn' style='float: left;' value='Remove' onclick='removeQuestion(QNO);'>";
 var cardContentCloseDiv = "</div>";
 var questionCardCloseDiv = "</div>";
@@ -26,6 +27,7 @@ function questionValidation(){
             document.getElementById('error').style = "display:block;color:red;";
             return false;
         }
+        console.log("ques len"+questions);
     }
     return true;
 }
@@ -101,7 +103,13 @@ function fillSubjectsdropdown(){
 
 function getList(){
     i = document.getElementById('questionsList').getElementsByTagName("li").length + 1;
-    return (questionCardsItem+questionCardDiv+cardContentDiv+cardTitleHeading+questionTextArea+cardOptionsDiv+correctOptionRadio.replace(" "," value='1' ")+optionInput1+correctOptionRadio.replace(" "," value='2' ")+optionInput2+correctOptionRadio.replace(" "," value='3' ")+optionInput3+correctOptionRadio.replace(" "," value='4' ")+optionInput4+cardOptionsCloseDiv+appendButton+removeButton+cardContentCloseDiv+questionCardCloseDiv+questionCardsItemCloseLi).replace(/QNO/g, i);
+    return (questionCardsItem+questionCardDiv+cardContentDiv+cardTitleHeading+questionTextArea+
+      cardOptionsDiv+correctOptionRadio.replace(" "," value='1' ")+optionInput1+spanBorder+cardOptionsCloseDiv+
+      cardOptionsDiv+correctOptionRadio.replace(" "," value='2' ")+optionInput2+spanBorder+cardOptionsCloseDiv+
+      cardOptionsDiv+correctOptionRadio.replace(" "," value='3' ")+optionInput3+spanBorder+cardOptionsCloseDiv+
+      cardOptionsDiv+correctOptionRadio.replace(" "," value='4' ")+optionInput4+spanBorder+cardOptionsCloseDiv+
+      resetButton+removeButton+cardContentCloseDiv+questionCardCloseDiv+
+      questionCardsItemCloseLi).replace(/QNO/g, i);
 }
 
 function addQuestion(){
@@ -149,6 +157,9 @@ function updateQuestions(){
             else if (inputs[k-1].getAttribute('name') == 'remove') {
                 inputs[k-1].setAttribute('onclick', 'removeQuestion('+jstring+');');
             }
+            else if (inputs[k-1].getAttribute('name') == 'reset') {
+                inputs[k-1].setAttribute('onclick', 'resetQue('+jstring+');');
+            }
         }
     }
     console.log(listItems);
@@ -168,7 +179,11 @@ function validateForm(){
           var selectedYear = document.getElementById('year').value;
           var branch = document.getElementById('branch').value;
           var subject = document.getElementById('subject').value;
-          var type = document.getElementById('chk-btn').value;
+          //var type = document.getElementById('chk-btn').value;
+          var textAreas = document.getElementsByTagName('textarea');
+          var options = document.getElementsByClassName('que');
+          console.log("total opt:"+options.length);
+          //console.log(textAreas);
           // var date = document.getElementById('chk-date').value;
           // var st = document.getElementById('chk-start-time').value;
           // var et = document.getElementById('chk-end-time').value;
@@ -204,6 +219,37 @@ function validateForm(){
           //   document.getElementById('et').innerHTML="*Enter end time";
           //   return false;
           // }
+
+          //check if question contains trailing or leading new lines
+          for (var i = 0; i < textAreas.length; i++) {
+            //console.log(textAreas[i].value);
+            var val = textAreas[i].value;
+            if (val.indexOf('\n') == 0) {
+              alert('Remove leading new lines of Question'+(i+1).toString());
+              return false;
+            }
+          }
+
+          //check if options are unique
+          var tot_opt = 4;
+          var opt_leni = options.length;
+          var opt_lenj = 0;
+          for (var i = 0; i < opt_leni; i++) {
+            var opti = options[i].value;
+            //console.log(opt_lenj);
+            if(i % tot_opt == 0){
+              opt_lenj += tot_opt;
+            }
+            for (var j = i+1; j < opt_lenj; j++) {
+              console.log("optlenj:"+opt_lenj);
+              console.log("i="+i.toString()+' j='+j.toString());
+              var optj = options[j].value;
+              if (opti == optj) {
+                alert('Question'+parseInt((i/tot_opt)+1).toString()+' should have unique options');
+                return false;
+              }
+            }
+          }
           return questionValidation();
 }
 

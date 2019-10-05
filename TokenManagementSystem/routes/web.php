@@ -17,7 +17,8 @@ Route::get('/', function () {
 	//dd(Auth::check());
 	if (Auth::check()) {
 		if (Auth::user()->type === "Teacher") {
-			return view('home');
+			$unReadNotifCount = 0;
+			return view('home', compact('unReadNotifCount'));
 		}
 		elseif (Auth::user()->type === "Student") {
 			$unReadNotifCount = StudentCalls::getUnReadNotifCount();

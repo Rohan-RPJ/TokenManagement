@@ -90,11 +90,11 @@ class TeachersController extends Controller
             for ($i=1; $i <= $request['total']; $i++) {
                 Questions::create([
                     'subject_id' => $subject_id,
-                    'question_description' => $request['question'.strval($i)],
-                    'option1' => $request['q'.strval($i).'option1'],
-                    'option2' => $request['q'.strval($i).'option2'],
-                    'option3' => $request['q'.strval($i).'option3'],
-                    'option4' => $request['q'.strval($i).'option4'],
+                    'question_description' => trim($request['question'.strval($i)]),
+                    'option1' => trim($request['q'.strval($i).'option1']),
+                    'option2' => trim($request['q'.strval($i).'option2']),
+                    'option3' => trim($request['q'.strval($i).'option3']),
+                    'option4' => trim($request['q'.strval($i).'option4']),
                     'correct_option' => (int)$request['q'.strval($i).'correctOption'],
                     'count' => 0,
                 ]);

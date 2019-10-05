@@ -9,8 +9,6 @@ body{
   background-color: #dfe6e9;
   background: linear-gradient(to bottom right,#ba68c8 55%,#ce93d8 20%);
   /* border: 2px solid red; */
-
-
 }
 h1{
   margin-bottom: 60px;
@@ -49,8 +47,8 @@ h1{
   filter: alpha(opacity=50);
   box-shadow: 1px 1px 1px 2px;
   height: 600px;
-  /* border: 2px solid red; */
-
+  /*border: 2px solid red; */
+  margin: 100px 0;
 }
 
 
