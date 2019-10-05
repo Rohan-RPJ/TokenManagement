@@ -147,7 +147,7 @@ class RoundController extends Controller
         $score+= $correct*3 + $wrong*(-1);
         
         $participant->update(["score"=>$score]);
-
+        \Log::debug("Submission:{$submission->id} Round_id:{$round_id->round_id} P_id:{$participant->id} Name:{$participant->student->sName} C:{$participant->correct} W:{$participant->wrong}");
          //dd("Total:",$request->post(),"C:",$correct,"W:",$wrong, "score",$score);
         //sleep(10);
         $response=app('App\Http\Controllers\ParticipantStatusController')->count($participant->submission,$round_id,2);
@@ -155,6 +155,7 @@ class RoundController extends Controller
         //dd($response,$count);
         if($count==5) //checking all 5 participants have finished
         {
+            dd("Count five reachd");
             event(new RoundCompletedEvent($submission,$round_id,$participant));
         }
         
