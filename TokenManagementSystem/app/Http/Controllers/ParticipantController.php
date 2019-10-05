@@ -113,6 +113,10 @@ class ParticipantController extends Controller
                 
                 if($latestExistingToken!=null){
                     if($latestExistingToken->value<0){
+                        //updating rounds participated
+                        $roundsParticipated=$participant->roundsParticipated+1;
+                        $participant->update(["roundsParticipated"=>$roundsParticipated]);
+                        
                         event (new NewParticipantJoined($participant));
                         dd("Joined a new round",$round->round_id+1);
                     }
