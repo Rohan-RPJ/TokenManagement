@@ -61,7 +61,7 @@ class ParticipantController extends Controller
         $student_id=$request->user()->student->id;
         $student=Students::find($student_id);
         //fetch Submission
-        $submission= Submissions::find($request->submission_id);
+        $submission= Submissions::findOrFail($request->submission_id);
         
         if($submission->type=="fcfs")
                 {
@@ -118,7 +118,7 @@ class ParticipantController extends Controller
                         $participant->update(["roundsParticipated"=>$roundsParticipated]);
                         
                         event (new NewParticipantJoined($participant));
-                        dd("Joined a new round",$round->round_id+1);
+                        //dd("Joined a new round",$round->round_id+1);
                     }
                 }
 

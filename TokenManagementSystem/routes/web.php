@@ -48,6 +48,8 @@ Route::get('teacher/profile', 'TeachersController@profile')->name('teacher.profi
 
 Route::get('student/submissions', 'StudentsController@submissions')->name('student.submissions');
 Route::get('student/notifications', 'StudentsController@showNotifications')->name('student.notifications');
+Route::get('student/sendNotifCount', 'StudentsController@sendAjaxNotifCount');
+Route::get('student/sendUnreadNotifications', 'StudentsController@sendAjaxUnreadNotif');
 Route::get('student/profile', 'StudentsController@profile')->name('student.profile');
 
 //subjects

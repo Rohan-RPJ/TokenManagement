@@ -51,7 +51,7 @@
       onclick="" class="events">Submissions</a></li>
       <li><a id="create-nav-btn" href="{{ route('teacher.create.submissions') }}" class="create">Create</a></li>
       <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.notifications') : route('student.notifications') }}" class="notif" onclick="removeNotification();"><span>Notifications<mark id="dot"></mark></span></a></li>
-      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.profile') : route('student.profile') }}">Profile</a></li>
+      <li><a href="{{ Auth::user()->type === 'Teacher' ? route('teacher.profile') : route('student.profile') }}" class="profile">Profile</a></li>
       @guest
         <li>
           <a href="">Login</a>
@@ -77,7 +77,7 @@
   <main class="main">
     <div class="section">
 
-      <div class="" id="showContent">
+      <div class="main-container" id="showContent">
         @yield('content')
       </div>
     </div>
@@ -89,6 +89,28 @@
     //var unReadNotifCount = 0;
     if (user['type'] == 'Teacher') {
       removeNotification();
+    }
+
+    if (user['type'] == 'Student') {
+      var notificationsCount = setInterval(function() {
+        $.ajax({
+          type:'GET',
+          url:'/student/sendNotifCount',
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success:function(data) {
+            console.log(data.unReadNotifCount);
+            if (data.unReadNotifCount == 0) {
+              document.getElementById('dot').style.visibility = 'hidden';  
+            }
+            else{//console.log("notifications:"+data.unReadNotifCount);
+              document.getElementById('dot').style.visibility = 'visible'; 
+              document.getElementById('dot').innerHTML = data.unReadNotifCount;
+            }
+          }
+        });  
+      }, 2000);
     }
   </script>
 </body>

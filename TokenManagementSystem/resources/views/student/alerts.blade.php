@@ -2,7 +2,7 @@
 	
 	.alert{
 		border-radius: 5px;
-		margin: 10px 0;
+		margin: 30px 0 5px 0;
     	padding: 12px;
 	}
 	.alert-success{

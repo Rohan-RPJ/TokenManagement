@@ -75,12 +75,6 @@
 <script type="text/javascript">
   var user = {!! json_encode(Auth::user()->toArray(), JSON_HEX_TAG) !!};
     //console.log(user);
-    var unReadNotifCount = 0;
-    if (user['type'] == 'Student') {
-      this.unReadNotifCount = {!! $unReadNotifCount !!};
-      //console.log(this.unReadNotifCount);
-    }
-    showUnreadNotifCount(unReadNotifCount);
 </script>
 
 @endsection

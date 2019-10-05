@@ -46,25 +46,13 @@ class StudentsController extends Controller
     }
 
     public function showNotifications(){
-        $all_notifications = StudentCalls::all()->toArray();
-        $notifications = [];
-        $n=0;
         $student_id = Auth::user()->student['id'];
 
-        $submissions = [];
-        //dd($student_id);
-        for ($i=0; $i < count($all_notifications); $i++) {
-            if ($all_notifications[$i]['student_id'] == $student_id) {
-                $notifications[$n] = $all_notifications[$i];
-                $submissions[$n] = Submissions::find($all_notifications[$i]['submission_id']);
-                $submissions[$n]['subject_name'] = Subjects::find($submissions[$n]['subject_id'])['name'];
-                $submissions[$n]['teacher_name'] = Teachers::find($submissions[$n]['teacher_id'])['tName'];
-                $n++;
-            }
-        }
-
+        $notif_with_subm = StudentCalls::getNotifWithSubmissions();
+        $notifications = $notif_with_subm[0];
+        $submissions = $notif_with_subm[1];
         //fetching if there are any positive tokens
-        $tokens = Token::where("student_id",$student_id)->where("value",">",0)->get();
+        $tokens=Token::where("student_id",$student_id)->where("value",">",0)->get()->sortByDESC('created_at');
         $tokenCount=$tokens->count();
         if($tokenCount==0){
             $tokens=[];
@@ -72,8 +60,32 @@ class StudentsController extends Controller
 
         //update all notification to isRead = 1
         StudentCalls::updateToIsRead();
+
+        //get unread notifications count
         $unReadNotifCount = StudentCalls::getUnReadNotifCount();
         return view('student/notifications', compact('notifications', 'submissions','tokens', 'unReadNotifCount'));
+    }
+
+    public function sendAjaxNotifCount(){
+        //get unread notifications count
+        $unReadNotifCount = StudentCalls::getUnReadNotifCount();
+        
+        return response()->json(array('unReadNotifCount' => $unReadNotifCount),200);
+    }
+
+    public function sendAjaxUnreadNotif(){
+
+        $notif_with_subm = StudentCalls::getUnreadNotifWithSubmissions();
+        $notifications = $notif_with_subm[0];
+        $submissions = $notif_with_subm[1];
+        for ($i=0; $i < count($notifications); $i++) {
+           $notifications[$i]['createdAt']=$notifications[$i]['created_at']->diffForHumans();
+        }
+        //dd($notifications);
+        //update all notification to isRead = 1
+        StudentCalls::updateToIsRead();
+        //dd($notifications,$submissions);
+        return response()->json(array('notifications' => $notifications, 'submissions' => $submissions),200);
     }
 
     public function profile()

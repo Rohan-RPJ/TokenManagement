@@ -18,6 +18,10 @@
 
 }
 
+.header li .profile{
+  background-color: #242424;
+}
+
 .btn{
   margin-right: 70px;
   text-align: right;

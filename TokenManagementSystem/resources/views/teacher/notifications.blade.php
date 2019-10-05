@@ -2,9 +2,13 @@
 
 @section('content')
 
-<script type="text/javascript">
-  
-</script>
+<script type="text/javascript"></script>
+<style type="text/css">
+	
+.header li .notif{
+  background-color: #242424;
+}
+</style>
 <div class="notifications" style="margin: 10px;margin-top: 100px;">
 	{{-- @for($i=0;$i < count($notifications); $i++)
 		<p>👋 Professor <b>{{ $submissions[$i]['teacher_name'] }}</b> called you for <b>{{ $submissions[$i]['subject_name'] }}</b> submission</p>

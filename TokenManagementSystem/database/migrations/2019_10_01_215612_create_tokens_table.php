@@ -19,7 +19,7 @@ class CreateTokensTable extends Migration
             $table->foreign('student_id')->references('id')->on('students');
 
             $table->bigInteger('submission_id')->unsigned();
-            $table->foreign('submission_id')->references('id')->on('submissions');
+            $table->foreign('submission_id')->references('id')->on('submissions')->onDelete('cascade');
 
             $table->bigInteger('value');
 
